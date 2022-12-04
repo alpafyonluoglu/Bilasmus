@@ -22,6 +22,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use routers
 app.use('/', mainRouter);
 
-// TODO: Handle errors
+// Handle errors
+app.use((req, res, next) => {
+    next(createError(404));
+});
+
+app.use((err, req, res, next) => {
+    let obj = {
+        code: err.status,
+        message: err.message
+    };
+
+    if (process.env.dev === "true") {
+        obj.errorStack = err.stack;
+    }
+
+    res.status(err.status || 500);
+    res.json(obj);
+});
 
 module.exports = app;
