@@ -8,8 +8,8 @@ const createError = require( 'http-errors');
 
 // Routers
 // TODO: Add other routers
-const mainRouter = require('./routes/main');
-const authRouter = require('./routes/auth');
+const mainRouter = require('./routes/main').getRouter();
+const authRouter = require('./routes/auth').getRouter();
 
 const app = express();
 
