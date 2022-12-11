@@ -9,6 +9,7 @@ const createError = require( 'http-errors');
 // Routers
 // TODO: Add other routers
 const mainRouter = require('./routes/main');
+const authRouter = require('./routes/auth');
 
 const app = express();
 
@@ -21,23 +22,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Use routers
 app.use('/', mainRouter);
+app.use('/auth', authRouter);
 
 // Handle errors
 app.use((req, res, next) => {
-    next(createError(404));
+    return next(createError(404));
 });
 
 app.use((err, req, res, next) => {
+    let statusCode = err.status || 500;
     let obj = {
-        code: err.status,
+        code: statusCode,
         message: err.message
     };
 
-    if (process.env.dev === "true") {
+    if (process.env.dev === "true" && statusCode === 500) {
         obj.errorStack = err.stack;
     }
 
-    res.status(err.status || 500);
+    res.status(statusCode);
     res.json(obj);
 });
 
