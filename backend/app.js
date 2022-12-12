@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require( 'express-session');
 const createError = require( 'http-errors');
+const cors = require('cors');
 
 // Routers
 const mainRouter = require('./routes/main').getRouter();
@@ -13,10 +14,13 @@ const authRouter = require('./routes/auth').getRouter();
 const app = express();
 
 app.use(logger('dev'));
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({
+    origin: '*'
+}));
 
 // Setup sessions
 let options = {
