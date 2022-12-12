@@ -69,7 +69,7 @@ app.use((req, res, next) => {
     return next(createError(404));
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => { // Do not remove "next" param
     let statusCode = err.status || 500;
     let obj = {
         code: statusCode,
