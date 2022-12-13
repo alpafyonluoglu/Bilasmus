@@ -5,11 +5,6 @@ class LoginService {
         return true;
     }
 
-    resetPassword(email, callback) {
-        // TODO: Implement
-
-    }
-
     getUserId(email) {
         // TODO: DB connection
 
