@@ -8,8 +8,8 @@ const createError = require( 'http-errors');
 const cors = require('cors');
 
 // Routers
-const mainRouter = require('./routes/main').getRouter();
-const authRouter = require('./routes/auth').getRouter();
+const mainRouter = require('./routes/MainRouter').getRouter();
+const authRouter = require('./routes/AuthRouter').getRouter();
 
 const app = express();
 
