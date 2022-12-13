@@ -2,25 +2,23 @@ class FileStorage
 {
     createBaseFolder()
     {
+        dir ='./uploads';
         var fs = require('fs');
-        var dir ='./uploads';
         if(!fs.existsSync(dir))
         {
             fs.mkdir(dir);
             console.log("Folder is created!");
         }
     }
-    saveFile(__dirname,fileName)
+    saveFile(dirname,fileName)
     {
         const fs = require('fs');
         const path = require('path');
-        fs.writeFileSync(path.join(__dirname,fileName),"UTF8", (err) => {
+        fs.writeFileSync(path.join(dirname,fileName),"UTF8", (err) => {
             if(err) throw err;
             console.log("File Uploaded.");
         })
     }
-
-
 
 }
 module.exports = new FileStorage();
