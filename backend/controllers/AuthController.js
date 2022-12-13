@@ -45,6 +45,11 @@ class AuthController {
             });
         });
     }
+
+    resetPassword(email, callback) {
+        // Sen reset password email
+        loginService.resetPassword(email, callback);
+    }
 }
 
 module.exports = new AuthController();

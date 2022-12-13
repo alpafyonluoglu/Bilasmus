@@ -1,8 +1,4 @@
 runtime: nodejs16
 
-env_variables:
-  PRODUCTION: "true"
-  COOKIE_SECRET: "sUmLc6iCreji38t1AQowrL9OpRL6usTEdUX7wR6CHlFr5s8I2reri47CHUvufrlq"
-  GCLOUD_PROJECT: "bilasmus"
-  GOOGLE_APPLICATION_CREDENTIALS: "secure/bilasmus-37f4ee8b8bc2.json"
-  secure: always
+includes:
+  - secure/env_variables.yaml

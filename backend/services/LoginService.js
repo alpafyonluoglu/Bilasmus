@@ -5,8 +5,9 @@ class LoginService {
         return true;
     }
 
-    resetPassword(email) {
+    resetPassword(email, callback) {
         // TODO: Implement
+
     }
 
     getUserId(email) {
