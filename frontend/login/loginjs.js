@@ -40,7 +40,7 @@ document.getElementById("loginButton").onclick = function() {
     console.log('Fetch Error :-S', err);
   });
 
-  console.log("helloo");
+
     alert("button was clicked");
     //window.location.replace("../Coordinator/coordinator-home.html");
 };
