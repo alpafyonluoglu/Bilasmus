@@ -4,7 +4,20 @@ const createError = require("http-errors");
 class EmailController {
     sendResetPasswordEmail(email, callback) {
         let subject = "Reset your password";
-        let content = "...";
+        let content = "..."; // TODO: Add content
+
+        // TODO: Get user name
+        // TODO: Create link with token
+
+        this.#sendEmail(email, subject, content, callback);
+    }
+
+    sendMessageEmail(email, callback) {
+        let subject = "You have new messages";
+        let content = "..."; // TODO: Add content
+
+        // TODO: Get user name
+        // TODO: Get latest unread messages
 
         this.#sendEmail(email, subject, content, callback);
     }
