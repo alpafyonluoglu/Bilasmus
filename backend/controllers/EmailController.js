@@ -12,6 +12,16 @@ class EmailController {
         this.#sendEmail(email, subject, content, callback);
     }
 
+    sendWelcomeEmail(email, token, callback) {
+        let subject = "Welcome to Bilasmus!";
+        let content = "..."; // TODO: Add content
+
+        // TODO: Get user name
+        // TODO: Create link with token
+
+        this.#sendEmail(email, subject, content, callback);
+    }
+
     sendMessageEmail(email, callback) {
         let subject = "You have new messages";
         let content = "..."; // TODO: Add content
