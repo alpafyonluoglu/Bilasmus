@@ -3,11 +3,11 @@ const {Client} = require("pg");
 
 // credentials to connect to database
 const client = new Client({
-    user: "postgres",
-    host: "localhost",
-    database: "BilasmusDB",
-    password: "764512Bilkent",
-    port: 5433,
+    user: "riwriwtt",
+    host: "rogue.db.elephantsql.com",
+    database: "riwriwtt",
+    password: "U2fZjVCrY0AkW6IFuQfF2ZdOJ6uJd_pP",
+    URL: "postgres://riwriwtt:U2fZjVCrY0AkW6IFuQfF2ZdOJ6uJd_pP@rogue.db.elephantsql.com/riwriwtt",
 });
 
 client.connect(function(err) {
@@ -29,10 +29,6 @@ const updateUser = async (ID) => {
     }
 };
 
-updateUser(7001).then(result => {  // userName, userRole, userId
-    if (result) {
-        console.log('User updated');
-    }
-});
+
 
 
