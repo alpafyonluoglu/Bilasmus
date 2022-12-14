@@ -17,7 +17,7 @@ client.connect(function(err) {
 
 
 const updateUser = async (ID) => {
-    const query = 'UPDATE "authData" SET "ID" = 1000 WHERE "ID" = 7001';
+    const query = 'UPDATE "Coordinators" SET "Bilkent ID" = 1000 WHERE "Bilkent ID" = 7013';
     try {
          await client.query(query); // sends queries
         return true;
@@ -28,7 +28,12 @@ const updateUser = async (ID) => {
         await client.end();              // closes connection
     }
 };
-
+updateUser(1000).then( result => {
+    if(result)
+    {
+        console.log("updated");
+    }
+})
 
 
 
