@@ -9,21 +9,23 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="assets/css/Features-Large-Icons-icons.css">
+    <link rel="stylesheet" href="assets/css/iframe-iframe.css">
+    <link rel="stylesheet" href="assets/css/iframe.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-md" id="navbar">
-        <div class="container-fluid"><img id="logo" src="assets/img/bilkentlogo.png" width="60" height="57"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <nav class="navbar navbar-light navbar-expand-md" id="navbar" style="background: rgb(37, 83, 157);">
+        <div class="container-fluid"><img id="logo" src="assets/img/bilkentlogo.png" width="60" height="56"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav" id="leftNav">
                     <li class="nav-item"><a class="nav-link active" id="item1" href="coordinator-home.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" id="item2" href="#">Course Request</a></li>
+                    <li class="nav-item"><a class="nav-link" id="item2" href="coordinator-course-request.html">Course Request</a></li>
                     <li class="nav-item"><a class="nav-link active" id="item3" href="coordinator-preapproval.html">Pre-Approval Form</a></li>
-                    <li class="nav-item"><a class="nav-link" id="item4" href="#">Learning Agreement</a></li>
-                    <li class="nav-item"><a class="nav-link" id="item5" href="#">Course Transfer Form</a></li>
-                    <li class="nav-item"><a class="nav-link" id="item6" href="#">Student Wait List</a></li>
-                    <li class="nav-item"><a class="nav-link" id="item7" href="#">Transcripts</a></li>
+                    <li class="nav-item"><a class="nav-link" id="item4" href="coordinator-learning-agreement.html">Learning Agreement</a></li>
+                    <li class="nav-item"><a class="nav-link" id="item5" href="coordinator-course-transfer-form.html">Course Transfer Form</a></li>
+                    <li class="nav-item"><a class="nav-link" id="item6" href="coordinator-student-waitlist.html">Student Wait List</a></li>
+                    <li class="nav-item"><a class="nav-link" id="item7" href="coordinator-transcript.html">Transcripts</a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link" id="item8" href="#">Help</a></li>
                     <li class="nav-item"></li>
@@ -64,12 +66,12 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>CE319 - Object Oriented Programming</td>
-                                                            <td>Mandatory</td>
-                                                            <td>Approved</td>
-                                                            <td><button class="btn btn-primary" type="button" style="background: var(--bs-gray);">Link<a href="#" style="color: var(--bs-btn-disabled-color);text-decoration:  underline;"></a></button></td>
-                                                            <td><button class="btn btn-primary" type="button" style="background: var(--bs-gray);">Syllabus<a href="#" style="text-decoration:  underline;"><br></a></button></td>
-                                                            <td><button class="btn btn-primary" type="button" style="background: #2E7D38;">Approve<a href="#" style="text-decoration:  underline;"></a></button><button class="btn btn-primary" type="button" style="background: #dd2d2b;">Reject<a href="#" style="text-decoration:  underline;"></a></button></td>
+                                                            <td id="coursenameCourseRequest">CE319 - Object Oriented Programming</td>
+                                                            <td id="typeCourseRequest">Mandatory</td>
+                                                            <td id="evaluatedCourseRequest">Approved</td>
+                                                            <td><button class="btn btn-primary" id="linkCourseRequest" type="button" style="background: var(--bs-gray);">Link<a href="#" style="color: var(--bs-btn-disabled-color);text-decoration:  underline;"></a></button></td>
+                                                            <td><button class="btn btn-primary" id="syllabusCourseRequest" type="button" style="background: var(--bs-gray);">Syllabus<a href="#" style="text-decoration:  underline;"><br></a></button></td>
+                                                            <td><button class="btn btn-primary" id="approveCourseRequests" type="button" style="background: #2E7D38;">Approve<a href="#" style="text-decoration:  underline;"></a></button><button class="btn btn-primary" id="rejectCourseRequests" type="button" style="background: #dd2d2b;">Reject<a href="#" style="text-decoration:  underline;"></a></button></td>
                                                         </tr>
                                                         <tr>
                                                             <td>FA171 - Introduction to Art</td>

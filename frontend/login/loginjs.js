@@ -4,13 +4,16 @@ document.getElementById("loginButton").onclick = function() {
   let inputEmail = document.getElementById("inputEmail").value;
   let inputPassword = document.getElementById("inputPassword").value;
   
-
+  //if both email and password are not entered
   if ( inputEmail == "" && inputPassword == "" ){
     alert("You did not enter your email and password!");
   }
+  // if email is not entered
   else if ( inputEmail == "" ){
     alert("You did not enter your email!");
-  } else if ( inputPassword == "" ){
+  } 
+  //if password is not entered
+  else if ( inputPassword == "" ){
     alert("You did not enter your password!");
   }
   console.log(inputEmail);
@@ -42,7 +45,7 @@ document.getElementById("loginButton").onclick = function() {
 
 
     alert("button was clicked");
-    //window.location.replace("../Coordinator/coordinator-home.html");
+    window.location.replace("../Coordinator/coordinator-home.html");
 };
     
 
