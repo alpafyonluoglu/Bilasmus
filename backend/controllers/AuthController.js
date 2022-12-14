@@ -1,5 +1,6 @@
 const createError = require("http-errors");
 const loginService = require("../services/LoginService");
+const emailController = require("./EmailController");
 
 class AuthController {
     createSession(email, password, req, callback) {
@@ -22,7 +23,7 @@ class AuthController {
         // Create session
         req.session.regenerate( (err) => {
             if (err) {
-                callback(createError(500, "Session could not be generated."));
+                callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
             }
 
             req.session.userID = userID;
@@ -37,13 +38,18 @@ class AuthController {
         // Destroy session
         req.session.destroy( (err) => {
             if (err) {
-                callback(createError(500, "Session could not be destroyed."));
+                callback(createError(500, "Session could not be destroyed: " + (process.env.PRODUCTION ? err : "...")));
             }
 
             callback({
                 loggedIn: false
             });
         });
+    }
+
+    resetPassword(email, callback) {
+        // Sen reset password email
+        emailController.sendResetPasswordEmail(email, callback);
     }
 }
 

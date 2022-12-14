@@ -7,6 +7,7 @@ class AuthRouterHandler {
   /*
   - Login: POST /auth/login (params: email & password)
   - Logout: POST /auth/logout
+  - Reset: POST /auth/reset (params: email)
    */
 
   getRouter() {
@@ -30,6 +31,23 @@ class AuthRouterHandler {
     router.post('/logout', (req, res, next) => {
       // Call controller
       authController.destroySession(req, (result) => {
+        if (result instanceof Error) {
+          return next(result);
+        }
+
+        result.code = 200;
+        return res.json(result);
+      });
+    })
+
+    router.post('/reset', (req, res, next) => {
+      // Check params
+      if (!req.body.email) {
+        return next(createError(400, "'email' param is missing"));
+      }
+
+      // Call controller
+      authController.resetPassword(req.body.email, (result) => {
         if (result instanceof Error) {
           return next(result);
         }

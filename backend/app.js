@@ -6,6 +6,7 @@ const logger = require('morgan');
 const session = require( 'express-session');
 const createError = require( 'http-errors');
 const cors = require('cors');
+require('dotenv').config({path: __dirname +'/secure/.env'})
 
 // Routers
 const mainRouter = require('./routes/MainRouter').getRouter();
