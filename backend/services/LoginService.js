@@ -1,13 +1,67 @@
+const connection = require("../controllers/DatabaseController");
+const express = require("express");
+const app = express()
+
 class LoginService {
-    verifyPassword(email, password) {
-        // Check whether email and password match or not
-        // TODO: DB connection
-        return true;
+
+    verifyPassword(email, password)
+    {
+        this.email = email;
+        this.password = password;
+        // TODO HANDLE PATHS!
+        app.post('/auth', function(request, response) {
+            // Capture the input fields
+            let email = request.body.email;
+            let password = request.body.password;
+            // Ensure the input fields exists and are not empty
+            if (email && password) {
+                // Execute SQL query that'll select the account from the database based on the specified email and password
+                connection.client.query('SELECT * FROM authData WHERE email = ?  AND password = ?', [email, password], function(error, results, fields) {
+                    // If there is an issue with the query, output the error
+                    if (error) throw error;
+                    // If the account exists
+                    if (results.length > 0) {
+                        // Authenticate the user
+                        request.session.loggedin = true;
+                        request.session.email = email;
+
+                        // Redirect to home page
+                        response.redirect('/home');
+                        return true;
+                    } else
+                    {
+                        response.send('Incorrect Username and/or Password!');
+                    }
+                    response.end();
+                    return false;
+                });
+            } else {
+                response.send('Please enter Username and Password!');
+                response.end();
+                return false;
+            }
+        });
     }
 
     getUserId(email) {
-        // TODO: DB connection
+        this.email = email;
+        let userID;
+        // TODO HANDLE PATHS!
+        app.post('/auth', function(request, response) {
+            if (email) {
+                connection.client.query('SELECT * FROM authData WHERE email = ?', [email], function (error, results, fields) {
+                    // If there is an issue with the query, output the error
+                    if (error) throw error;
+                    if (results.length > 0) {
+                        request.session.id = response.id;
+                        userID = request.session.id;
+                    }
 
+                })
+            }
+        });
+
+        /*
         // Dummy users
         let userID;
         switch (email) {
@@ -23,6 +77,8 @@ class LoginService {
             default:
                 userID = false;
         }
+
+         */
 
         return userID;
     }

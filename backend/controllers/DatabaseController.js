@@ -15,25 +15,24 @@ client.connect(function(err) {
     console.log("Connected!");
 });
 
+let getUsers = (request, response) => {
+    client.query('SELECT * FROM public."authData" ORDER BY id ASC', (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+const getUserById = (request, response) => {
+    const id = parseInt(request.params.id)
 
-const updateUser = async (ID) => {
-    const query = 'UPDATE "Coordinators" SET "Bilkent ID" = 1000 WHERE "Bilkent ID" = 7013';
-    try {
-         await client.query(query); // sends queries
-        return true;
-    } catch (error) {
-        console.error(error.stack);
-        return false;
-    } finally {
-        await client.end();              // closes connection
-    }
-};
-updateUser(1000).then( result => {
-    if(result)
-    {
-        console.log("updated");
-    }
-})
+    client.query('SELECT * FROM public."AuthData" WHERE "Bilkent ID" = $1', [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
 
-
+module.exports = {client,getUsers,getUserById}
 

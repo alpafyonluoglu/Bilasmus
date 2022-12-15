@@ -28,6 +28,7 @@ class UserController {
 
     updateUser(user, callback) { // TODO: Input params
         // TODO: DB connection
+
     }
 }
 

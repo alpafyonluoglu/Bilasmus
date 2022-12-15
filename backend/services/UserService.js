@@ -1,5 +1,7 @@
-class UserService {
-    addUser(user) {
+class UserService
+{
+    addUser(user)
+    {
         // TODO: DB connection (add to DB)
         return true;
     }
