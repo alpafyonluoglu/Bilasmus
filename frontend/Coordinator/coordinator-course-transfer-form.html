@@ -42,20 +42,25 @@
         </div>
     </nav>
     <div>
-        <h1>Course Transfer Forms</h1>
-        <div><label class="form-label">Seach Name:&nbsp;</label><input type="search"><button class="btn btn-primary" id="searchCourseTransfer" type="button" style="background: #3C3C3C;">Search</button></div>
-        <div>
-            <div class="row">
-                <div class="col"><label class="form-label" id="nameCourseTransfer">Student Name</label>
-                    <div></div><label class="form-label" id="emailCourseTransfer">Email</label>
+        
+            <h1>Course Transfer Forms</h1>
+            <p>Course Transfer Forms can be submitted below.</p>
+            <div class="container">
+            <div><label class="form-label">Search Name:&nbsp;</label><input type="search" id="searchedName"><button class="btn btn-primary" id="searchCourseTransfer" type="button" style="background: #3C3C3C;">Search</button></div>
+            <div>
+                <div class="row">
+                    <div class="col"><label class="form-label" id="nameCourseTransfer">Student Name</label>
+                        <div></div><label class="form-label" id="emailCourseTransfer">Email</label>
+                    </div>
+                    <div class="col"><input type="file" id="formFile"></div>
+                    <div class="col"><i class="icon-arrow-down-circle" style="font-size: 56px;"></i><a id="downloadCourseTransfer" href="#" download>Download</a></div>
                 </div>
-                <div class="col"><input type="file"><button class="btn btn-primary" id="CourseTransfer" type="button" style="background: #3C3C3C;">Upload</button></div>
-                <div class="col"><i class="icon-arrow-down-circle" style="font-size: 56px;"></i><a id="downloadCourseTransfer" href="#">Download</a></div>
             </div>
-        </div>
-        <div></div>
+    </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="coordinator-course-transfer-form.js"></script>
+
 </body>
 
 </html>

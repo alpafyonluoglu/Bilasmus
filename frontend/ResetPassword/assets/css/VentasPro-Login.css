@@ -1,0 +1,39 @@
+#main {
+  height: 100vh;
+  background: url("login.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+#info {
+  width: 90%;
+  height: 650px;
+  border-radius: 5px;
+  color: #f8f9fa;
+  background-color: rgba(0,0,0, 0.65);
+  left: 50%;
+  top: 40%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  font-size: 12px;
+}
+
+@media (min-width: 576px) {
+  #info {
+    max-width: 350px;
+  }
+}
+
+#form-login {
+  max-width: 70%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+#ventaspro-logo {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+

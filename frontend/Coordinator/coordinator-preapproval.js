@@ -9,6 +9,7 @@ document.getElementById("viewPreApproval").onclick = function(){
 document.getElementById("approvePreApproval").onclick = function(){
     //if view button is clicked
 console.log("approve clicked preapproval");
+window.location.replace("coordinator-preapproval-upload.html");
 
 }
 document.getElementById("rejectPreApproval").onclick = function(){

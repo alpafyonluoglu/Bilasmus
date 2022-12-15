@@ -42,15 +42,24 @@
         </div>
     </nav>
     <div>
-        <h1>Upload Pre-Approval Form</h1>
-        <div></div>
-        <div>
-            <div class="row">
-                <div class="col"><input type="file" id="preapprovalUpload"  accept=".pdf"></div>
-                <div class="col"><i class="icon-arrow-down-circle" style="font-size: 56px;"></i><a id="downloadPreApproval" download href="" >Download</a></div>
+        
+            <h1>Upload Pre-Approval Form</h1>
+            <p> Signed Pre-Approval Form to be uploaded.</p>
+            <div class="container">
+            <div></div>
+            <div>
+                <div class="row">
+                    <div class="col">  
+                        <form method="post" action="https://bilasmus.uc.r.appspot.com/file/upload" enctype='multipart/form-data'>
+                        <input type="file" name="file"  id="preapprovalUpload" required>
+                        <input type="submit" id="submitButton" value="Upload" onclick="submitButtonPressed()">
+                    </form></div>
+                    <div class="col"><i class="icon-arrow-down-circle" style="font-size: 56px;"></i><a id="downloadPreApproval" onclick="downloadFileLink()" download href="" >Download</a></div>
+                </div>
+            </div>
+            <div>
             </div>
         </div>
-        <div></div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="coordinator-preapproval-upload.js"></script>
