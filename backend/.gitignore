@@ -65,3 +65,4 @@ typings/
 
 # Secure files
 secure
+app.yaml
