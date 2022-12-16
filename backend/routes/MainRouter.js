@@ -11,6 +11,7 @@ class MainRouterHandler {
     router.get('/', (req, res) => {
       res.json({
         code: 200,
+        testId: 1,
         status: {
           serverStatus: "Running",
           databaseStatus: dbConnected ? "Connected" : "Disconnected",

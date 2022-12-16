@@ -24,10 +24,10 @@ jobs:
     - name: Create deployment files
       run: |
           touch backend/app.yaml
-          echo "${{ secrets.APP_YAML }}" > backend/app.yaml
+          echo '${{ secrets.APP_YAML }}' > backend/app.yaml
           mkdir backend/${{ secrets.CRED_FOLDER }}
           touch backend/${{ secrets.CRED_JSON_PATH }}
-          echo "${{ secrets.CRED_JSON }}" > backend/${{ secrets.CRED_JSON_PATH }}
+          echo '${{ secrets.CRED_JSON }}' > backend/${{ secrets.CRED_JSON_PATH }}
 
     - name: Authenticate
       id: 'auth'
