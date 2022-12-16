@@ -5,31 +5,38 @@ const emailController = require("./EmailController");
 class AuthController {
     createSession(email, password, req, callback) {
         // Verify password
-        let result = loginService.verifyPassword();
-        if (result !== true) {
-            callback({
-                loggedIn: false,
-                message: "Email and password do not match"
-            });
-        }
-
-        // Get user
-        let userID = loginService.getUserId(email);
-        if (userID === false) {
-            callback(createError(400, "User not found"));
-        }
-        // TODO: Get user details (type)
-
-        // Create session
-        req.session.regenerate( (err) => {
-            if (err) {
-                callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
+        loginService.verifyPassword(email, password, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+            else if (result !== true) {
+                return callback({
+                    loggedIn: false,
+                    message: "Email and password do not match"
+                });
             }
 
-            req.session.userID = userID;
-            callback({
-                loggedIn: true,
-                user: userID
+            // Get user
+            loginService.getUserId(email, (result) => {
+                if (result instanceof Error) {
+                    return callback(result);
+                }
+
+                let userID = result.userID;
+                // TODO: Get user details (type)
+
+                // Create session
+                req.session.regenerate( (err) => {
+                    if (err) {
+                        callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
+                    }
+
+                    req.session.userID = userID;
+                    callback({
+                        loggedIn: true,
+                        user: userID
+                    });
+                });
             });
         });
     }

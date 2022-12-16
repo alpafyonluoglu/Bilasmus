@@ -1,5 +1,5 @@
 const connection = require("../controllers/DatabaseController");
-const express = require("express");
+
 class RegisterService {
     generateRegistrationToken(email, callback) {
         const token = this.#generateToken(32);

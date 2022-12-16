@@ -16,7 +16,7 @@ class MainRouterHandler {
           databaseStatus: dbConnected ? "Connected" : "Disconnected",
           sessionStatus: req.session && req.session.userID ? "Logged in" : "Uninitialized",
         },
-        loggedIn: req.session && req.session.userID,
+        loggedIn: (req.session && req.session.userID) ? true : false,
         user: req.session && req.session.userID ? req.session.userID : undefined
       })
     })

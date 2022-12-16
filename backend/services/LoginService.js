@@ -1,66 +1,40 @@
 const connection = require("../controllers/DatabaseController");
-const express = require("express");
-const app = express()
-
+const createError = require("http-errors");
 
 class LoginService {
 
-    verifyPassword(email, password)
+    verifyPassword(email, password, callback)
     {
-        this.email = email;
-        this.password = password;
-        // TODO HANDLE PATHS!
-        app.post('https://bilasmus.uc.r.appspot.com/auth/login', function(request, response) {
-            // Capture the input fields
-            let email = request.body.email;
-            let password = request.body.password;
-            // Ensure the input fields exists and are not empty
-            if (email && password) {
-                // Execute SQL query that'll select the account from the database based on the specified email and password
-                connection.client.query('SELECT * FROM public."authData" WHERE "email" = ?  AND "password" = ?', [email, password], function(error, results, fields) {
-                    // If there is an issue with the query, output the error
-                    if (error) throw error;
-                    // If the account exists
-                    if (results.length > 0) {
-                        // Authenticate the user
-                        request.session.loggedin = true;
-                        request.session.email = email;
-
-                        // Redirect to home page
-                        response.redirect('/home');
-                        return true;
-                    } else
-                    {
-                        response.send('Incorrect Username and/or Password!');
-                    }
-                    response.end();
-                    return false;
-                });
-            } else {
-                response.send('Please enter Username and Password!');
-                response.end();
-                return false;
+        // Execute SQL query that'll select the account from the database based on the specified email and password
+        connection.client.query('SELECT * FROM "authData" WHERE "email" = $1 AND "password" = $2', [email, password], function(error, results, fields) {
+        // connection.client.query('SELECT * FROM "authData"', function(error, results, fields) {
+            // If there is an issue with the query, output the error
+            if (error) {
+                return callback(createError(500, error.message));
             }
+
+            // If the account exists
+            return callback(results.rows.length > 0);
         });
     }
 
-    getUserId(email) {
-        this.email = email;
-        let userID;
+    getUserId(email, callback) {
         // TODO HANDLE PATHS!
-        app.post('/auth', function(request, response) {
-            if (email) {
-                connection.client.query('SELECT "ID" FROM public."authData" WHERE "email" = ?', [email], function (error, results, fields) {
-                    // If there is an issue with the query, output the error
-                    if (error) throw error;
-                    if (results.length > 0) {
-                        //set id
-                        userID = results;
-                    }
+        connection.client.query('SELECT "ID" FROM "authData" WHERE "email" = $1', [email], function (error, results, fields) {
+            // If there is an issue with the query, output the error
+            if (error) {
+                return callback(createError(500, error.message));
+            }
 
+            if (results.rows.length > 0) {
+                //set id
+                return callback({
+                    userID: results.rows[0].ID
                 })
             }
-        });
+
+            return callback(createError(500, "User could not be found"));
+        })
 
         /*
         // Dummy users
@@ -80,8 +54,6 @@ class LoginService {
         }
 
          */
-
-        return userID;
     }
 }
 
