@@ -73,6 +73,53 @@ class PreApprovedCourse {
     getBilkentCourseCredit() {
         return this.#bilkentCourseCredit;
     }
+
+    #tableName = "admin";
+    #relations = [
+        {	col: "Host University's Name",
+            set: this.setHostUniversityName,
+            get: this.getHostUniversityName
+        },
+        {	col: "Host University's Department/Program",
+            set: this.setHostUniversityDepartment,
+            get: this.getHostUniversityDepartment
+        },
+        {	col: "Host University's Course Code",
+            set: this.setHostUniversityCourseCode,
+            get: this.getHostUniversityCourseCode
+        },
+        {	col: "Host University's Course name",
+            set: this.setHostUniversityCourseName,
+            get: this.getHostUniversityCourseName
+        },
+        {	col: "ECTS",
+            set: this.setEcts,
+            get: this.getEcts
+        },
+        {	col: "Exempted Bilkent Course Code",
+            set: this.setBilkentCourseCode,
+            get: this.getBilkentCourseCode
+        },
+        {	col: "Exempted Bilkent Course Name",
+            set: this.setBilkentCourseName,
+            get: this.getBilkentCourseName
+        },
+        {	col: "Exempted Bilkent Course Credit",
+            set: this.setBilkentCourseCredit,
+            get: this.getBilkentCourseCredit
+        },
+        {	col: "Exempted Bilkent Course Designation",
+            set: this.setBilkentDepartment,
+            get: this.getBilkentDepartment
+        }
+    ];
+
+    getTableName() {
+        return this.#tableName;
+    }
+    getRelations() {
+        return this.#relations;
+    }
 }
 
 module.exports = PreApprovedCourse;

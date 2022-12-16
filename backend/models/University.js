@@ -58,6 +58,52 @@ class University {
     getLanguageReq() {
         return this.#languageReq;
     }
+
+    #tableName = "UniversityTable";
+    #relations = [
+        {
+            col: "universityID",
+            set: this.setId,
+            get: this.getId
+        },
+        {
+            col: "universityName",
+            set: this.setName,
+            get: this.getName
+        },
+        {
+            col: "universityCountry",
+            set: this.setCountry,
+            get: this.getCountry
+        },
+        {
+            col: "semestersAllowed",
+            set: this.setSemestersAllowed,
+            get: this.getSemestersAllowed
+        },
+        {
+            col: "undergraduateAllowed",
+            set: this.setUndergraduateAllowed,
+            get: this.getUndergraduateAllowed
+        },
+        {
+            col: "coursesInEnglish",
+            set: this.setCoursesInEnglish,
+            get: this.getCoursesInEnglish
+        },
+        {
+            col: "languageReq",
+            add: this.addLanguageReq,
+            get: this.getLanguageReq
+        }
+    ];
+
+    getTableName() {
+        return this.#tableName;
+    }
+    getRelations() {
+        return this.#relations;
+    }
 }
 
 module.exports = University;

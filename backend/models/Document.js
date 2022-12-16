@@ -41,6 +41,42 @@ class Document {
     getPath() {
         return this.#path;
     }
+
+    #tableName = "Document";
+    #relations = [
+        {
+            col: "Name",
+            set: this.setName,
+            get: this.getName
+        },
+        {
+            col: "ownerID",
+            set: this.setOwnerId,
+            get: this.getOwnerId
+        },
+        {
+            col: "uploadDate",
+            set: this.setUploadDate,
+            get: this.getUploadDate
+        },
+        {
+            col: "size",
+            set: this.setSize,
+            get: this.getSize
+        },
+        {
+            col: "path",
+            set: this.setPath,
+            get: this.getPath
+        }
+    ];
+
+    getTableName() {
+        return this.#tableName;
+    }
+    getRelations() {
+        return this.#relations;
+    }
 }
 
 module.exports = Document;

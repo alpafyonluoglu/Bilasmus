@@ -9,8 +9,16 @@ class User {
         this.#id = id;
         return this;
     }
-    setName(name, surname) {
+    setFullName(name, surname) {
         this.#name = name;
+        this.#surname = surname;
+        return this;
+    }
+    setName(name) {
+        this.#name = name;
+        return this;
+    }
+    setSurname(surname) {
         this.#surname = surname;
         return this;
     }
@@ -27,8 +35,14 @@ class User {
     getId() {
         return this.#id;
     }
-    getName() {
+    getFullName() {
         return this.#name + " " + this.#surname;
+    }
+    getName() {
+        return this.#name;
+    }
+    getSurname() {
+        return this.#surname;
     }
     getEmail() {
         return this.#email;
