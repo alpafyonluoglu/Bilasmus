@@ -75,7 +75,7 @@ class PreApprovedCourse {
     }
 
     #tableName = "admin";
-    #relations = [
+    _relations = [
         {	col: "Host University's Name",
             set: this.setHostUniversityName,
             get: this.getHostUniversityName
@@ -118,7 +118,7 @@ class PreApprovedCourse {
         return this.#tableName;
     }
     getRelations() {
-        return this.#relations;
+        return this._relations;
     }
 }
 
