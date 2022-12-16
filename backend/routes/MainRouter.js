@@ -13,6 +13,7 @@ class MainRouterHandler {
         code: 200,
         status: {
           serverStatus: "Running",
+          databaseStatus: dbConnected ? "Connected" : "Disconnected",
           sessionStatus: req.session && req.session.userID ? "Logged in" : "Uninitialized",
         },
         loggedIn: req.session && req.session.userID,
@@ -27,13 +28,6 @@ class MainRouterHandler {
       }
 
       res.json({ message: "Hi " + req.body.name});
-    })
-
-    // TODO: Remove later, for testing
-    router.get('/db', (req, res) => {
-      const postgres = require("../controllers/DatabaseController");
-
-      res.json({ message: "OK"});
     })
 
     return router;

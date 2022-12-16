@@ -12,6 +12,10 @@ require('dotenv').config({path: __dirname +'/secure/.env'})
 const mainRouter = require('./routes/MainRouter').getRouter();
 const authRouter = require('./routes/AuthRouter').getRouter();
 const fileSystemRouter = require('./routes/FileSystemRouter').getRouter();
+const databaseRouter = require('./routes/DatabaseRouter').getRouter();
+
+// Global variables
+global.dbConnected = false;
 
 const app = express();
 
@@ -66,6 +70,7 @@ app.use(session(options));
 app.use('/', mainRouter);
 app.use('/auth', authRouter);
 app.use('/file', fileSystemRouter);
+app.use('/db', databaseRouter);
 
 // Handle errors
 app.use((req, res, next) => {
