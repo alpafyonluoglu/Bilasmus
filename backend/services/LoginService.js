@@ -17,7 +17,7 @@ class LoginService {
             // Ensure the input fields exists and are not empty
             if (email && password) {
                 // Execute SQL query that'll select the account from the database based on the specified email and password
-                connection.client.query('SELECT * FROM public."authData" WHERE "e-mail" = ?  AND "password" = ?', [email, password], function(error, results, fields) {
+                connection.client.query('SELECT * FROM public."authData" WHERE "email" = ?  AND "password" = ?', [email, password], function(error, results, fields) {
                     // If there is an issue with the query, output the error
                     if (error) throw error;
                     // If the account exists
