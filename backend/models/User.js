@@ -1,6 +1,7 @@
 class User {
     #id;
     #name;
+    #surname;
     #email;
     #messages = [];
 
@@ -8,8 +9,9 @@ class User {
         this.#id = id;
         return this;
     }
-    setName(name) {
+    setName(name, surname) {
         this.#name = name;
+        this.#surname = surname;
         return this;
     }
     setEmail(email) {
@@ -26,7 +28,7 @@ class User {
         return this.#id;
     }
     getName() {
-        return this.#name;
+        return this.#name + " " + this.#surname;
     }
     getEmail() {
         return this.#email;
