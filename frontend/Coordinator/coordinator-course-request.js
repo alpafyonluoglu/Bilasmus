@@ -1,7 +1,7 @@
-
 /*
-    Method for Coordinator Course Request Page- Managing Button clicks
+    Methods for Coordinator Course Request Page- Managing Button clicks
 */
+
 document.getElementById("viewCourseRequest").onclick = function(){
     //if view is clicked
     console.log("view is clicked");

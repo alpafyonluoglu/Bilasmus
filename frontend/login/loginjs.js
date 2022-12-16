@@ -16,6 +16,7 @@ document.getElementById("loginButton").onclick = function() {
   else if ( inputPassword == "" ){
     alert("You did not enter your password!");
   }
+  
   console.log(inputEmail);
   console.log(inputPassword);
   fetch("https://bilasmus.uc.r.appspot.com/").then((response) => {
@@ -42,10 +43,8 @@ document.getElementById("loginButton").onclick = function() {
   }).catch(function(err) {
     console.log('Fetch Error :-S', err);
   });
-
-
+    
+    
     alert("button was clicked");
     window.location.replace("../Coordinator/coordinator-home.html");
 };
-    
-
