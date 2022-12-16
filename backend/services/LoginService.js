@@ -10,7 +10,7 @@ class LoginService {
         this.email = email;
         this.password = password;
         // TODO HANDLE PATHS!
-        app.post('/auth', function(request, response) {
+        app.post('https://bilasmus.uc.r.appspot.com/auth/login', function(request, response) {
             // Capture the input fields
             let email = request.body.email;
             let password = request.body.password;
