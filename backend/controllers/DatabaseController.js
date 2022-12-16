@@ -3,11 +3,11 @@ const {Client} = require("pg");
 
 // credentials to connect to database
 const client = new Client({
-    user: "riwriwtt",
-    host: "rogue.db.elephantsql.com",
-    database: "riwriwtt",
-    password: "U2fZjVCrY0AkW6IFuQfF2ZdOJ6uJd_pP",
-    URL: "postgres://riwriwtt:U2fZjVCrY0AkW6IFuQfF2ZdOJ6uJd_pP@rogue.db.elephantsql.com/riwriwtt",
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    URL: process.env.DB_URL,
 });
 
 client.connect(function(err) {

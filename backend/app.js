@@ -11,6 +11,7 @@ require('dotenv').config({path: __dirname +'/secure/.env'})
 // Routers
 const mainRouter = require('./routes/MainRouter').getRouter();
 const authRouter = require('./routes/AuthRouter').getRouter();
+const fileSystemRouter = require('./routes/FileSystemRouter').getRouter();
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use(session(options));
 // Setup routers
 app.use('/', mainRouter);
 app.use('/auth', authRouter);
+app.use('/file', fileSystemRouter);
 
 // Handle errors
 app.use((req, res, next) => {
