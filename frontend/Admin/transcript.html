@@ -31,13 +31,38 @@
         </div>
     </nav>
     <h1 class="fs-3" style="margin-left: 2rem;margin-top: 2rem;">Transcript</h1>
-    <div class="d-flex" style="margin-top: 2rem;margin-left: 2rem;margin-right: 2rem;"><input type="search" style="border-style: solid;margin-left: 0rem;margin-top: 0rem;height: 2rem;"><button class="btn btn-primary" id="searchStudentButton" type="button" style="background-color: var(--bs-btn-bg);/*background-color: var(--bs-red);*/margin-left: 2rem;padding-bottom: 0px;padding-top: 0px;">Search</button></div>
-    <div class="d-flex" style="margin: 15px 32px 0px;margin-left: 2rem;margin-top: 1rem;margin-right: 2rem;">
-        <ul class="list-group">
-            <li class="list-group-item"><button id="student1">student1: student1@bilkent.edu.tr</button></li>
-        </ul>
+    <div class="container">
+        <div>
+            <div class="col-md-12 search-table-col">
+                <div class="d-flex d-xxl-flex justify-content-xxl-end form-group pull-right col-lg-4"><label class="form-label"></label><input type="text" class="search form-control" placeholder="Search by typing here.."><button class="btn btn-primary" id="searchButton" type="submit">Search</button></div><span class="counter pull-right"></span>
+                <div class="table-responsive table table-hover table-bordered results">
+                    <table class="table table-hover table-bordered">
+                        <thead class="bill-header cs">
+                            <tr style="background-color: #92b0b3;">
+                                <th id="trs-hd-1" class="col-lg-1" style="color: #f4f4f4;">ID</th>
+                                <th id="trs-hd-2" class="col-lg-2" style="color: #f4f4f4;">Name</th>
+                                <th id="trs-hd-3" class="col-lg-3" style="color: #f4f4f4;"><span style="color: rgb(255, 255, 255);">Email</span></th>
+                                <th id="trs-hd-4" class="col-lg-2" style="color: #f4f4f4;">Erasmus/Exchange University</th>
+                                <th id="trs-hd-6" class="col-lg-2" style="color: #f4f4f4;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>India</td>
+                                <td>Souvik Kundu</td>
+                                <td>Bootstrap Stuido</td>
+                                <td><button class="btn btn-primary d-xxl-flex m-auto justify-content-xxl-center" id="selectButton" type="button" style="background-color: #2E7D38;">Select</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div class="files color form-group mb-3"><input type="file" multiple="" name="files"></div><button class="btn btn-primary text-center d-xxl-flex justify-content-center align-items-center align-content-center m-auto justify-content-xxl-center align-items-xxl-end" id="downloadFileButton" type="button" style="background-color: #2E7D38;">Dowload File</button><button class="btn btn-primary d-xxl-flex m-auto justify-content-xxl-center" id="uploadButton" type="button" style="background-color: #2E7D38;margin-top: 1rem;">Upload</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="files color form-group mb-3" style="margin-left: 35rem;min-width: 25rem;max-width: 50rem;margin-right: 0rem;"><input class="flex-grow-0 m-auto" type="file" multiple="" name="files"><button class="btn btn-primary" id="uploadTranscriptButton" type="button" style="background-color: #2E7D38;margin-left: 0rem;padding-bottom: 0px;padding-top: 0px;width: 10rem;">upload</button></div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/zectStudio_12H-Time-Format.js"></script>
 </body>
