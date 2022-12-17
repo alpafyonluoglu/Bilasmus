@@ -59,7 +59,7 @@
                         <p>Course Webpage Link</p><input type="url" id="course_link" placeholder="Course Link" style="padding-left: 1rem;max-width: 10rem;" required="">
                     </div>
                     <div style="margin-right:0.5rem;margin-left:0.5rem;">
-                        <p>Course Type</p><select id="type" required="">
+                        <p>Course Type</p><select id="course_type" required="">
                             <option value="12" selected="">Mandatory</option>
                             <option value="13" selected="">Elective</option>
                             <option value="14">Additional</option>
@@ -73,7 +73,7 @@
                         </select>
                     </div>
                     <div style="max-width: 13rem;">
-                        <p>Course Syllabus</p><input class="form-control-sm" type="file" id="choose" required="">
+                        <p>Course Syllabus</p><input class="form-control-sm" type="file" id="syllabus_choose" required="">
                     </div>
                 </div><button class="btn btn-primary" id="add" type="button" style="position: relative;display: block;color: var(--bs-body-bg);background: var(--bs-green);max-height: 4rem;min-width: 5rem;margin-top: 1rem;margin-right: 1rem;margin-left: 37rem;">Add Request</button>
             </div>
@@ -94,6 +94,7 @@
         </div><button class="btn btn-primary" id="send" type="button" style="margin-left: 28rem;">Send Course Request List</button>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="outgoing_course_request.js"></script>
 </body>
 
 </html>
