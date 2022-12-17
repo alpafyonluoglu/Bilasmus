@@ -25,9 +25,9 @@ class DatabaseRouterHandler {
       // Call controller
       const Auth = require("../models/Auth");
       let auth = new Auth();
-      auth.setId("22003229");
+      auth.setId("22003229").setEmail("alpafyonluoglu@gmail.com");
 
-      databaseController.delete(auth, (result) => {
+      databaseController.update(auth, (result) => {
         if (result instanceof Error) {
           return next(result);
         }

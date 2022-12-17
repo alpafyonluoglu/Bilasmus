@@ -44,8 +44,7 @@ class UserService
         }
     }
 
-    getUser(id,callback)
-    {
+    getUser(id, callback) {
         if(id)
         {
             connection.client.query('SELECT *  FROM  "authData" WHERE "ID" = $1 ', [id], function (error, results) {

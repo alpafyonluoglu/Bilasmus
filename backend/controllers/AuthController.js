@@ -1,6 +1,9 @@
 const createError = require("http-errors");
 const loginService = require("../services/LoginService");
 const emailController = require("./EmailController");
+const databaseController = require("./DatabaseController");
+const registerService = require("../services/RegisterService");
+const Auth = require("../models/Auth");
 
 class AuthController {
     createSession(email, password, req, callback) {
@@ -65,8 +68,52 @@ class AuthController {
     }
 
     resetPassword(email, callback) {
-        // Sen reset password email
-        emailController.sendResetPasswordEmail(email, callback);
+        let auth = new Auth();
+        // auth.setEmail(email);
+        auth.setId("22003229");
+
+        this.getAuthUser(auth, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            if (result.length === 0) {
+                // User does not exist
+                return callback({
+                    completed: true
+                });
+            }
+
+            let authUser = result[0];
+            let id = authUser.getId();
+            registerService.generateResetPasswordToken(email, id, (result) => {
+                if (result instanceof Error) {
+                    return callback(result);
+                }
+
+                // Send reset password email
+                let token = result;
+                emailController.sendResetPasswordEmail(email, token, (result) => {
+                    if (result instanceof Error) {
+                        return callback(result);
+                    }
+
+                    return callback({
+                        completed: true
+                    });
+                });
+            })
+        })
+    }
+
+    getAuthUser(auth, callback) {
+        databaseController.select(auth, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            return callback(result);
+        })
     }
 }
 

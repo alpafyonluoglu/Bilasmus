@@ -206,8 +206,6 @@ class DatabaseController {
         let params = [];
         let paramsIndex = 1;
 
-        'DELETE FROM  "authData" WHERE "ID" = $1 '
-
         relations.forEach((relation) => {
             let col = relation.col;
             let val = relation.get();
