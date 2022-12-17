@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>faculty_comitee_board</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md py-3" style="background: #25539d;">
+        <div class="container-fluid"><img src="assets/img/bilkent-logo.png" width="56" height="56"><a class="navbar-brand d-flex align-items-center" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" id="home_faculty" href="faculty_comitee_board_main.html" style="color: rgba(255,255,255,0.9);">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="preapproval_faculty" href="faculty_comitee_board_preapproval.html" style="color: rgba(255,255,255,0.9);">Pre-Approval List</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="course_transfer_faculty" href="faculty_comitee_board_transfer.html" style="color: rgba(255,255,255,0.9);">Course Transfer Forms</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="help_faculty" href="#" style="color: rgba(255,255,255,0.9);">Help</a></li>
+                </ul>
+            </div><button class="btn btn-primary" id="logout_international" type="button" style="background: #25539d;margin-right: 1rem;border-color: #25539d;">Logout</button><button class="btn btn-primary" id="message_faculty" type="button" style="background: #25539d;border-color: #25539d;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" id="message" style="font-size: 30px;">
+                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z"></path>
+                </svg></button><button class="btn btn-primary" id="bell_faculty" type="button" style="background: #25539d;border-color: #25539d;"><i class="far fa-bell" id="bell" style="font-size: 28px;"></i></button><button class="btn btn-primary" id="profile_faculty" type="button" style="background: #25539d;border-color: #25539d;"><i class="far fa-user" id="profile" style="font-size: 28px;"></i></button>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 style="font-size: 30px;">Pre-Approval Forms</h1>
+        <p>The Pre-Approval forms that needs your attention are given below. Review the forms to approve or reject.</p>
+        <div style="width: 60rem;margin-left: 5rem;background: #dcdcdc;">
+            <ul>
+                <li>
+                    <div class="d-flex"><button class="btn btn-primary" id="preapproval_faculty" type="button" style="background: #dcdcdc;border-color: #dcdcdc;"><i class="far fa-file-alt" style="font-size: 60px;color: #3C3C3C;"></i></button>
+                        <div>
+                            <p id="preapproval_form_faculty" style="font-weight: bold;">Name_Surname_Preapproval.pdf</p>
+                            <div class="d-flex">
+                                <p>Student:&nbsp; &nbsp;&nbsp;</p>
+                                <p id="student_name_faculty">Name Surname</p>
+                            </div>
+                            <div class="d-flex">
+                                <p>Uploaded:&nbsp;</p>
+                                <p id="upload_date_faculty">1 November 2022</p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 3rem;margin-left: 2rem;"><button class="btn btn-primary" id="preapproval_view_faculty" type="button" style="margin-left: 2rem;border-color: #3C3C3C;background: #3C3C3C;">View</button><button class="btn btn-primary" id="preapproval_approve_faculty" type="button" style="margin-left: 2rem;border-color: #2E7D38;background: #2E7D38;">Approve</button><button class="btn btn-primary" id="preapproval_reject_faculty" type="button" style="margin-left: 2rem;border-color: #dd2d2b;background: #dd2d2b;">Reject</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
