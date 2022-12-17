@@ -61,7 +61,7 @@ class Document extends Model {
     }
 
     #tableName = "Document";
-    #primaryKey = "DocumentID";
+    #primaryKey = "path";
     #relations = [
         {
             col: "Name",
