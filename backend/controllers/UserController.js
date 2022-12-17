@@ -9,8 +9,19 @@ const DepartmentSecretary = require("../models/DepartmentSecretary");
 const FacultyCommitteeBoard = require("../models/FacultyCommitteeBoard");
 const IncomingStudent = require("../models/IncomingStudent");
 const OutgoingStudent = require("../models/OutgoingStudent");
+const InternationalStudentOffice = require("../models/InternationalStudentOffice");
 
-// User types: admin, coordinator, secretary, fcb, incoming, outgoing
+/*
+User types:
+- ig: Incoming Student
+- og: Outgoing Student
+- a: Admin
+- fcb: Faculty Committee Board
+- ds: Department Secretary
+- i: Instructor
+- iof:  International Student Office
+- c: Coordinator
+ */
 
 class UserController {
     registerUser(id, name,surname, email,type, callback) {
@@ -44,22 +55,25 @@ class UserController {
         // Select database to connect depending on user type
         let user;
         switch (type) {
-            case "admin":
+            case "a":
                 user = new Admin();
                 break;
-            case "coordinator":
+            case "c":
                 user = new Coordinator();
                 break;
-            case "secretary":
+            case "ds":
                 user = new DepartmentSecretary();
                 break;
             case "fcb":
                 user = new FacultyCommitteeBoard();
                 break;
-            case "incoming":
+            case "ig":
                 user = new IncomingStudent();
                 break;
-            default:
+            case "iof":
+                user = new InternationalStudentOffice();
+                break;
+            default: // "og"
                 user = new OutgoingStudent();
                 break;
         }

@@ -12,14 +12,15 @@ class MainRouterHandler {
     router.get('/', (req, res) => {
       res.json({
         code: 200,
-        testId: 1,
         status: {
           serverStatus: "Running",
           databaseStatus: dbConnected ? "Connected" : "Disconnected",
-          sessionStatus: req.session && req.session.userID ? "Logged in" : "Uninitialized",
+          sessionStatus: req.session && req.session.user ? "Logged in" : "Uninitialized",
         },
-        loggedIn: (req.session && req.session.userID) ? true : false,
-        user: req.session && req.session.userID ? req.session.userID : undefined
+        session: {
+          loggedIn: (req.session && req.session.user) ? true : false,
+          user: req.session && req.session.user ? req.session.user : undefined
+        }
       })
     })
 
@@ -33,7 +34,7 @@ class MainRouterHandler {
     })
 
     // TODO: Remove later, for testing
-    router.get('/test', (req, res, next) => {
+    router.get('/test', (req, res) => {
       emailController.sendResetPasswordEmail("alpafyonluoglu@gmail.com", "TEST123", (result) => {
         res.json({ message: result});
       })
