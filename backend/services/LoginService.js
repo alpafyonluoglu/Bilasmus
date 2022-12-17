@@ -18,8 +18,8 @@ class LoginService {
         });
     }
 
-    getUserId(email, callback) {
-        // TODO HANDLE PATHS!
+    getUserId(email, callback)
+    {
         connection.client.query('SELECT "ID" FROM "authData" WHERE "email" = $1', [email], function (error, results, fields) {
             // If there is an issue with the query, output the error
             if (error) {
@@ -36,25 +36,29 @@ class LoginService {
             return callback(createError(500, "User could not be found"));
         })
 
-        /*
-        // Dummy users
-        let userID;
-        switch (email) {
-            case "staff":
-                userID = 1;
-                break;
-            case "outgoing":
-                userID = 2;
-                break;
-            case "incoming":
-                userID = 3;
-                break;
-            default:
-                userID = false;
-        }
 
-         */
+    }
+
+    getType(id, callback)
+    {
+        connection.client.query('SELECT "type" FROM "authData" WHERE "ID" = $1', [id], function (error, results, fields) {
+            // If there is an issue with the query, output the error
+            if (error) {
+                return callback(createError(500, error.message));
+            }
+            //TODO  WHO IS CHECKING TYPES?
+            if (results.rows.length > 0)
+            {
+                return callback({
+                    userType: results.rows[0].type
+                })
+
+            }
+
+        })
+
     }
 }
 
 module.exports = new LoginService();
+
