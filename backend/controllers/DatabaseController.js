@@ -1,6 +1,7 @@
 // install npm pg
 const {Client} = require("pg");
 const createError = require("http-errors");
+const Model = require("../models/Model");
 
 class DatabaseController {
     static #instance = null;
@@ -57,6 +58,58 @@ class DatabaseController {
                 }
             }
         });
+    }
+
+    get(model, callback) {
+        if (!(model instanceof Model)) {
+            return callback(createError(500, "DB encountered unknown object"));
+        }
+
+        let tableName = model.getTableName();
+        let relations = model.getRelations();
+
+        console.log("Table name: " + tableName)
+
+        let params = [];
+        let paramsIndex = 1;
+        let query = 'SELECT * FROM "' + tableName + '" WHERE';
+
+        relations.forEach((relation) => {
+            let col = relation.col;
+            let val = relation.get();
+
+            if (val !== undefined) {
+                params.push(val);
+                query += (paramsIndex === 1 ? '' : ' AND') + ' "' + col + '" = $' + paramsIndex;
+                paramsIndex++;
+            }
+        });
+
+        this.client.query(query, params, function (error, results, fields) {
+            // If there is an issue with the query, output the error
+            if (error) {
+                return callback(createError(500, error.message));
+            }
+
+            if (results.rows.length === 0) {
+                return callback([]);
+            }
+
+            let result = [];
+            results.rows.forEach((row) => {
+                let clone = model.clone();
+
+                let relations = clone.getRelations()
+                relations.forEach((relation) => {
+                    let col = relation.col;
+                    relation.set(row[col]);
+                });
+
+                result.push(clone);
+            })
+
+            return callback(result);
+        })
     }
 
     getUsers = (request, response) => {

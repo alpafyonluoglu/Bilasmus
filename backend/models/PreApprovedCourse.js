@@ -1,4 +1,6 @@
-class PreApprovedCourse {
+const Model = require("./Model");
+
+class PreApprovedCourse extends Model {
     #hostUniversityName;
     #hostUniversityDepartment;
     #hostUniversityCourseCode;
@@ -77,40 +79,40 @@ class PreApprovedCourse {
     #tableName = "admin";
     _relations = [
         {	col: "Host University's Name",
-            set: this.setHostUniversityName,
-            get: this.getHostUniversityName
+            set: (val) => this.setHostUniversityName(val),
+            get: () => this.getHostUniversityName()
         },
         {	col: "Host University's Department/Program",
-            set: this.setHostUniversityDepartment,
-            get: this.getHostUniversityDepartment
+            set: (val) => this.setHostUniversityDepartment(val),
+            get: () => this.getHostUniversityDepartment()
         },
         {	col: "Host University's Course Code",
-            set: this.setHostUniversityCourseCode,
-            get: this.getHostUniversityCourseCode
+            set: (val) => this.setHostUniversityCourseCode(val),
+            get: () => this.getHostUniversityCourseCode()
         },
         {	col: "Host University's Course name",
-            set: this.setHostUniversityCourseName,
-            get: this.getHostUniversityCourseName
+            set: (val) => this.setHostUniversityCourseName(val),
+            get: () => this.getHostUniversityCourseName()
         },
         {	col: "ECTS",
-            set: this.setEcts,
-            get: this.getEcts
+            set: (val) => this.setEcts(val),
+            get: () => this.getEcts()
         },
         {	col: "Exempted Bilkent Course Code",
-            set: this.setBilkentCourseCode,
-            get: this.getBilkentCourseCode
+            set: (val) => this.setBilkentCourseCode(val),
+            get: () => this.getBilkentCourseCode()
         },
         {	col: "Exempted Bilkent Course Name",
-            set: this.setBilkentCourseName,
-            get: this.getBilkentCourseName
+            set: (val) => this.setBilkentCourseName(val),
+            get: () => this.getBilkentCourseName()
         },
         {	col: "Exempted Bilkent Course Credit",
-            set: this.setBilkentCourseCredit,
-            get: this.getBilkentCourseCredit
+            set: (val) => this.setBilkentCourseCredit(val),
+            get: () => this.getBilkentCourseCredit()
         },
         {	col: "Exempted Bilkent Course Designation",
-            set: this.setBilkentDepartment,
-            get: this.getBilkentDepartment
+            set: (val) => this.setBilkentDepartment(val),
+            get: () => this.getBilkentDepartment()
         }
     ];
 
@@ -119,6 +121,10 @@ class PreApprovedCourse {
     }
     getRelations() {
         return this._relations;
+    }
+
+    clone() {
+        return new PreApprovedCourse();
     }
 }
 

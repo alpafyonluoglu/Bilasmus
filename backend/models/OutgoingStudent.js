@@ -33,33 +33,33 @@ class OutgoingStudent extends User {
     #relations = [
         {
             col: "First Name",
-            set: this.setName,
-            get: this.getName
+            set: (val) => this.setName(val),
+            get: () => this.getName()
         },
         {
             col: "Lastname",
-            set: this.setSurname,
-            get: this.getSurname
+            set: (val) => this.setSurname(val),
+            get: () => this.getSurname()
         },
         {
             col: "Student ID Number",
-            set: this.setId,
-            get: this.getId
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         },
         {
             col: "Total Points",
-            set: this.setTotalPoint,
-            get: this.getTotalPoint
+            set: (val) => this.setTotalPoint(val),
+            get: () => this.getTotalPoint()
         },
         {
             col: "Duration Preferred",
-            set: this.setDurationPreferred,
-            get: this.getDurationPreferred
+            set: (val) => this.setDurationPreferred(val),
+            get: () => this.getDurationPreferred()
         },
         {
             col: "Placement Notes",
-            set: this.setPlacementNotes,
-            get: this.getPlacementNotes
+            set: (val) => this.setPlacementNotes(val),
+            get: () => this.getPlacementNotes()
         }
     ];
 
@@ -68,6 +68,10 @@ class OutgoingStudent extends User {
     }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new OutgoingStudent();
     }
 }
 

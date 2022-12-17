@@ -25,33 +25,33 @@ class Instructor extends User {
     #relations = [
         {
             col: "Name",
-            set: this.setName,
-            get: this.getName
+            set: (val) => this.setName(val),
+            get: () => this.getName()
         },
         {
             col: "Surname",
-            set: this.setSurname,
-            get: this.getSurname
+            set: (val) => this.setSurname(val),
+            get: () => this.getSurname()
         },
         {
             col: "Bilkent ID",
-            set: this.setId,
-            get: this.getId
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         },
         {
             col: "e-mail",
-            set: this.setEmail,
-            get: this.getEmail
+            set: (val) => this.setEmail(val),
+            get: () => this.getEmail()
         },
         {
             col: "department",
-            set: this.setDepartment,
-            get: this.getDepartment
+            set: (val) => this.setDepartment(val),
+            get: () => this.getDepartment()
         },
         {
             col: "coursesResponsible",
-            add: this.addCourse,
-            get: this.getCourses
+            add: (val) => this.addCourse(val),
+            get: () => this.getCourses()
         }
     ];
 
@@ -60,6 +60,10 @@ class Instructor extends User {
     }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new Instructor();
     }
 }
 

@@ -21,6 +21,10 @@ class CourseWaitList extends PreApprovedCourse {
     getRelations() {
         return super._relations;
     }
+
+    clone() {
+        return new CourseWaitList();
+    }
 }
 
 module.exports = CourseWaitList;

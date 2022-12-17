@@ -1,9 +1,12 @@
-class Document {
+const Model = require("./Model");
+
+class Document extends Model {
     #name;
     #ownerId;
     #uploadDate;
     #size;
     #path;
+    #type;
 
     setName(name) {
         this.#name = name;
@@ -25,6 +28,10 @@ class Document {
         this.#path = path;
         return this;
     }
+    setType(type) {
+        this.#type = type;
+        return this;
+    }
 
     getName() {
         return this.#name;
@@ -41,33 +48,41 @@ class Document {
     getPath() {
         return this.#path;
     }
+    getType() {
+        return this.#type;
+    }
 
     #tableName = "Document";
     #relations = [
         {
             col: "Name",
-            set: this.setName,
-            get: this.getName
+            set: (val) => this.setName(val),
+            get: () => this.getName()
         },
         {
             col: "ownerID",
-            set: this.setOwnerId,
-            get: this.getOwnerId
+            set: (val) => this.setOwnerId(val),
+            get: () => this.getOwnerId()
         },
         {
             col: "uploadDate",
-            set: this.setUploadDate,
-            get: this.getUploadDate
+            set: (val) => this.setUploadDate(val),
+            get: () => this.getUploadDate()
         },
         {
             col: "size",
-            set: this.setSize,
-            get: this.getSize
+            set: (val) => this.setSize(val),
+            get: () => this.getSize()
         },
         {
             col: "path",
-            set: this.setPath,
-            get: this.getPath
+            set: (val) => this.setPath(val),
+            get: () => this.getPath()
+        },
+        {
+            col: "type",
+            set: (val) => this.setType(val),
+            get: () => this.getType()
         }
     ];
 
@@ -76,6 +91,10 @@ class Document {
     }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new Document();
     }
 }
 

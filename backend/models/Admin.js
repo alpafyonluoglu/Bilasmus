@@ -1,27 +1,27 @@
 const User = require("./User");
 
-class OutgoingStudent extends User {
+class Admin extends User {
     #tableName = "admin";
     #relations = [
         {
             col: "Name",
-            set: this.setName,
-            get: this.getName
+            set: (val) => this.setName(val),
+            get: () => this.getName()
         },
         {
             col: "Surname",
-            set: this.setSurname,
-            get: this.getSurname
+            set: (val) => this.setSurname(val),
+            get: () => this.getSurname()
         },
         {
             col: "email",
-            set: this.setEmail,
-            get: this.getEmail
+            set: (val) => this.setEmail(val),
+            get: () => this.getEmail()
         },
         {
             col: "ID",
-            set: this.setId,
-            get: this.getId
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         }
     ];
 
@@ -31,6 +31,10 @@ class OutgoingStudent extends User {
     getRelations() {
         return this.#relations;
     }
+
+    clone() {
+        return new Admin();
+    }
 }
 
-module.exports = OutgoingStudent;
+module.exports = Admin;
