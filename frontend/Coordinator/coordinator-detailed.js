@@ -30,8 +30,8 @@ if ( true ){
     ' <td><button class="btn btn-primary" id="syllabusCourseRequest" type="button" style="background: var(--bs-gray);">woow<a href="#" style="text-decoration:  underline;"><br></a></button></td>'+
     ' <td><button class="btn btn-primary" id="approveCourseRequests" type="button" style="background: #2E7D38;">Approve<a href="#" style="text-decoration:  underline;"></a></button><button class="btn btn-primary" id="rejectCourseRequests" type="button" style="background: #dd2d2b;">Reject<a href="#" style="text-decoration:  underline;"></a></button></td></tr>';
     
-   document.getElementByID("coursenameCourseRequest").value = "Harika";
-   document.getElementByID("coursenameCourseRequest").value = "Harika";
+   document.getElementById("coursenameCourseRequest").innerHTML = "Harika";
+   document.getElementById("approveCourseRequests").innerHTML = "Harika";
 
    
     let row = table.insertRow();
