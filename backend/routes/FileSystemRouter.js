@@ -27,6 +27,10 @@ class FileSystemRouter {
   getRouter() {
     router.post('/upload', async (req, res, next) => {
       try {
+        if (!req.session.user) {
+          return next(createError(401));
+        }
+
         await this.processFile(req, res);
 
         // Check params

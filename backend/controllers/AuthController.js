@@ -69,8 +69,7 @@ class AuthController {
 
     resetPassword(email, callback) {
         let auth = new Auth();
-        // auth.setEmail(email);
-        auth.setId("22003229");
+        auth.setEmail(email);
 
         this.getAuthUser(auth, (result) => {
             if (result instanceof Error) {
