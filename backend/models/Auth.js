@@ -45,6 +45,7 @@ class Auth extends Model {
     }
 
     #tableName = "authData";
+    #primaryKey = "ID";
     #relations = [
         {
             col: "ID",
@@ -75,6 +76,9 @@ class Auth extends Model {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

@@ -13,6 +13,7 @@ class Coordinator extends User {
     }
 
     #tableName = "Coordinators";
+    #primaryKey = "Bilkent ID";
     #relations = [
         {
             col: "Name",
@@ -43,6 +44,9 @@ class Coordinator extends User {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

@@ -21,6 +21,7 @@ class IncomingStudent extends User {
     }
 
     #tableName = "IncomingStudents";
+    #primaryKey = "Bilkent ID";
     #relations = [
         {
             col: "Name",
@@ -56,6 +57,9 @@ class IncomingStudent extends User {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

@@ -2,6 +2,7 @@ const User = require("./User");
 
 class Admin extends User {
     #tableName = "admin";
+    #primaryKey = "ID";
     #relations = [
         {
             col: "Name",
@@ -27,6 +28,9 @@ class Admin extends User {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

@@ -1,6 +1,7 @@
 const Model = require("./Model");
 
 class Document extends Model {
+    #id;
     #name;
     #ownerId;
     #uploadDate;
@@ -8,6 +9,10 @@ class Document extends Model {
     #path;
     #type;
 
+    setId(id) {
+        this.#id = id;
+        return this;
+    }
     setName(name) {
         this.#name = name;
         return this;
@@ -51,8 +56,12 @@ class Document extends Model {
     getType() {
         return this.#type;
     }
+    getId() {
+        return this.#id;
+    }
 
     #tableName = "Document";
+    #primaryKey = "DocumentID";
     #relations = [
         {
             col: "Name",
@@ -83,11 +92,19 @@ class Document extends Model {
             col: "type",
             set: (val) => this.setType(val),
             get: () => this.getType()
+        },
+        {
+            col: "DocumentID",
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         }
     ];
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

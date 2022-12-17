@@ -25,18 +25,13 @@ class DatabaseRouterHandler {
       // Call controller
       const Auth = require("../models/Auth");
       let auth = new Auth();
-      auth.setEmail("emre.karatas@ug.bilkent.edu.tr").setPassword("abi");
+      auth.setId("22003229");
 
-      databaseController.get(auth, (result) => {
+      databaseController.delete(auth, (result) => {
         if (result instanceof Error) {
           return next(result);
         }
 
-        console.log("OK");
-        console.log(result.length);
-        console.log(result[0].getEmail());
-
-        result.code = 200;
         return res.json(result);
       });
     })

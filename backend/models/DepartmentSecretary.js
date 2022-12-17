@@ -13,6 +13,7 @@ class DepartmentSecretary extends User {
     }
 
     #tableName = "DepartmentSecretaries";
+    #primaryKey = "Bilkent ID";
     #relations = [
         {
             col: "Name",
@@ -43,6 +44,9 @@ class DepartmentSecretary extends User {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

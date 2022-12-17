@@ -2,6 +2,7 @@ const User = require("./User");
 
 class FacultyCommitteeBoard extends User {
     #tableName = "fcb";
+    #primaryKey = "ID";
     #relations = [
         {
             col: "Name",
@@ -27,6 +28,9 @@ class FacultyCommitteeBoard extends User {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

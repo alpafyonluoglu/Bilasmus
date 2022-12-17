@@ -62,6 +62,7 @@ class University extends Model {
     }
 
     #tableName = "UniversityTable";
+    #primaryKey = "universityID";
     #relations = [
         {
             col: "universityID",
@@ -102,6 +103,9 @@ class University extends Model {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

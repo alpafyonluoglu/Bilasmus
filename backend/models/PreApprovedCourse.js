@@ -10,6 +10,7 @@ class PreApprovedCourse extends Model {
     #bilkentCourseCode;
     #bilkentCourseName;
     #bilkentCourseCredit;
+    #id;
 
     setHostUniversityName(hostUniversityName) {
         this.#hostUniversityName = hostUniversityName;
@@ -47,6 +48,10 @@ class PreApprovedCourse extends Model {
         this.#bilkentCourseCredit = bilkentCourseCredit;
         return this;
     }
+    setId(id) {
+        this.#id = id;
+        return this;
+    }
 
     getHostUniversityName() {
         return this.#hostUniversityName;
@@ -75,8 +80,12 @@ class PreApprovedCourse extends Model {
     getBilkentCourseCredit() {
         return this.#bilkentCourseCredit;
     }
+    getId() {
+        return this.#id;
+    }
 
     #tableName = "admin";
+    #primaryKey = "ID";
     _relations = [
         {	col: "Host University's Name",
             set: (val) => this.setHostUniversityName(val),
@@ -113,11 +122,18 @@ class PreApprovedCourse extends Model {
         {	col: "Exempted Bilkent Course Designation",
             set: (val) => this.setBilkentDepartment(val),
             get: () => this.getBilkentDepartment()
+        },
+        {	col: "ID",
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         }
     ];
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this._relations;

@@ -22,6 +22,7 @@ class Instructor extends User {
     }
 
     #tableName = "Instructors";
+    #primaryKey = "Bilkent ID";
     #relations = [
         {
             col: "Name",
@@ -57,6 +58,9 @@ class Instructor extends User {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;

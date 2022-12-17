@@ -15,8 +15,12 @@ class CourseWaitList extends PreApprovedCourse {
     }
 
     #tableName = "coursesWaitingList";
+    #primaryKey = "ID";
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return super._relations;

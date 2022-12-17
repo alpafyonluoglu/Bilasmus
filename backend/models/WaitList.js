@@ -90,6 +90,7 @@ class WaitList extends Model {
     }
 
     #tableName = "WaitList";
+    #primaryKey = "Student ID Number";
     #relations = [
         {	col: "Student ID Number",
             set: (val) => this.setStudentId(val),
@@ -131,6 +132,9 @@ class WaitList extends Model {
 
     getTableName() {
         return this.#tableName;
+    }
+    getPrimaryKey() {
+        return this.#primaryKey;
     }
     getRelations() {
         return this.#relations;
