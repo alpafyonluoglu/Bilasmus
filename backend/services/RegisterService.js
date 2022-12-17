@@ -1,15 +1,19 @@
 const connection = require("../controllers/DatabaseController");
+const createError = require("http-errors");
 
 class RegisterService {
     generateRegistrationToken(email, callback) {
         const token = this.#generateToken(32);
         this.email = email;
         if (email && token) {
-            connection.client.query('INSERT INTO public."authData" ("email","emailToken") values (?,?)', [email, token], function (error) {
+            connection.client.query('INSERT INTO "authData" ("email","emailToken") values ($1,$2)', [email, token], function (error,results) {
                 // If there is an issue with the query, output the error
-                if (error) throw error
+                if (error)
+                {
+                    return callback(createError(500, error.message));
+                }
+                return callback(results.rows.length > 0);
             });
-            return callback(token);
         }
     }
 
