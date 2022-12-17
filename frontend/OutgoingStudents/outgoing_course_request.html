@@ -37,10 +37,10 @@
                     <li class="nav-item"><a class="nav-link active" id="language_proficiency" href="outgoing_language_prof.html" style="color: rgba(255,255,255,0.9);">Language Proficiency</a></li>
                     <li class="nav-item"><a class="nav-link active" id="help" href="#" style="color: rgba(255,255,255,0.9);">Help</a></li>
                 </ul>
-            </div><button class="btn btn-primary" id="logout" type="button" style="background: #d00000;border-color: #d00000;margin-right: 1rem;">Logout</button><button class="btn btn-primary" type="button" style="background: #d00000;border-color: #d00000;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" id="message" style="font-size: 28px;">
+            </div><button class="btn btn-primary" id="logout" type="button" style="background: #d00000;border-color: #d00000;margin-right: 1rem;">Logout</button><button class="btn btn-primary" type="button" id="message" style="background: #d00000;border-color: #d00000;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 28px;">
                     <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                     <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z"></path>
-                </svg></button><button class="btn btn-primary" type="button" style="background: #d00000;border-color: #d00000;"><i class="far fa-bell" id="bell" style="font-size: 28px;"></i></button><button class="btn btn-primary" type="button" style="background: #d00000;border-color: #d00000;"><i class="far fa-user" id="profile" style="font-size: 28px;"></i></button>
+                </svg></button><button class="btn btn-primary" type="button" id="bell" style="background: #d00000;border-color: #d00000;"><i class="far fa-bell" style="font-size: 28px;"></i></button><button class="btn btn-primary" type="button" id="profile" style="background: #d00000;border-color: #d00000;"><i class="far fa-user" style="font-size: 28px;"></i></button>
         </div>
     </nav>
     <div class="container">
@@ -59,7 +59,7 @@
                         <p>Course Webpage Link</p><input type="url" id="course_link" placeholder="Course Link" style="padding-left: 1rem;max-width: 10rem;" required="">
                     </div>
                     <div style="margin-right:0.5rem;margin-left:0.5rem;">
-                        <p>Course Type</p><select id="type" required="">
+                        <p>Course Type</p><select id="course_type" required="">
                             <option value="12" selected="">Mandatory</option>
                             <option value="13" selected="">Elective</option>
                             <option value="14">Additional</option>
@@ -73,7 +73,7 @@
                         </select>
                     </div>
                     <div style="max-width: 13rem;">
-                        <p>Course Syllabus</p><input class="form-control-sm" type="file" id="choose" required="">
+                        <p>Course Syllabus</p><input class="form-control-sm" type="file" id="syllabus_choose" required="">
                     </div>
                 </div><button class="btn btn-primary" id="add" type="button" style="position: relative;display: block;color: var(--bs-body-bg);background: var(--bs-green);max-height: 4rem;min-width: 5rem;margin-top: 1rem;margin-right: 1rem;margin-left: 37rem;">Add Request</button>
             </div>
@@ -94,6 +94,8 @@
         </div><button class="btn btn-primary" id="send" type="button" style="margin-left: 28rem;">Send Course Request List</button>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="outgoing_course_request.js"></script>
+    <script src="nav_actions.js"></script>
 </body>
 
 </html>

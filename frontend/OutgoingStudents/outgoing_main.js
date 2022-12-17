@@ -9,6 +9,7 @@ check2.addEventListener('change', updateProgress);
 check3.addEventListener('change', updateProgress);
 check4.addEventListener('change', updateProgress);
 check5.addEventListener('change', updateProgress);
+
 function updateProgress() {
     let progress = 0;
     if(check1.checked) progress = progress + 1;
