@@ -7,5 +7,7 @@ function updateProgress() {
     let check5 = document.getElementById("formCheck-5").checkOn;
     console.log("function works");
     let progress = (check1.valueAsNumber + check2.valueAsNumber + check3.valueAsNumber + check4.valueAsNumber + check5.valueAsNumber) * 20;
-    document.getElementById("progress_bar").ariaValueNow = progress.toString();
+    let updateBar = document.getElementById("progress_bar").innerHTML;
+    updateBar.style = "width: " + progress.toString() + "%;";
+    updateBar = progress.toString() + "%";
 }
