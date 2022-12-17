@@ -77,19 +77,28 @@
                                 <td>Bootstrap Stuido</td>
                                 <td><button class="btn btn-success" style="margin-left: 100px;" id="selectedUser" type="submit" onclick="selectedStudent()">Select</button></td>
                             </tr>
+                            
                         </tbody>
                     </table>
                 </div>
                 <div>
-                    <div class="files color form-group mb-3"><input type="file" id="formFile" multiple="" accept="application/pdf" name="files"></div><button class="btn btn-success" id="downloadCourseTransfer" onclick="downloadFile()" style="margin-left: 600px;" href="" download>Download</button><button class="btn btn-success" style="margin-left: 5px;" id="submitFile" onclick="sendFile()" type="submit">Submit</button>
-                </div>
+                    
+
+                    <form method="post" action="https://bilasmus.uc.r.appspot.com/file/upload" accept="application/pdf" enctype='multipart/form-data'>
+                        <div class="files color form-group mb-3">
+                            <input class="form-control" type="file" accept="application/pdf" multiple="" name="file" id="formFile" required>
+                        </div> <input class="btn btn-success" type="submit" id="downloadCourseTransfer" style="margin-left: 25rem;" value="Upload">
+                        </form> 
+                        <a href="" id="downloadPreApproval" onclick="downloadFileLink()" download style="margin-left: 25rem;">Download File</a>           
+                         </div>
             </div>
         </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/Table-With-Search.js"></script>
     <script src="coordinator-course-transfer-form.js"></script>
-
 </body>
 
 </html>
+
+<input type="file" id="formFile" multiple="" accept="application/pdf" name="files"></div><button class="btn btn-success" id="downloadCourseTransfer" onclick="downloadFile()" style="margin-left: 600px;" href="" download>Download</button><button class="btn btn-success" style="margin-left: 5px;" id="submitFile" onclick="sendFile()" type="submit">Submit</button>
