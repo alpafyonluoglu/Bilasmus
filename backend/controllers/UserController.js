@@ -30,6 +30,8 @@ class UserController {
         // TODO: DB connection
 
     }
+
+
 }
 
 module.exports = new UserController();

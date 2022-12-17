@@ -41,16 +41,17 @@ class LoginService {
 
     getType(id, callback)
     {
-        connection.client.query('SELECT "type" FROM "authData" WHERE "ID" = $1', [id], function (error, results, fields) {
+        connection.client.query('SELECT "Type" FROM "authData" WHERE "ID" = $1', [id], function (error, results, fields) {
             // If there is an issue with the query, output the error
             if (error) {
                 return callback(createError(500, error.message));
             }
+
             //TODO  WHO IS CHECKING TYPES?
             if (results.rows.length > 0)
             {
                 return callback({
-                    userType: results.rows[0].type
+                    userType: results.rows[0].Type
                 })
 
             }

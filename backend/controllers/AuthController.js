@@ -2,8 +2,7 @@ const createError = require("http-errors");
 const loginService = require("../services/LoginService");
 const emailController = require("./EmailController");
 
-class AuthController
-{
+class AuthController {
     createSession(email, password, req, callback) {
         // Verify password
         loginService.verifyPassword(email, password, (result) => {
@@ -29,41 +28,45 @@ class AuthController
                         return callback(result);
                     }
 
+                    let userType = result.userType;
                     // Create session
                     req.session.regenerate((err) => {
                         if (err) {
                             callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
                         }
 
-                        req.session.userID = userID;
+                        let user = {
+                            id: userID,
+                            type: userType
+                        };
+
+                        req.session.user = user;
                         callback({
                             loggedIn: true,
-                            user: userID
+                            user: user
                         });
                     });
                 });
             });
         });
+    }
 
-        destroySession(req, callback)
-        {
-            // Destroy session
-            req.session.destroy((err) => {
-                if (err) {
-                    callback(createError(500, "Session could not be destroyed: " + (process.env.PRODUCTION ? err : "...")));
-                }
+    destroySession(req, callback) {
+        // Destroy session
+        req.session.destroy((err) => {
+            if (err) {
+                callback(createError(500, "Session could not be destroyed: " + (process.env.PRODUCTION ? err : "...")));
+            }
 
-                callback({
-                    loggedIn: false
-                });
+            callback({
+                loggedIn: false
             });
-        }
+        });
+    }
 
-        resetPassword(email, callback)
-        {
-            // Sen reset password email
-            emailController.sendResetPasswordEmail(email, callback);
-        }
+    resetPassword(email, callback) {
+        // Sen reset password email
+        emailController.sendResetPasswordEmail(email, callback);
     }
 }
 
