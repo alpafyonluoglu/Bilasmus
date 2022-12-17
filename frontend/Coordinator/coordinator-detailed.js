@@ -22,6 +22,18 @@ document.getElementById("reject").onclick= function(){
 
 var table = document.getElementById("table");
 if ( true ){
+    
+    document.getElementById("table").innerHTML = ' <tr> <td id="coursenameCourseRequest" > CE319 - Object Oriented Programming</td>' +
+    '<td id="typeCourseRequest">Mandatory</td>' +
+    '<td id="evaluatedCourseRequest">Approved</td>'+
+    '<td><button class="btn btn-primary" id="linkCourseRequest" type="button" style="background: var(--bs-gray);">Link<a href="#" style="color: var(--bs-btn-disabled-color);text-decoration:  underline;"></a></button></td>'+
+    ' <td><button class="btn btn-primary" id="syllabusCourseRequest" type="button" style="background: var(--bs-gray);">woow<a href="#" style="text-decoration:  underline;"><br></a></button></td>'+
+    ' <td><button class="btn btn-primary" id="approveCourseRequests" type="button" style="background: #2E7D38;">Approve<a href="#" style="text-decoration:  underline;"></a></button><button class="btn btn-primary" id="rejectCourseRequests" type="button" style="background: #dd2d2b;">Reject<a href="#" style="text-decoration:  underline;"></a></button></td></tr>';
+    
+   document.getElementByID("coursenameCourseRequest").value = "Harika";
+   document.getElementByID("coursenameCourseRequest").value = "Harika";
+
+   
     let row = table.insertRow();
     let courseName = row.insertCell(0);
     let courseType = row.insertCell(1);
@@ -44,7 +56,9 @@ if ( true ){
             
             let courseLink = row.insertCell(3);
             let syllabus = row.insertCell(4);
-            let finalDecision = row.insertCell(5);
+            let approve = row.insertCell(5);
+            let reject = row.insertCell(5);
+
 
             var linkButton = document.createElement('input');
             var syllabusButton = document.createElement('input');
@@ -53,7 +67,8 @@ if ( true ){
 
             courseLink.appendChild(linkButton);
             syllabus.appendChild(syllabusButton);
-            finalDecision.appendChild(approveButton, rejectButton);
+            approve.appendChild(approveButton);
+            reject.appendChild(rejectButton);
 
             
             courseName.value = course.value;
@@ -68,6 +83,9 @@ if ( true ){
             //linkButton.href = course.link;
             linkButton.setAttribute('href',course.link);
             linkButton.setAttribute('download', course.link);
+            linkButton.setAttribute('class', "btn btn-primary");
+            linkButton.style.backgroundColor = "green";
+
 
             
             syllabusButton.type = "button";
@@ -96,17 +114,14 @@ if ( true ){
             rejectButton.setAttribute('onclick','rejectFile();'); // for FF
             rejectButton.onclick = function() {rejectFile();}; // for IE
             
-        if ( fileUploaded ){
-            file.innerHTML = "Uploaded";
-        } else {
-            file.innerHTML = "Not uploaded";
-        }
       });
 }
+//Method for approve button
 function approveFile(){
     //backend code
     alert("You have successfully approved the file!");
 }
+//Method for reject button
 function rejectFile(){
     
 }
