@@ -7,7 +7,7 @@ Erkin Aydın 22002956
 Alp Afyonluoğlu 22003229  
 Emre Karataş 22001641  
 ## Description
-Our team consists of 5 people: two frontend, two backend, and one full-stack developer. We are planning to use Node.js for the backend side, Vue.js for the frontend side, and MySQL as the database management system.  
+Our team consists of 5 people: two frontend, two backend, and one full-stack developer. We are planning to use Node.js for the backend side, Vue.js for the frontend side, and PostgreSQL as the database management system.  
 Bilasmus is a web based project to help both Bilkent University students, and faculty members during erasmus and exchange programs. Bilasmus is used after the approval of students. The program’s main goal is to minimize paperwork as much as possible, and ease the communication between students and faculty members. 
 
 ## High Level Feature Design
