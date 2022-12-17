@@ -18,7 +18,7 @@
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link active" id="home_international" href="international_student_office_main.html" style="color: rgba(255,255,255,0.9);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" id="course_request_international" href="international_student_office_evaluate.html" style="color: rgba(255,255,255,0.9);">Language Proficiency</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="course_request_international" href="international_student_office_evaluate.html" style="color: rgba(255,255,255,0.9);">Evaluate Language Proficiency</a></li>
                     <li class="nav-item"><a class="nav-link active" id="help_international" href="#" style="color: rgba(255,255,255,0.9);">Help</a></li>
                 </ul>
             </div><button class="btn btn-primary" id="logout_international" type="button" style="background: #25539d;margin-right: 1rem;border-color: #25539d;">Logout</button><button class="btn btn-primary" id="message_international" type="button" style="background: #25539d;border-color: #25539d;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" id="message" style="font-size: 30px;">
@@ -42,15 +42,15 @@
                                 <div style="margin-left: 2rem;">
                                     <p>Set Language</p><select id="set_language">
                                         <optgroup label="This is a group">
-                                            <option value="12" selected="">English</option>
-                                            <option value="13">German</option>
-                                            <option value="14">French</option>
+                                            <option value="English" selected="">English</option>
+                                            <option value="German">German</option>
+                                            <option value="French">French</option>
                                         </optgroup>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col"><button class="btn btn-primary" id="set_date" type="button" style="/*margin-left: 4rem;*/height: 3rem;margin-top: 1rem;background: #2E7D38;border-color: #2E7D38;">Set Date</button></div>
+                        <div class="col"><button class="btn btn-primary" id="set_date" onclick="setDate()" type="button" style="/*margin-left: 4rem;*/height: 3rem;margin-top: 1rem;background: #2E7D38;border-color: #2E7D38;">Set Date</button></div>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -69,7 +69,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col"><button class="btn btn-primary" id="delete_proficiency" type="button" style="margin-left: 0rem;height: 3rem;background: #dd2d2b;border-color: #dd2d2b;">Delete</button></div>
+                        <div class="col"><button class="btn btn-primary" id="delete_proficiency" onclick="deleteLanguageProficiencyExam()" type="button" style="margin-left: 0rem;height: 3rem;background: #dd2d2b;border-color: #dd2d2b;">Delete</button></div>
                     </div>
                 </div>
             </div>
@@ -80,11 +80,12 @@
                 <p>Enter Student ID</p><input type="text" id="student_id_input" placeholder="Student ID">
             </div>
             <div style="margin-left: 2rem;">
-                <p>Enter Link</p><input type="url" id="registration_link_input" placeholder="Registration Link">
+                <p>Enter Link</p><input type="url" onclick="sendRegistrationLink()" id="registration_link_input" placeholder="Registration Link">
             </div><button class="btn btn-primary" id="send_link" type="button" style="margin-left: 10rem;height: 3rem;margin-top: 1rem;">Send Link</button>
         </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
+    <script src="international_student_office_main.js"></script>
 
+</body>
 </html>

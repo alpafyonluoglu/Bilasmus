@@ -1,13 +1,19 @@
 /*
     Methods for Coordinator Course TRansfer Forms
 */
-
 //getting the user input 
-document.getElementById("searchCourseTransfer").onclick = function(){
-let searchedUser = document.getElementById("searchedName");
-console.log(searchedUser.valuec);
+function getUserInput(){
+    let searchedUser = document.getElementById("searchedName").value;
+    console.log(searchedUser);
 }
 
+//When a user is selected from the dynamic data table
+function selectedStudent(){
+    
+    //get inputs by row 
+    let name = document.getElementById("selectedUser");
+    console.log(name.value);
+}
 //Sending the student name
 
 //retrieving user names and making it into a dynamic table
@@ -23,26 +29,34 @@ link.name = "is it working";
 link.href = "file link coming from database";
 */
 
+//Method to activate the sending of a form to the backend
+function sendFile(){
+  console.log("file is sent");
+}
 
-const input = document.getElementById('formFile');
+//Method to download a file
+function downloadFile(){
+    const input = document.getElementById("formFile");
 
-const link = document.getElementById('downloadCourseTransfer');
-//const submitButton = document.getElementById('submitButton');
+    const link = document.getElementById('downloadCourseTransfer');
 
-let objectURL;
 
-    /*
-        When submit button is clicked
-    */
+    //const submitButton = document.getElementById('submitButton');
     
-    if ( input.files.length === 0 ){
-    }else{
-        const file = this.files[0];
-        console.log(file);
-        objectURL = URL.createObjectURL(file);
-        console.log(objectURL);
-
-        link.download = file.name;
-        link.href = objectURL;
-    }
+    let objectURL;
+    
+        /*
+            When submit button is clicked
+        */
+        
+        if ( input.files.length === 0 ){
+            alert("No file has been uploaded!");
+        }else{
+            const file = input.files[0];
+            console.log(file);
+            let objectURL = URL.createObjectURL(file);
+            link.download = file.name;
+            link.href = objectURL;
+        }
+}
         

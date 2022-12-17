@@ -38,18 +38,18 @@
                                 <div>
                                     <p id="student_name">Student1</p>
                                     <div class="d-flex d-xxl-flex justify-content-xxl-end" style="height: 1.5rem;">
-                                        <p>University Name:&nbsp;</p><label class="form-label">Label</label>
+                                        <p>University Name:&nbsp;</p><label id="universityName" class="form-label">Label</label>
                                     </div>
                                     <div class="d-flex d-xxl-flex justify-content-xxl-end" style="height: 1.5rem;">
-                                        <p>Satisfactory Proficiency Level:&nbsp;</p><label class="form-label">Label</label>
+                                        <p>Satisfactory Proficiency Level:&nbsp;</p><label id="proficiencyLevel" class="form-label">Label</label>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="col-xxl-3"><i class="far fa-file-alt" style="font-size: 58px;color: #3C3C3C;"></i><a href="#">Download File</a></div>
-                <div class="col"><button class="btn btn-primary" id="approve" type="button" style="/*height: 2rem;*/margin-top: 1rem;background: #2E7D38;border-color: #2E7D38;">Approve</button><button class="btn btn-primary" id="reject" type="button" style="/*margin-left: 5rem;*/background: #dd2d2b;border-color: #dd2d2b;height: 2rem;">Reject</button></div>
+                <div class="col-xxl-3"><i class="far fa-file-alt" onclick="approve()" style="font-size: 58px;color: #3C3C3C;"></i><a href="#">Download File</a></div>
+                <div class="col"><button class="btn btn-primary" id="approve" type="button" style="/*height: 2rem;*/margin-top: 1rem;background: #2E7D38;border-color: #2E7D38;">Approve</button><button class="btn btn-primary" onclick="reject()" id="reject" type="button" style="/*margin-left: 5rem;*/background: #dd2d2b;border-color: #dd2d2b;height: 2rem;">Reject</button></div>
             </div>
         </div>
         <div style="background: #d2d2d2;margin-right: 0.5rem;/*width: 15rem;*/">
@@ -79,6 +79,8 @@
         </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="international_student_office_evaluate.js"></script>
+
 </body>
 
 </html>

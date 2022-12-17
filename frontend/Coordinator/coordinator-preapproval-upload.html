@@ -42,7 +42,6 @@
         </div>
     </nav>
     <div>
-        
             <h1>Upload Pre-Approval Form</h1>
             <p> Signed Pre-Approval Form to be uploaded.</p>
             <div class="container">
@@ -52,9 +51,9 @@
                     <div class="col">  
                         <form method="post" action="https://bilasmus.uc.r.appspot.com/file/upload" enctype='multipart/form-data'>
                         <input type="file" name="file"  id="preapprovalUpload" required>
-                        <input type="submit" id="submitButton" value="Upload" onclick="submitButtonPressed()">
+                        <input type="submit" id="submitButton" value="Upload">
                     </form></div>
-                    <div class="col"><i class="icon-arrow-down-circle" style="font-size: 56px;"></i><a id="downloadPreApproval" onclick="downloadFileLink()" download href="" >Download</a></div>
+                    <div class="col"><div class="col-xxl-4"><button class="btn btn-primary" id="downloadPreApproval" download href="" type="button" onclick="downloadFileLink()" style="background: var(--bs-gray-700);text-align: center;/*border-width: 4px;*/">Download</button></div>
                 </div>
             </div>
             <div>

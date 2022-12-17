@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Coordinator_MainPage</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
     <link rel="stylesheet" href="assets/css/Features-Large-Icons-icons.css">
     <link rel="stylesheet" href="assets/css/iframe-iframe.css">
     <link rel="stylesheet" href="assets/css/iframe.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-search-table.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
 </head>
 
 <body>
@@ -42,23 +46,49 @@
         </div>
     </nav>
     <div>
-        
-            <h1>Course Transfer Forms</h1>
-            <p>Course Transfer Forms can be submitted below.</p>
-            <div class="container">
-            <div><label class="form-label">Search Name:&nbsp;</label><input type="search" id="searchedName"><button class="btn btn-primary" id="searchCourseTransfer" type="button" style="background: #3C3C3C;">Search</button></div>
-            <div>
-                <div class="row">
-                    <div class="col"><label class="form-label" id="nameCourseTransfer">Student Name</label>
-                        <div></div><label class="form-label" id="emailCourseTransfer">Email</label>
-                    </div>
-                    <div class="col"><input type="file" id="formFile"></div>
-                    <div class="col"><i class="icon-arrow-down-circle" style="font-size: 56px;"></i><a id="downloadCourseTransfer" href="" download>Download</a></div>
+        <h1>Course Transfer Forms</h1>
+        <p>Upload Course Transfer Forms of students who returned from Erasmus/Exchange.</p>
+    </div>
+    <div class="container">
+        <div>
+            <div class="col-md-12 search-table-col">
+                <div class="form-group pull-right col-lg-4"><label class="form-label">
+                </label><input type="text" class="search form-control" id="searchedName" placeholder="Search student name..">
+            </div><span class="counter pull-right"></span>
+            <button class="btn btn-success" id="searchCourseTransfer" onclick= "getUserInput()">Search</button>
+                <div class="table-responsive table table-hover table-bordered results">
+                    <table class="table table-hover table-bordered">
+                        <thead class="bill-header cs">
+                            <tr>
+                                <th id="trs-hd-1" class="col-lg-1">ID</th>
+                                <th id="trs-hd-2" class="col-lg-2">Name</th>
+                                <th id="trs-hd-3" class="col-lg-3">Email</th>
+                                <th id="trs-hd-4" class="col-lg-2">Erasmus/Exchange University</th>
+                                <th id="trs-hd-6" class="col-lg-2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="warning no-result">
+                                <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>India</td>
+                                <td>Souvik Kundu</td>
+                                <td>Bootstrap Stuido</td>
+                                <td><button class="btn btn-success" style="margin-left: 100px;" id="selectedUser" type="submit" onclick="selectedStudent()">Select</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div class="files color form-group mb-3"><input type="file" id="formFile" multiple="" accept="application/pdf" name="files"></div><button class="btn btn-success" id="downloadCourseTransfer" onclick="downloadFile()" style="margin-left: 600px;" href="" download>Download</button><button class="btn btn-success" style="margin-left: 5px;" id="submitFile" onclick="sendFile()" type="submit">Submit</button>
                 </div>
             </div>
-    </div>
+        </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Table-With-Search.js"></script>
     <script src="coordinator-course-transfer-form.js"></script>
 
 </body>

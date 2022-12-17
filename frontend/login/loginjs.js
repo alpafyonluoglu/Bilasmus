@@ -46,5 +46,5 @@ document.getElementById("loginButton").onclick = function() {
     
     
     alert("button was clicked");
-    window.location.replace("../Coordinator/coordinator-home.html");
+    //window.location.replace("../Coordinator/coordinator-home.html");
 };

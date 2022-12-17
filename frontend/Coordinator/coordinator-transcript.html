@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Coordinator_MainPage</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
     <link rel="stylesheet" href="assets/css/Features-Large-Icons-icons.css">
     <link rel="stylesheet" href="assets/css/iframe-iframe.css">
     <link rel="stylesheet" href="assets/css/iframe.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-search-table.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
 </head>
 
 <body>
@@ -41,37 +45,46 @@
             </div>
         </div>
     </nav>
-    <h1>Transcripts</h1>
-    <p>The Transcripts forms that needs to be checked are provided below. Review the forms to approve or reject.</p>
-
-    <div class="container">
-        
     <div>
-        <div class="row">
-            <div class="col-xl-2">
-                <div>
-                    <div class="col-xl-12"><label class="col-form-label" id="studentEmail-1">Student Name:&nbsp;&nbsp;</label></div>
-                </div>
-                <div>
-                    <div class="col-xl-12"><label class="col-form-label" id="studentEmail">Date:&nbsp;&nbsp;</label></div>
-                </div>
-            </div>
-            <div class="col"><label class="form-label" id="studentName">Name</label>
-                <div class="row">
-                    <div class="col"><label class="col-form-label" id="fileDate">Label</label></div>
-                </div>
-            </div>
-            <div class="col"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 63px;">
-                    <path d="M12 10V16M12 16L9 13M12 16L15 13M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg><a id="downloadTranscript" href="" download>Download</a></div>
-        </div>
+        <h1>Transcripts</h1>
+        <p>Uploaded transcripts can be viewed down below.</p>
     </div>
-    <div>
-        <div class="row"></div>
+    <div></div>
+    <div class="container">
+        <div>
+            <div class="col-md-12 search-table-col">
+                <div class="form-group pull-right col-lg-4"><label class="form-label"></label><input type="text" class="search form-control" placeholder="Search by typing here.."></div><span class="counter pull-right"></span><button class="btn btn-success" type="submit">Search</button>
+                <div class="table-responsive table table-hover table-bordered results">
+                    <table class="table table-hover table-bordered">
+                        <thead class="bill-header cs">
+                            <tr>
+                                <th id="trs-hd-1" class="col-lg-1">ID</th>
+                                <th id="trs-hd-2" class="col-lg-2">Name</th>
+                                <th id="trs-hd-3" class="col-lg-3">Email</th>
+                                <th id="trs-hd-4" class="col-lg-2">Erasmus/Exchange University</th>
+                                <th id="trs-hd-6" class="col-lg-2">Transcripts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="warning no-result">
+                                <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>India</td>
+                                <td>Souvik Kundu</td>
+                                <td>Bootstrap Stuido</td>
+                                <td><button class="btn btn-success" style="margin-left: 100px;" type="submit">Download</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="coordinator-transcripts.js"></script>
+    <script src="assets/js/Table-With-Search.js"></script>
+    <script src="coordinator-transcript.js"></script>
 
 </body>
 

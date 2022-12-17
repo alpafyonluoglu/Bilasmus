@@ -27,7 +27,6 @@ let objectURL;
             link.download = file.name;
             link.href = objectURL;
         }
-        
     }
         
         
