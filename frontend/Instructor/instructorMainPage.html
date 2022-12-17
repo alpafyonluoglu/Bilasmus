@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>instructor (1)</title>
+    <title>instructor (2)</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
 </head>
 
 <body>
@@ -23,15 +25,43 @@
                 </svg></button><button class="btn btn-primary" type="button" style="background: #25539d;border-color: #25539d;"><i class="far fa-bell" id="bell" style="font-size: 28px;"></i></button><button class="btn btn-primary" type="button" style="background: #25539d;border-color: #25539d;"><i class="far fa-user" id="profile" style="font-size: 28px;"></i></button>
         </div>
     </nav>
-    <h1 class="fs-3" style="margin-left: 2rem;margin-top: 2rem;">Welcome Instructor</h1>
-    <ul id="studentsList" style="margin-left: 2rem;">
-        <li id="student1">Student1<span style="margin-left: 3rem;">Course Name<span style="margin-left: 1.6rem;">Course Type<span style="margin-left: 2.4rem;">Course Link<span style="margin-left: 1.3rem;">Course Syllabus<span style="margin-left: 4.2rem;">Final Decision</span></span></span></span></span>
-            <ul class="d-flex" id="coursesList">
-                <li class="d-flex" id="course1" style="margin-left: 5rem;">Course1<span id="course1Type" style="margin: 0px;margin-left: 4rem;">Mandatory</span><button class="btn btn-primary" id="courseButton" type="button" style="margin-left: 3rem;padding-top: 0px;height: 1.5rem;"><a id="courseLink" href="#" style="color: var(--bs-btn-color);">Link</a></button><button class="btn btn-primary" id="syllabusButton" type="button" style="background-color: var(--bs-gray-700);margin-left: 3rem;padding-top: 0px;height: 1.5rem;"><a id="syllabusButton" href="#" style="color: var(--bs-btn-color);">Syllabus</a></button><button class="btn btn-primary" id="approveCourseButtonInstructor" type="button" style="background-color: var(--bs-green);margin-left: 6rem;height: 1.5rem;padding-top: 0px;">Approve</button><button class="btn btn-primary" id="rejectCourseButtonInstructor" type="button" style="background-color: var(--bs-red);margin-left: 1rem;height: 1.5rem;padding-top: 0px;">Reject</button></li>
-            </ul>
-        </li>
-    </ul>
+    <h1>Welcome Instructor</h1>
+    <p>Waiting course requests can be viewed down below.&nbsp;</p>
+    <div class="container" style="margin-top: 10rem;">
+        <div class="col-md-12 search-table-col">
+            <h1>Waiting Course Requests</h1>
+            <div class="table-responsive table table-hover table-bordered results">
+                <table class="table table-hover table-bordered">
+                    <thead class="bill-header cs">
+                        <tr>
+                            <th class="text-center col-lg-1" id="trs-hd-1">Student Name</th>
+                            <th class="text-center col-lg-2" id="trs-hd-2">Course Name</th>
+                            <th class="text-center col-lg-3" id="trs-hd-3">Course Type</th>
+                            <th class="text-center col-lg-2" id="trs-hd-4">Course Link</th>
+                            <th class="text-center col-lg-2" id="trs-hd-4">Course Syllabus</th>
+                            <th class="text-center col-lg-2" id="trs-hd-6">Final Decision</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="warning no-result">
+                            <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>India</td>
+                            <td>Souvik Kundu</td>
+                            <td>Bootstrap Stuido</td>
+                            <td></td>
+                            <td><button class="btn btn-primary" id="approveCourseButtonInstructor" type="button" style="background-color: var(--bs-green);margin-left: 1rem;height: 1.5rem;padding-top: 0px;">Approve</button><button class="btn btn-primary" id="rejectCourseButtonInstructor" type="button" style="background-color: var(--bs-red);margin-left: 1rem;height: 1.5rem;padding-top: 0px;">Reject</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="instructorMainPage.js"></script>
+
 </body>
 
 </html>
