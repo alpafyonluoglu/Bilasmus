@@ -4,9 +4,9 @@ const userService = require("../services/UserService");
 const registerService = require("../services/RegisterService");
 
 class UserController {
-    registerUser(id, name, email, callback) {
+    registerUser(id, name,surname, email,type, callback) {
         // TODO: Create user instance
-        userService.addUser();
+        userService.addUser(id,email);
 
         registerService.generateRegistrationToken(email, (result) => {
             if (result instanceof Error) {
