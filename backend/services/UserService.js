@@ -21,7 +21,7 @@ class UserService
     {
         if(id)
         {
-            connection.client.query('UPDATE "authData" SET "password" = $1 AND "email" = $2 WHERE "ID" = $3 ', [password, email, id], function (error, results) {
+            connection.client.query('UPDATE "authData" SET "password" = $1, "email" = $2 WHERE "ID" = $3 ', [password, email, id], function (error, results) {
                 // If there is an issue with the query, output the error
                 if (error) {
                     return callback(createError(500, error.message));
@@ -44,8 +44,7 @@ class UserService
         }
     }
 
-    getUser(id,callback)
-    {
+    getUser(id, callback) {
         if(id)
         {
             connection.client.query('SELECT *  FROM  "authData" WHERE "ID" = $1 ', [id], function (error, results) {

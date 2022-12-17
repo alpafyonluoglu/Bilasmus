@@ -13,39 +13,47 @@ class Coordinator extends User {
     }
 
     #tableName = "Coordinators";
+    #primaryKey = "Bilkent ID";
     #relations = [
         {
             col: "Name",
-            set: this.setName,
-            get: this.getName
+            set: (val) => this.setName(val),
+            get: () => this.getName()
         },
         {
             col: "Surname",
-            set: this.setSurname,
-            get: this.getSurname
+            set: (val) => this.setSurname(val),
+            get: () => this.getSurname()
         },
         {
             col: "Bilkent ID",
-            set: this.setId,
-            get: this.getId
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         },
         {
             col: "email",
-            set: this.setEmail,
-            get: this.getEmail
+            set: (val) => this.setEmail(val),
+            get: () => this.getEmail()
         },
         {
             col: "department",
-            set: this.setDepartment,
-            get: this.getDepartment
+            set: (val) => this.setDepartment(val),
+            get: () => this.getDepartment()
         }
     ];
 
     getTableName() {
         return this.#tableName;
     }
+    getPrimaryKey() {
+        return this.#primaryKey;
+    }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new Coordinator();
     }
 }
 

@@ -1,4 +1,6 @@
-class Auth {
+const Model = require("./Model");
+
+class Auth extends Model {
     #id;
     #email;
     #password;
@@ -43,39 +45,47 @@ class Auth {
     }
 
     #tableName = "authData";
+    #primaryKey = "ID";
     #relations = [
         {
             col: "ID",
-            set: this.setId,
-            get: this.getId
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         },
         {
             col: "email",
-            set: this.setEmail,
-            get: this.getEmail
+            set: (val) => this.setEmail(val),
+            get: () => this.getEmail()
         },
         {
             col: "password",
-            set: this.setPassword,
-            get: this.getPassword
+            set: (val) => this.setPassword(val),
+            get: () => this.getPassword()
         },
         {
             col: "Type",
-            set: this.setType,
-            get: this.getType
+            set: (val) => this.setType(val),
+            get: () => this.getType()
         },
         {
             col: "emailToken",
-            set: this.setEmailToken,
-            get: this.getEmailToken
+            set: (val) => this.setEmailToken(val),
+            get: () => this.getEmailToken()
         }
     ];
 
     getTableName() {
         return this.#tableName;
     }
+    getPrimaryKey() {
+        return this.#primaryKey;
+    }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new Auth();
     }
 }
 

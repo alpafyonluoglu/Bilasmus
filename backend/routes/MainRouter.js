@@ -1,6 +1,7 @@
 const express = require('express');
 const createError = require("http-errors");
 const router = express.Router();
+const emailController = require("../controllers/EmailController");
 
 class MainRouterHandler {
   /*
@@ -29,6 +30,13 @@ class MainRouterHandler {
       }
 
       res.json({ message: "Hi " + req.body.name});
+    })
+
+    // TODO: Remove later, for testing
+    router.get('/test', (req, res, next) => {
+      emailController.sendResetPasswordEmail("alpafyonluoglu@gmail.com", "TEST123", (result) => {
+        res.json({ message: result});
+      })
     })
 
     return router;

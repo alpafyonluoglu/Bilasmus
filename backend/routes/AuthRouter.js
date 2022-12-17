@@ -46,8 +46,9 @@ class AuthRouterHandler {
         return next(createError(400, "'email' param is missing"));
       }
 
+      let email = req.body.email;
       // Call controller
-      authController.resetPassword(req.body.email, (result) => {
+      authController.resetPassword(email, (result) => {
         if (result instanceof Error) {
           return next(result);
         }

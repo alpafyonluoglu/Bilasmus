@@ -4,6 +4,8 @@ const router = express.Router();
 const Multer = require("multer");
 const util = require("util");
 const gcpFileStorageController = require("../controllers/GcpFileStorageController");
+const databaseController = require("../controllers/DatabaseController");
+const Document = require("../models/Document");
 
 class FileSystemRouter {
   /*
@@ -28,17 +30,34 @@ class FileSystemRouter {
         await this.processFile(req, res);
 
         // Check params
-        if(!req.file) {
-          return next(createError(400, "'file' param is missing"));
+        if(!req.file || !req.body.type) {
+          return next(createError(400, "'file' or 'type' param is missing"));
         }
 
-        gcpFileStorageController.upload(req.file.originalname, req.file.buffer, (result) => {
+        let name = req.file.originalname;
+        let type = req.body.type;
+        let buffer = req.file.buffer;
+        gcpFileStorageController.upload(name, buffer, (result) => {
           if (result instanceof Error) {
             return next(result);
           }
 
-          result.code = 200;
-          return res.json(result);
+          // Add to DB
+          let now = new Date();
+
+          let doc = new Document();
+          doc.setName(name).setOwnerId(req.session.user.id).setPath(result.url).setType(type).setUploadDate(now).setSize(buffer.toString().length);
+
+          databaseController.insert(doc, (result) => {
+            if (result instanceof Error) {
+              return next(result);
+            }
+
+            return res.json({
+              code: 200,
+              uploaded: true
+            });
+          });
         })
       }
       catch (error) {

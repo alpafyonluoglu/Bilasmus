@@ -1,4 +1,6 @@
-class WaitList {
+const Model = require("./Model");
+
+class WaitList extends Model {
     static #instance = null;
 
     #studentId;
@@ -88,50 +90,58 @@ class WaitList {
     }
 
     #tableName = "WaitList";
+    #primaryKey = "Student ID Number";
     #relations = [
         {	col: "Student ID Number",
-            set: this.setStudentId,
-            get: this.getStudentId
+            set: (val) => this.setStudentId(val),
+            get: () => this.getStudentId()
         },
         {	col: "Faculty",
-            set: this.setFaculty,
-            get: this.getFaculty
+            set: (val) => this.setFaculty(val),
+            get: () => this.getFaculty()
         },
         {	col: "Department",
-            set: this.setDepartment,
-            get: this.getDepartment
+            set: (val) => this.setDepartment(val),
+            get: () => this.getDepartment()
         },
         {	col: "Degree",
-            set: this.setDegree,
-            get: this.getDegree
+            set: (val) => this.setDegree(val),
+            get: () => this.getDegree()
         },
         {	col: "Total Points",
-            set: this.setTotalPoints,
-            get: this.getTotalPoints
+            set: (val) => this.setTotalPoints(val),
+            get: () => this.getTotalPoints()
         },
         {	col: "Preferred University #1",
-            set: this.setPreferredUniversity1,
-            get: this.getPreferredUniversity1
+            set: (val) => this.setPreferredUniversity1(val),
+            get: () => this.getPreferredUniversity1()
         },
         {	col: "Preferred University #2",
-            set: this.setPreferredUniversity2,
-            get: this.getPreferredUniversity2
+            set: (val) => this.setPreferredUniversity2(val),
+            get: () => this.getPreferredUniversity2()
         },
         {	col: "Preferred University #3",
-            set: this.setPreferredUniversity3,
-            get: this.getPreferredUniversity3
+            set: (val) => this.setPreferredUniversity3(val),
+            get: () => this.getPreferredUniversity3()
         },
         {	col: "Preferred University #4",
-            set: this.setPreferredUniversity4,
-            get: this.getPreferredUniversity4
+            set: (val) => this.setPreferredUniversity4(val),
+            get: () => this.getPreferredUniversity4()
         }
     ];
 
     getTableName() {
         return this.#tableName;
     }
+    getPrimaryKey() {
+        return this.#primaryKey;
+    }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new WaitList();
     }
 }
 

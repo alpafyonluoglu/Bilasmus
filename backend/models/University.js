@@ -1,4 +1,6 @@
-class University {
+const Model = require("./Model");
+
+class University extends Model {
     #id;
     #name;
     #country;
@@ -60,49 +62,57 @@ class University {
     }
 
     #tableName = "UniversityTable";
+    #primaryKey = "universityID";
     #relations = [
         {
             col: "universityID",
-            set: this.setId,
-            get: this.getId
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         },
         {
             col: "universityName",
-            set: this.setName,
-            get: this.getName
+            set: (val) => this.setName(val),
+            get: () => this.getName()
         },
         {
             col: "universityCountry",
-            set: this.setCountry,
-            get: this.getCountry
+            set: (val) => this.setCountry(val),
+            get: () => this.getCountry()
         },
         {
             col: "semestersAllowed",
-            set: this.setSemestersAllowed,
-            get: this.getSemestersAllowed
+            set: (val) => this.setSemestersAllowed(val),
+            get: () => this.getSemestersAllowed()
         },
         {
             col: "undergraduateAllowed",
-            set: this.setUndergraduateAllowed,
-            get: this.getUndergraduateAllowed
+            set: (val) => this.setUndergraduateAllowed(val),
+            get: () => this.getUndergraduateAllowed()
         },
         {
             col: "coursesInEnglish",
-            set: this.setCoursesInEnglish,
-            get: this.getCoursesInEnglish
+            set: (val) => this.setCoursesInEnglish(val),
+            get: () => this.getCoursesInEnglish()
         },
         {
             col: "languageReq",
-            add: this.addLanguageReq,
-            get: this.getLanguageReq
+            add: (val) => this.addLanguageReq(val),
+            get: () => this.getLanguageReq()
         }
     ];
 
     getTableName() {
         return this.#tableName;
     }
+    getPrimaryKey() {
+        return this.#primaryKey;
+    }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new University();
     }
 }
 

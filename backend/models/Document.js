@@ -1,10 +1,18 @@
-class Document {
+const Model = require("./Model");
+
+class Document extends Model {
+    #id;
     #name;
     #ownerId;
     #uploadDate;
     #size;
     #path;
+    #type;
 
+    setId(id) {
+        this.#id = id;
+        return this;
+    }
     setName(name) {
         this.#name = name;
         return this;
@@ -25,6 +33,10 @@ class Document {
         this.#path = path;
         return this;
     }
+    setType(type) {
+        this.#type = type;
+        return this;
+    }
 
     getName() {
         return this.#name;
@@ -41,41 +53,65 @@ class Document {
     getPath() {
         return this.#path;
     }
+    getType() {
+        return this.#type;
+    }
+    getId() {
+        return this.#id;
+    }
 
     #tableName = "Document";
+    #primaryKey = "path";
     #relations = [
         {
             col: "Name",
-            set: this.setName,
-            get: this.getName
+            set: (val) => this.setName(val),
+            get: () => this.getName()
         },
         {
             col: "ownerID",
-            set: this.setOwnerId,
-            get: this.getOwnerId
+            set: (val) => this.setOwnerId(val),
+            get: () => this.getOwnerId()
         },
         {
             col: "uploadDate",
-            set: this.setUploadDate,
-            get: this.getUploadDate
+            set: (val) => this.setUploadDate(val),
+            get: () => this.getUploadDate()
         },
         {
             col: "size",
-            set: this.setSize,
-            get: this.getSize
+            set: (val) => this.setSize(val),
+            get: () => this.getSize()
         },
         {
             col: "path",
-            set: this.setPath,
-            get: this.getPath
+            set: (val) => this.setPath(val),
+            get: () => this.getPath()
+        },
+        {
+            col: "type",
+            set: (val) => this.setType(val),
+            get: () => this.getType()
+        },
+        {
+            col: "DocumentID",
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         }
     ];
 
     getTableName() {
         return this.#tableName;
     }
+    getPrimaryKey() {
+        return this.#primaryKey;
+    }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new Document();
     }
 }
 

@@ -2,12 +2,12 @@ const mailer = require( 'nodemailer');
 const createError = require("http-errors");
 
 class EmailController {
-    sendResetPasswordEmail(email, callback) {
+    sendResetPasswordEmail(email, token, callback) {
         let subject = "Reset your password";
-        let content = "..."; // TODO: Add content
-
-        // TODO: Get user name
-        // TODO: Create link with token
+        let content = "Hi!<br><br>" +
+            "Click on the following link to reset your password: <a href='https://bilasmus.com/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
+            "If you did not make this request, you can ignore this mail.<br><br>" +
+            "Bilasmus Team";
 
         this.#sendEmail(email, subject, content, callback);
     }
@@ -33,8 +33,20 @@ class EmailController {
     }
 
     #sendEmail(email, subject, content, callback) {
+        // let transporter = mailer.createTransport( {
+        //     host: 'smtp.gmail.com',
+        //     port: 587,
+        //     auth: {
+        //         user: process.env.EMAIL_ADDRESS,
+        //         pass: process.env.EMAIL_PASSWORD
+        //     },
+        //     tls: {
+        //         ciphers:'SSLv3'
+        //     }
+        // });
+
         let transporter = mailer.createTransport( {
-            host: 'smtp.gmail.com',
+            host: 'smtp-relay.sendinblue.com',
             port: 587,
             auth: {
                 user: process.env.EMAIL_ADDRESS,

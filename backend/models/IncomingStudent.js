@@ -21,44 +21,52 @@ class IncomingStudent extends User {
     }
 
     #tableName = "IncomingStudents";
+    #primaryKey = "Bilkent ID";
     #relations = [
         {
             col: "Name",
-            set: this.setName,
-            get: this.getName
+            set: (val) => this.setName(val),
+            get: () => this.getName()
         },
         {
             col: "Surname",
-            set: this.setSurname,
-            get: this.getSurname
+            set: (val) => this.setSurname(val),
+            get: () => this.getSurname()
         },
         {
             col: "Home University",
-            set: this.setHostUniversity,
-            get: this.getHostUniversity
+            set: (val) => this.setHostUniversity(val),
+            get: () => this.getHostUniversity()
         },
         {
             col: "Country",
-            set: this.setCountry,
-            get: this.getCountry
+            set: (val) => this.setCountry(val),
+            get: () => this.getCountry()
         },
         {
             col: "e-mail",
-            set: this.setEmail,
-            get: this.getEmail
+            set: (val) => this.setEmail(val),
+            get: () => this.getEmail()
         },
         {
             col: "Bilkent ID",
-            set: this.setId,
-            get: this.getId
+            set: (val) => this.setId(val),
+            get: () => this.getId()
         }
     ];
 
     getTableName() {
         return this.#tableName;
     }
+    getPrimaryKey() {
+        return this.#primaryKey;
+    }
     getRelations() {
         return this.#relations;
+    }
+
+    clone() {
+        return new IncomingStudent();
     }
 }
 

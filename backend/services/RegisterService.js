@@ -1,12 +1,13 @@
-const connection = require("../controllers/DatabaseController");
+const db = require("../controllers/DatabaseController");
 const createError = require("http-errors");
+const Auth = require("../models/Auth");
 
 class RegisterService {
-    generateRegistrationToken(email, callback) {
+    generateRegistrationToken(email, id, name, type, callback) {
         const token = this.#generateToken(32);
-        this.email = email;
+
         if (email && token) {
-            connection.client.query('INSERT INTO "authData" ("email","emailToken") values ($1,$2)', [email, token], function (error,results) {
+            db.client.query('INSERT INTO "authData" ("email","emailToken") values ($1,$2)', [email, token], function (error,results) {
                 // If there is an issue with the query, output the error
                 if (error)
                 {
@@ -15,6 +16,21 @@ class RegisterService {
                 return callback(results.rows.length > 0);
             });
         }
+    }
+
+    generateResetPasswordToken(email, id, callback) {
+        const token = this.#generateToken(32);
+
+        let auth = new Auth();
+        auth.setId(id).setEmailToken(token);
+
+        db.update(auth, (result) => {
+            if (result instanceof Error) {
+                return callback(createError(500, result.message));
+            }
+
+            return callback(token);
+        });
     }
 
     #generateToken(length)

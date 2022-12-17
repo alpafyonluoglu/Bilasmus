@@ -20,6 +20,22 @@ class DatabaseRouterHandler {
       });
     })
 
+    // TODO: For testing, remove later
+    router.get('/test', (req, res, next) => {
+      // Call controller
+      const Auth = require("../models/Auth");
+      let auth = new Auth();
+      auth.setId("22003229").setEmail("alpafyonluoglu@gmail.com");
+
+      databaseController.update(auth, (result) => {
+        if (result instanceof Error) {
+          return next(result);
+        }
+
+        return res.json(result);
+      });
+    })
+
     return router;
   }
 }
