@@ -8,6 +8,7 @@ function calcPercentage() {
     let check3 = document.getElementById("formCheck-3").checked;
     let check4 = document.getElementById("formCheck-4").checked;
     let check5 = document.getElementById("formCheck-5").checked;
-    var percentage = (check1 + check2 + check3 + check4 + check5) * 20;
+    console.log("change made");
+    let percentage = (check1.valueAsNumber + check2.valueAsNumber + check3.valueAsNumber + check4.valueAsNumber + check5.valueAsNumber) * 20;
     document.getElementById("progress_bar").ariaValueNow = percentage.toString();
 }
