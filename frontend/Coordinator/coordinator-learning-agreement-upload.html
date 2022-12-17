@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,10 +11,19 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
+    <link rel="stylesheet" href="assets/css/Dynamic-Table.css">
     <link rel="stylesheet" href="assets/css/Features-Large-Icons-icons.css">
+    <link rel="stylesheet" href="assets/css/Fully-responsive-table.css">
     <link rel="stylesheet" href="assets/css/iframe-iframe.css">
     <link rel="stylesheet" href="assets/css/iframe.css">
+    <link rel="stylesheet" href="assets/css/mainCover.css">
+    <link rel="stylesheet" href="assets/css/Rowfcards-styles.css">
+    <link rel="stylesheet" href="assets/css/Sakae-Simple-Section.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-search-table.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
+    <link rel="stylesheet" href="assets/css/Videos-in-rows-2-and-3-videos-per-row.css">
 </head>
 
 <body>
@@ -42,28 +54,25 @@
         </div>
     </nav>
     <div>
-        
-            <h1>Upload Learning Agreement Form</h1>
-            <p> Signed Learning Agreement Form to be uploaded.</p>
-            <div class="container">
-            <div></div>
-            <div>
-                <div class="row">
-                    <div class="col">  
-                        <form method="post" action="https://bilasmus.uc.r.appspot.com/file/upload" enctype='multipart/form-data'>
-                        <input type="file" name="file"  id="learningAgreementUpload" required>
-                        <input type="submit" id="submitButton" value="Upload" onclick="submitButtonPressed()">
-                    </form></div>
-                    <div class="col"><i class="icon-arrow-down-circle" style="font-size: 56px;"></i><a id="downloadLearningAgreement" onclick="downloadFileLink()" download href="" >Download</a></div>
+        <h1>Upload Learning Agreement Form</h1>
+        <p>Signed Learning Agreement Form to be uploaded.<br></p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">  
+                <form method="post" action="https://bilasmus.uc.r.appspot.com/file/upload" enctype='multipart/form-data'>
+                    <div class="files color form-group mb-3" style="margin-top: 10rem;">
+                        <input class="form-control" type="file" accept="application/pdf" multiple="" name="file" id="learningAgreementUpload" required>
+                    </div> <input type="submit" id="submitButton" value="Upload">
+                    </form> 
+                    <button class="btn btn-primary" type="button" style="margin-left: 25rem;">Submit</button><a href="" id="downloadLearningAgreement" onclick="downloadFileLink()" download style="margin-left: 5rem;">Download File</a>
                 </div>
             </div>
-            <div>
-            </div>
-        </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Dynamic-Table.js"></script>
+    <script src="assets/js/Table-With-Search.js"></script>
     <script src="coordinator-learning-agreement-upload.js"></script>
-
 </body>
 
 </html>
