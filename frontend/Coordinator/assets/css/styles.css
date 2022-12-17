@@ -1,0 +1,122 @@
+#toDoList {
+  overflow: auto;
+  float: right;
+}
+
+#mainPage {
+  overflow: auto;
+  grid-auto-rows: 60px;
+}
+
+#scroll-bg {
+  background-color: white;
+  margin: auto;
+  height: auto;
+}
+
+#scroll-div {
+  background-color: rgb(220,220,220);
+  overflow-y: scroll;
+}
+
+#scroll-object {
+  color: black;
+  padding: 10px;
+}
+
+#mainPage {
+  /*overflow: hidden;*/
+}
+
+#welcome {
+  float: inherit;
+}
+
+#down {
+  float: below;
+}
+
+#courseApproval {
+  /*float: left;*/
+}
+
+#preApproval {
+  float: left;
+}
+
+#preApproval {
+  /*float: left;*/
+}
+
+#learningAgreement {
+  /*float: left;*/
+}
+
+#preApproval {
+  /*float: left;*/
+}
+
+#learningAgreement {
+  float: left;
+}
+
+#leftNav {
+  color: white;
+}
+
+#navbar {
+  background-color: #25539d;
+}
+
+#item1 {
+  color: white;
+}
+
+#item1 {
+  color: white;
+}
+
+#item2 {
+  color: white;
+}
+
+#item3 {
+  color: white;
+}
+
+#item4 {
+  color: white;
+}
+
+#item5 {
+  color: white;
+}
+
+#item6 {
+  color: white;
+}
+
+#item7 {
+  color: white;
+}
+
+#item8 {
+  color: white;
+}
+
+#item9 {
+  color: white;
+}
+
+#item10 {
+  color: white;
+}
+
+#leftColumn {
+  background-color: rgb(220,220,220);
+}
+
+#reject {
+  align-self: right;
+}
+

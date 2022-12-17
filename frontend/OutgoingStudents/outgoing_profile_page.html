@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>outgoing</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form-1.css">
+    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form-2.css">
+    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form-3.css">
+    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form-4.css">
+    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload-1.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload-2.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload-3.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload-4.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons-1.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons-2.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons-3.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons-4.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons-5.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md py-3" style="background: #d00000;">
+        <div class="container-fluid"><img src="assets/img/bilkent-logo.png" width="56" height="56"><a class="navbar-brand d-flex align-items-center" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" id="home" href="outgoing_main.html" style="color: rgba(255,255,255,0.9);">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="course_request" href="outgoing_course_request.html" style="color: rgba(255,255,255,0.9);">Course Request</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="pre_approval" href="outgoing_preapproval_form.html" style="color: rgba(255,255,255,0.9);">Pre-Approval Form</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="learning_agreement" href="outgoing_learning_agreement.html" style="color: rgba(255,255,255,0.9);">Learning Agreement</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="language_proficiency" href="outgoing_language_prof.html" style="color: rgba(255,255,255,0.9);">Language Proficiency</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="help" href="#" style="color: rgba(255,255,255,0.9);">Help</a></li>
+                </ul>
+            </div><button class="btn btn-primary" id="logout" type="button" style="background: #d00000;border-color: #d00000;margin-right: 1rem;">Logout</button><button class="btn btn-primary" type="button" style="background: #d00000;border-color: #d00000;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" id="message" style="font-size: 28px;">
+                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z"></path>
+                </svg></button><button class="btn btn-primary" type="button" style="background: #d00000;border-color: #d00000;"><i class="far fa-bell" id="bell" style="font-size: 28px;"></i></button><button class="btn btn-primary" type="button" style="background: #d00000;border-color: #d00000;"><i class="far fa-user" id="profile" style="font-size: 28px;"></i></button>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="d-flex flex-row" style="margin-top: 3rem;">
+            <h1 style="margin-top: 2rem;margin-bottom: 4rem;margin-left: 24rem;margin-right: 4rem;font-size: 35px;">Profile Page</h1><img id="prof_image">
+        </div>
+        <div style="margin-left: 20rem;margin-right: 20rem;margin-top: 0.1rem;background: #efefef;padding: 2rem;">
+            <div class="d-flex" style="margin-top: 0.5rem;">
+                <p style="margin-left: 2rem;">Name:</p>
+                <p id="name" style="margin-left: 1rem;">Student1</p>
+            </div>
+            <div class="d-flex" style="margin-top: 0.5rem;">
+                <p style="margin-left: 2rem;">BilkentID:</p>
+                <p id="bilkent_id" style="margin-left: 1rem;">22xxxxxx</p>
+            </div>
+            <div class="d-flex" style="margin-top: 0.5rem;">
+                <p style="margin-left: 2rem;">Phone Number:</p>
+                <p id="tel_no" style="margin-left: 1rem;">+90 xxx xxx xx xx</p>
+            </div>
+            <div class="d-flex" style="margin-top: 0.5rem;">
+                <p style="margin-left: 2rem;">Citizen ID:</p>
+                <p id="citizen_id" style="margin-left: 1rem;">xxxxxxxxxxx</p>
+            </div>
+            <div class="d-flex" style="margin-top: 0.5rem;">
+                <p style="margin-left: 2rem;">Email:</p>
+                <p id="email_id" style="margin-left: 1rem;">student1@ug.bilkent.edu.tr</p>
+            </div>
+        </div>
+        <div class="d-flex d-xl-flex flex-row" style="margin-top: 1rem;">
+            <div class="d-flex flex-row" style="background: #efefef;margin-left: 4rem;padding: 0.5rem;min-width: 24rem;">
+                <p style="margin-right: 4rem;margin-top: 1rem;">Contact BCC to update info</p><button class="btn btn-primary" id="contact_bcc" type="button" style="height: 2.5rem;margin-top: 0.5rem;background: rgb(126,126,126);">Contact BCC</button>
+            </div>
+            <div class="d-flex flex-row" style="background: #efefef;margin-left: 11.5rem;padding: 0.5rem;min-width: 20rem;">
+                <p style="margin-right: 4rem;margin-top: 1rem;">Add Signature</p><button class="btn btn-primary" id="upload_signature" type="button" style="height: 2.5rem;margin-top: 0.5rem;background: rgb(126,126,126);">Upload Signature</button>
+            </div>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
