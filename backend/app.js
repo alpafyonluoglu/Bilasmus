@@ -52,7 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
     credentials: true,
     origin: "https://bilasmus-app.web.app",
-    allowedHeaders: ["Content-Type", "*"],
+    allowedHeaders: ["Content-Type", "Cookie", "*"],
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
