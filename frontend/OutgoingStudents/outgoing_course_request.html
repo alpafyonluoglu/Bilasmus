@@ -83,6 +83,33 @@
         </div>
         <div style="margin: 2rem;">
             <h4 style="margin-bottom: 0.5rem;">Added Course Requests</h4>
+            
+            
+            <div>
+                <div class="col-md-12 search-table-col">
+                    <label class="form-label"></label><input type="text" class="search form-control" placeholder="Search student name.."><button class="btn btn-success" type="submit">Search</button>
+                    <div class="table-responsive table table-hover table-bordered results">
+                        
+                        <table class="table table-hover table-bordered">
+                            <thead class="bill-header cs">
+                                <tr>
+                                    <th id="trs-hd-1" class="col-lg-1">Course ID</th>
+                                    <th id="trs-hd-2" class="col-lg-2">Course Name</th>
+                                    <th id="trs-hd-3" class="col-lg-3">ECTS</th>
+                                    <th id="trs-hd-4" class="col-lg-4">Previously Accepted</th>
+                                    <th id="trs-hd-6" class="col-lg-5">Update</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table">
+                                <tr class="warning no-result">
+                                    <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
             <ol>
                 <li class="text-start d-flex">HIST150 - History of Germany<div class="d-flex flex-row">
                         <p style="margin-left: 2rem;">ECTS:&nbsp;</p>
@@ -94,6 +121,7 @@
                     </div>
                 </li>
             </ol>
+            
         </div><button class="btn btn-primary" id="send" type="button" style="margin-left: 28rem;">Send Course Request List</button>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
