@@ -23,3 +23,15 @@ function updateProgress() {
     updateBar.innerHTML = progress.toString() + "%";
     updateBar.style.width = progress.toString() + "%";
 };
+
+
+document.getElementById("table").innerHTML = ' <tr>'+
+'<td id="courseID">01</td>'+
+'<td id="courseName">India</td>'+
+'<td id="ECTS">Souvik Kundu</td>'+
+'</tr>';
+//let courseID = updateCourseButton.closest('tr');
+//console.log(courseID.cells[1].textContent);
+//ow.cells[0].textContent
+function sendCourseRequestList(){
+}
