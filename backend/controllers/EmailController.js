@@ -1,15 +1,26 @@
 const mailer = require( 'nodemailer');
 const createError = require("http-errors");
+const databaseController = require("./DatabaseController");
 
 class EmailController {
-    sendResetPasswordEmail(email, token, callback) {
-        let subject = "Reset your password";
-        let content = "Hi!<br><br>" +
-            "Click on the following link to reset your password: <a href='https://bilasmus.com/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
-            "If you did not make this request, you can ignore this mail.<br><br>" +
-            "Bilasmus Team";
+    sendResetPasswordEmail(email, token, callback)
+    {
+        databaseController.client.query('SELECT * FROM "authData" WHERE "email" = $1', [email], function(error, results, fields) {
+            if (error)
+            {
+                return callback(createError(500, error.message));
+            }
+            let subject = "Reset your password";
+            let content = "Hi!<br><br>" +
+                "Click on the following link to reset your password: <a href='https://bilasmus.com/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
+                "If you did not make this request, you can ignore this mail.<br><br>" +
+                "Bilasmus Team";
 
-        this.#sendEmail(email, subject, content, callback);
+            this.#sendEmail(email, subject, content, callback);
+
+            // If the account exists
+            return callback(results.rows.length > 0);
+        });
     }
 
     sendWelcomeEmail(email, token, callback) {
