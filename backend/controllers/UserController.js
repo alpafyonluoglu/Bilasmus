@@ -139,8 +139,30 @@ class UserController {
         })
     }
 
-    getCurrentUser() {
+    getCurrentUser(id, type, callback) {
+        this.getUser(id, type, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
 
+            if (result.length === 0) {
+                return callback(createError(500, "User could not be found"))
+            }
+
+            let relations = result[0].getRelations();
+            let userObj = {}
+
+            relations.forEach((relation) => {
+                let col = relation.col.toLowerCase();
+                let val = relation.get();
+
+                userObj[col] = val;
+            });
+
+            return callback({
+                user: userObj
+            })
+        })
     }
 
     getUser(id, type, callback) {
@@ -154,7 +176,7 @@ class UserController {
                 return callback(result);
             }
 
-            return result;
+            return callback(result);
         })
     }
 

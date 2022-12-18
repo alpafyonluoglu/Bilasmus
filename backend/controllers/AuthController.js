@@ -35,7 +35,7 @@ class AuthController {
                     // Create session
                     req.session.regenerate((err) => {
                         if (err) {
-                            callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
+                            return callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
                         }
 
                         let user = {
@@ -44,7 +44,7 @@ class AuthController {
                         };
 
                         req.session.user = user;
-                        callback({
+                        return callback({
                             loggedIn: true,
                             user: user
                         });

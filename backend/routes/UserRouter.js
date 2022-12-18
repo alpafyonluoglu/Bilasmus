@@ -7,9 +7,29 @@ class UserRouterHandler {
   /*
   - Update user email: POST /user/:id/update (params: id & newEmail)
   - Delete user: DELETE /user/:id
+  - Current user info: GET /user/this
    */
 
   getRouter() {
+    router.get('/this', (req, res, next) => {
+      if (!req.session.user) {
+        return next(createError(401));
+      }
+
+      // Call controller
+      let id = req.session.user.id;
+      let type = req.session.user.type;
+
+      userController.getCurrentUser(id, type, (result) => {
+        if (result instanceof Error) {
+          return next(result);
+        }
+
+        result.code = 200;
+        return res.json(result);
+      });
+    })
+
     router.post('/:id/update', (req, res, next) => {
       if (!req.session.user || req.session.user.type !== USER.ADMIN) {
         return next(createError(401));
