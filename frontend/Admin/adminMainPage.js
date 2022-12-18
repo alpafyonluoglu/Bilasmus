@@ -1,3 +1,9 @@
+fetch("https://bilasmus.uc.r.appspot.com/").then((response) => {
+    return response.json();
+  }).then((data) => {console.log(data);
+  }).catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
 //Add User
 document.getElementById("addUserButton").onclick = function (){
     let userNameInputAddUser = document.getElementById("userNameInputAddUser").value;
@@ -24,14 +30,17 @@ document.getElementById("addUserButton").onclick = function (){
     console.log(userEmailInputAddUser);
     console.log(userTypeInputAddUser);
 
-    /*fetch("https://bilasmus.uc.r.appspot.com/auth/login", {
+    fetch("https://bilasmus.uc.r.appspot.com/user/add", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "email": inputEmail,
-            "password": inputPassword,
+            "name": userNameInputAddUser,
+            "surname": userSurnameInputAddUser,
+            "id": bilkentIDInputAddUser,
+            "email": userEmailInputAddUser,
+            "type": userTypeInputAddUser
         }),
     }).then((response) => {
         return response.json();
@@ -39,7 +48,7 @@ document.getElementById("addUserButton").onclick = function (){
         console.log(data);
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
-    });*/
+    });
 }
 
 //Update User

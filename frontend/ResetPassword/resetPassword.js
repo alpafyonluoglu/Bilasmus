@@ -6,8 +6,9 @@ document.getElementById("resetButton").onclick = function() {
     var upperCaseLetters =  /^(?=.*[A-Z])/;
     var numbers = /^(?=.*[0-9])/;
     var specialCharacters = /^(?=.*[!?@#$%^&*])/;
+    var link = location.href;
+    link += "&token=adbfsvsrvs";
 
-    //if no password entered
     if (inputPasswordReEntered.length === 0 && inputPassword.length === 0){
         alert("You didn't enter anything!!!")
     }
@@ -53,7 +54,7 @@ document.getElementById("resetButton").onclick = function() {
                 alert("The re-entered password must contain special characters!");
             }
             else {
-                if (inputPassword != inputPasswordReEntered){
+                if (inputPassword !== inputPasswordReEntered){
                     alert("Passwords must match!");
                 }
             }
@@ -62,15 +63,16 @@ document.getElementById("resetButton").onclick = function() {
 
     console.log(inputPassword);
     console.log(inputPasswordReEntered);
-
-    /*fetch("https://bilasmus.uc.r.appspot.com/auth/login", {
+    console.log(link);
+    var token = link.substring("&token=", link.length);
+    fetch("https://bilasmus.uc.r.appspot.com/auth/set", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "email": inputEmail,
             "password": inputPassword,
+            "token": link,
         }),
     }).then((response) => {
         return response.json();
@@ -78,5 +80,5 @@ document.getElementById("resetButton").onclick = function() {
         console.log(data);
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
-    });*/
+    });
 };
