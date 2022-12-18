@@ -1,5 +1,4 @@
 const Model = require("./Model");
-
 class Document extends Model {
     #id;
     #name;
@@ -131,6 +130,8 @@ class Document extends Model {
     {
 
     }
+
+
 }
 
 module.exports = Document;

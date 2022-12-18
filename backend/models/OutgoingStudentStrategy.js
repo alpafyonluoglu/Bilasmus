@@ -4,6 +4,7 @@ const db = require("../controllers/DatabaseController")
 const createError = require("http-errors");
 class OutgoingStudentStrategy extends DocumentStrategy
 {
+
     constructor(name,handler)
     {
         super();
