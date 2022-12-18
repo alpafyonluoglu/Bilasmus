@@ -5,7 +5,7 @@ const userController = require("../controllers/UserController")
 
 class UserRouterHandler {
   /*
-  - Add user: POST /user/add (params: name, surname, id, email, type)
+  - Add user: POST /user/add (params: name & surname & id & email & type)
   - Update user email: POST /user/:id/update (params: newEmail)
   - Delete user: DELETE /user/:id
   - Current user info: GET /user/this

@@ -1,48 +1,29 @@
-const mailer = require( 'nodemailer');
+const mailer = require('nodemailer');
 const createError = require("http-errors");
 const databaseController = require("./DatabaseController");
 const userService = require("../services/UserService")
 
-
 class EmailController {
-    static counter = 0;
-    sendResetPasswordEmail(email, token, callback)
-    {
-        databaseController.client.query('SELECT * FROM "authData" WHERE "email" = $1', [email], function(error, results, fields) {
-            if (error)
-            {
-                return callback(createError(500, error.message));
-            }
-            else
-            {
-                if(results.rows.length > 0)
-                {
+    frontendUrl = "https://bilasmus.com";
 
-                }
-            }
-        });
+    sendResetPasswordEmail(email, token, callback) {
+        let subject = "Reset your password";
+        let content = "Hi!<br><br>" +
+            "Click on the following link to reset your password: <a href='" + this.frontendUrl + "/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
+            "If you did not make this request, you can ignore this e-mail.<br><br>" +
+            "Bilasmus Team";
+
+        this.#sendEmail(email, subject, content, callback);
     }
 
     sendWelcomeEmail(email, token, callback) {
-        databaseController.client.query('SELECT "ID" FROM "authData" WHERE "email" = $1',[email],function(error,results,fields) {
-            if(error)
-            {
-                return callback(createError(500,error.message));
-            }
-            else
-            {
-                if(results.rows.length > 0)
-                {
-                    let subject = "Welcome to Bilasmus, user " + results.rows[0] + "!";
-                    let content = "Hi!<br><br>" +
-                        "Welcome to the Bilasmus! You can reach your account via " + results.rows[0] + "@bilkent.edu.tr" + "and provided password "
-                        userService.getPassword(results.rows[0],callback) + ". If you did not make this request, you can ignore this mail.<br><br>" +
-                        "Sincerely, Bilasmus Team";
+        let subject = "Welcome to Bilasmus!";
+        let content = "Hi!<br><br>" +
+            "Welcome to Bilasmus! Click on the following link to complete your account registration: <a href='" + this.frontendUrl + "/register?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
+            "If you did not make this request, you can ignore this e-mail.<br><br>" +
+            "Bilasmus Team";
 
-                    this.#sendEmail(email, subject, content, callback);
-                }
-            }
-        });
+        this.#sendEmail(email, subject, content, callback);
     }
 
 
@@ -69,7 +50,7 @@ class EmailController {
         //     }
         // });
 
-        let transporter = mailer.createTransport( {
+        let transporter = mailer.createTransport({
             host: 'smtp-relay.sendinblue.com',
             port: 587,
             auth: {
@@ -77,7 +58,7 @@ class EmailController {
                 pass: process.env.EMAIL_PASSWORD
             },
             tls: {
-                ciphers:'SSLv3'
+                ciphers: 'SSLv3'
             }
         });
 
@@ -89,8 +70,7 @@ class EmailController {
         }, (err, info) => {
             if (err) {
                 callback(createError(500, "Email could not be sent: " + (process.env.PRODUCTION ? err : "...")));
-            }
-            else {
+            } else {
                 return callback({
                     message: info.response
                 });

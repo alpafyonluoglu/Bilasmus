@@ -9,6 +9,7 @@ const cors = require('cors');
 require('dotenv').config({path: __dirname +'/secure/.env'})
 require("./controllers/DatabaseController");
 require("./controllers/UserController");
+require("./controllers/GcpFileStorageController");
 
 // Routers
 const mainRouter = require('./routes/MainRouter').getRouter();

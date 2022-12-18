@@ -42,7 +42,7 @@ global.USER = {
 class UserController {
     registerUser(id, name, surname, email, type, callback) {
         let user = this.#createUserModel(type);
-        user.setId(id).setName(name).setSurname(surname).setEmail(email).setType(type);
+        user.setId(id).setName(name).setSurname(surname);
 
         let auth = new Auth();
         auth.setId(id).setEmail(email).setType(type);
@@ -83,38 +83,16 @@ class UserController {
 
     updateUserEmail(id, email, callback) {
         let auth = new Auth();
-        auth.setId(id);
+        auth.setId(id).setEmail(email);
 
-        authController.getAuthUser(auth, (result) => {
+        db.update(auth, (result) => {
             if (result instanceof Error) {
                 return callback(result);
             }
 
-            if (result.length === 0) {
-                // User does not exist
-                return callback(createError(500, "User could not be found"));
-            }
-
-            let authUser = result[0];
-            this.getUser(id, authUser.getType(), (result) => {
-                if (result instanceof Error) {
-                    return callback(result);
-                }
-
-                let user = result;
-                user.setEmail(email);
-
-                // Write updated user back to DB
-                db.update(user, (result) => {
-                    if (result instanceof Error) {
-                        return callback(result);
-                    }
-
-                    return {
-                        completed: true
-                    };
-                })
-            })
+            return callback({
+                completed: true
+            });
         })
     }
 
@@ -145,15 +123,15 @@ class UserController {
                     return callback(result);
                 }
 
-                // Delete from corresonding user table
+                // Delete from corresponding user table
                 db.delete(user, (result) => {
                     if (result instanceof Error) {
                         return callback(result);
                     }
 
-                    return {
+                    return callback({
                         completed: true
-                    }
+                    });
                 })
             })
         })
