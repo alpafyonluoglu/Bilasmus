@@ -2,7 +2,9 @@ const createError = require("http-errors");
 const { format } = require("util");
 const { Storage } = require("@google-cloud/storage");
 const Document = require("../models/Document");
+const Auth = require("../models/Auth");
 const db = require("./DatabaseController");
+const userController = require("./UserController");
 
 class FileStorageController {
     getFiles(type, ownerId, callback) {
@@ -32,8 +34,45 @@ class FileStorageController {
                 filesInfo.push(fileInfo);
             })
 
-            return callback(filesInfo);
+            return this.addUserInfoToFiles(filesInfo, [], callback);
         });
+    }
+
+    addUserInfoToFiles(filesInfo, modifiedFilesInfo, callback) {
+        if (filesInfo.length === 0) {
+            return callback(modifiedFilesInfo);
+        }
+        else {
+            let document = filesInfo[0];
+            let userId = document.ownerId;
+
+            let authUser = new Auth();
+            authUser.setId(userId);
+
+            db.select(authUser, (result) => {
+                if (result instanceof Error) {
+                    return callback(result);
+                }
+
+                let type = result[0].getType();
+                let user = userController.createUserModel(type);
+                user.setId(userId);
+
+                db.select(user, (result) => {
+                    if (result instanceof Error) {
+                        return callback(result);
+                    }
+
+                    let name = result[0].getName();
+
+                    document.userName = name;
+                    modifiedFilesInfo.push(document);
+                    filesInfo.shift();
+
+                    return this.addUserInfoToFiles(filesInfo, modifiedFilesInfo, callback)
+                })
+            })
+        }
     }
 }
 
