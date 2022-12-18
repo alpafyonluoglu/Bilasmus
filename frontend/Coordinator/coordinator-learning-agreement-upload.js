@@ -33,7 +33,6 @@ document.getElementById('table').innerHTML = '<div  class="col-xxl-1">'+
 
 
 
-
 function submitButtonPressed(){
     if ( input.files.length === 0 ){
         alert("You have not uploaded the file yet!");    
