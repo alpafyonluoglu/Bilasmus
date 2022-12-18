@@ -3,6 +3,7 @@ let courseName = document.getElementById("course_name");
 let courseLink = document.getElementById("course_link");
 let courseType = document.getElementById("course_type");
 let courseToSatisfy = document.getElementById("course_to_satisfy");
+let courseECTS = document.getElementById("course_ects");
 let courseSyllabus = document.getElementById("syllabus_choose");
 let courseRequestAddButton = document.getElementById("add");
 let sendRequestListButton = document.getElementById("send");
