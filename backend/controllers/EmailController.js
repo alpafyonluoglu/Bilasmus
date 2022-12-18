@@ -1,8 +1,11 @@
 const mailer = require( 'nodemailer');
 const createError = require("http-errors");
 const databaseController = require("./DatabaseController");
+const userService = require("../services/UserService")
+
 
 class EmailController {
+    static counter = 0;
     sendResetPasswordEmail(email, token, callback)
     {
         databaseController.client.query('SELECT * FROM "authData" WHERE "email" = $1', [email], function(error, results, fields) {
@@ -38,8 +41,8 @@ class EmailController {
                 {
                     let subject = "Welcome to Bilasmus, user " + results.rows[0] + "!";
                     let content = "Hi!<br><br>" +
-                        "Welcome to the Bilasmus! You can reach your account via " + results.rows[0] + "@bilkent.edu.tr" + "and provided password " +
-                        "If you did not make this request, you can ignore this mail.<br><br>" +
+                        "Welcome to the Bilasmus! You can reach your account via " + results.rows[0] + "@bilkent.edu.tr" + "and provided password "
+                        userService.getPassword(results.rows[0],callback)+ ". If you did not make this request, you can ignore this mail.<br><br>" +
                         "Sincerely, Bilasmus Team";
 
                     this.#sendEmail(email, subject, content, callback);
@@ -47,6 +50,7 @@ class EmailController {
             }
         });
     }
+
 
     sendMessageEmail(email, callback) {
         let subject = "You have new messages";

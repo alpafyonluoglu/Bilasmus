@@ -57,6 +57,18 @@ class UserService
         }
 
     }
+
+
+    getPassword(id,callback)
+    {
+        connection.client.query('SELECT "password" FROM "authData" WHERE "ID" = $1', [id], function (error, results) {
+            // If there is an issue with the query, output the error
+            if (error) {
+                return callback(createError(500, error.message));
+            }
+            return callback(results.rows[0]);
+        });
+    }
 }
 
 module.exports = new UserService();
