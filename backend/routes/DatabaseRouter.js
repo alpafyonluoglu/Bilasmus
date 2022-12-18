@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const databaseController = require("../controllers/DatabaseController");
 const OutgoingStudent = require("../models/OutgoingStudent");
+const Auth = require("../models/Auth");
 
 class DatabaseRouterHandler {
   /*
@@ -29,13 +30,16 @@ class DatabaseRouterHandler {
       // user.setId("22003229").setName("Alp").setSurname("Afyonluoglu").setTotalPoint("0").setEmail("alpafyonluoglu@gmail.com");
 
       const Auth = require("../models/Auth");
+
       let authUser = new Auth();
-      authUser.setId("22003229").setType(USER.OUTGOING_STUDENT);
+      authUser.setId("22003229");
 
       databaseController.update(authUser, (result) => {
         if (result instanceof Error) {
           return next(result);
         }
+
+        result[0].getEmail();
 
         return res.json(result);
       });

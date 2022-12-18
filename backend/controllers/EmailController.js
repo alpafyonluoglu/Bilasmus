@@ -17,13 +17,7 @@ class EmailController {
             {
                 if(results.rows.length > 0)
                 {
-                    let subject = "Reset your password";
-                    let content = "Hi!<br><br>" +
-                        "Click on the following link to reset your password: <a href='https://bilasmus.com/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
-                        "If you did not make this request, you can ignore this mail.<br><br>" +
-                        "Bilasmus Team";
 
-                    this.#sendEmail(email, subject, content, callback);
                 }
             }
         });
