@@ -17,14 +17,9 @@ document.getElementById("loginButton").onclick = function() {
   
   console.log(inputEmail);
   console.log(inputPassword);
-  /*
-  fetch(url, {
 
-  }).then(...).catch(...);
-  */
   fetch("https://bilasmus.uc.r.appspot.com/auth/login", {
     method: "POST",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json"
     },
@@ -33,11 +28,11 @@ document.getElementById("loginButton").onclick = function() {
       "password": inputPassword,
     }),
   }).then((response) => {
-    console.log(response.json());
     return response.json();
   }).then((data) => {
     console.log(data);
     if (data.loggedIn === true){
+      setCookie("sessionID",data.sessionID,1/24);
       switch (data.user.type) {
         case "a":
           window.location = "../Admin/adminMainPage.html";
@@ -64,7 +59,6 @@ document.getElementById("loginButton").onclick = function() {
           window.location = "../OutgoingStudents/outgoing_main.html";
           break;
       }
-      setCookie("sessionID",data.sessionId,1/24);
     }
     else {
       alert("The password and email doesn't match!");
@@ -74,6 +68,7 @@ document.getElementById("loginButton").onclick = function() {
   });
 };
 
+// Taken from W3Schools
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));

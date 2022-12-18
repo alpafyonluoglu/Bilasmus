@@ -1,9 +1,12 @@
-/*fetch("https://bilasmus.uc.r.appspot.com/").then((response) => {
-    return response.json();
-  }).then((data) => {console.log(data);
-  }).catch(function(err) {
+fetch("https://bilasmus.uc.r.appspot.com/?s=" + getCookie("sessionID"))
+    .then((response) => {
+        return response.json();
+    }).then((data) => {
+    console.log(data);
+}).catch(function(err) {
     console.log('Fetch Error :-S', err);
-  });*/
+});
+
 //Add User
 document.getElementById("addUserButton").onclick = function (){
     let userNameInputAddUser = document.getElementById("userNameInputAddUser").value;
@@ -30,20 +33,7 @@ document.getElementById("addUserButton").onclick = function (){
     console.log(userEmailInputAddUser);
     console.log(userTypeInputAddUser);
 
-    
-    fetch("https://bilasmus.uc.r.appspot.com/", {
-        credentials: "include",
-    })
-    .then((response) => {
-    return response.json();
-    }).then((data) => {
-        console.log(data);
-    }).catch(function(err) {
-    console.log('Fetch Error :-S', err);
-  });
-    
-    
-    fetch("https://bilasmus.uc.r.appspot.com/user/add", {
+    fetch("https://bilasmus.uc.r.appspot.com/user/add/?s=" + getCookie("sessionID"), {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -78,7 +68,7 @@ document.getElementById("updateUserButton").onclick = function (){
     console.log(bilkentIDInputUpdateUser);
     console.log(newEmailInputUpdateUser);
 
-    fetch("https://bilasmus.uc.r.appspot.com/user/" + bilkentIDInputUpdateUser + "/update", {
+    fetch("https://bilasmus.uc.r.appspot.com/user/" + bilkentIDInputUpdateUser + "/update/?s=" + getCookie("sessionID"), {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -105,7 +95,7 @@ document.getElementById("deleteUserButton").onclick = function (){
 
     console.log(bilkentIDInputDeleteUser);
 
-    fetch("https://bilasmus.uc.r.appspot.com/user/" + bilkentIDInputDeleteUser, {
+    fetch("https://bilasmus.uc.r.appspot.com/user/" + bilkentIDInputDeleteUser + "/?s=" + getCookie("sessionID"), {
         method: "DELETE",
     }).then((response) => {
         return response.json();
@@ -114,4 +104,20 @@ document.getElementById("deleteUserButton").onclick = function (){
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
     });
+}
+
+// Taken from W3Schools
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
