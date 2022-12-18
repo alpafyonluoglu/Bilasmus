@@ -3,23 +3,23 @@ let messageButton = document.getElementById("message");
 let bellButton = document.getElementById("bell");
 let profileButton = document.getElementById("profile");
 
-logoutButton.addEventListener('click', logout);
-messageButton.addEventListener('click', messageAction);
-bellButton.addEventListener('click', bellAction);
-profileButton.addEventListener('click', profileAction);
+logoutButton.addEventListener('click', logoutOutgoing);
+messageButton.addEventListener('click', messageActionOutgoing);
+bellButton.addEventListener('click', bellActionOutgoing);
+profileButton.addEventListener('click', profileActionOutgoing);
 
-function  logout() {
+function  logoutOutgoing() {
     console.log("logout");
 }
 
-function messageAction() {
+function messageActionOutgoing() {
     console.log("message");
 }
 
-function bellAction() {
+function bellActionOutgoing() {
     console.log("bell");
 }
 
-function profileAction() {
+function profileActionOutgoing() {
     console.log("profile");
 }
