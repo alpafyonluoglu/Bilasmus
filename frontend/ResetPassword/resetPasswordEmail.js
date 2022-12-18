@@ -14,9 +14,12 @@ document.getElementById("sendLinkButton").onclick = function () {
         return response.json();
     }).then((data) => {
         console.log(data);
+        if (data.completed === true){
+            alert("A link was sent to the email if it exists in the system.");
+        }else{
+            alert(data.message);
+        }
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
     });
-
-    alert("A link was sent to the email if it exists in the system.")
 }

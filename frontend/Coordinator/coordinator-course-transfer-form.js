@@ -1,6 +1,17 @@
 /*
     Methods for Coordinator Course TRansfer Forms
 */
+
+
+
+document.getElementById("table").innerHTML= '<tr>'+
+'<td>01</td>'+
+'<td>India</td>'+
+'<td>Souvik Kundu</td>'+
+'<td>Bootstrap Stuido</td>'+
+'<td><button class="btn btn-success" style="margin-left: 100px;" id="selectedUser" type="submit" onclick="selectedStudent()">Select</button></td>'+
+'</tr>';
+
 //getting the user input 
 function getUserInput(){
     let searchedUser = document.getElementById("searchedName").value;
@@ -42,7 +53,6 @@ function downloadFile(){
 
 
     //const submitButton = document.getElementById('submitButton');
-    
     let objectURL;
     
         /*
@@ -59,4 +69,3 @@ function downloadFile(){
             link.href = objectURL;
         }
 }
-        
