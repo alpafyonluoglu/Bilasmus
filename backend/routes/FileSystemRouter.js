@@ -9,7 +9,7 @@ const Document = require("../models/Document");
 
 class FileSystemRouter {
   /*
-  - Upload: POST /file/upload (params: file, type)
+  - Upload: POST /file/upload (params: file & type)
    */
   processFile;
 

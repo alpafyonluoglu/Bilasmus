@@ -29,7 +29,8 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-    origin: '*'
+    credentials: true,
+    origin: true
 }));
 
 // Setup sessions
