@@ -42,7 +42,7 @@ class EmailController {
                     let subject = "Welcome to Bilasmus, user " + results.rows[0] + "!";
                     let content = "Hi!<br><br>" +
                         "Welcome to the Bilasmus! You can reach your account via " + results.rows[0] + "@bilkent.edu.tr" + "and provided password "
-                        userService.getPassword(results.rows[0],callback)+ ". If you did not make this request, you can ignore this mail.<br><br>" +
+                        userService.getPassword(results.rows[0],callback) + ". If you did not make this request, you can ignore this mail.<br><br>" +
                         "Sincerely, Bilasmus Team";
 
                     this.#sendEmail(email, subject, content, callback);
