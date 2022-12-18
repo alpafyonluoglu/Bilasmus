@@ -1,9 +1,9 @@
-fetch("https://bilasmus.uc.r.appspot.com/").then((response) => {
+/*fetch("https://bilasmus.uc.r.appspot.com/").then((response) => {
     return response.json();
   }).then((data) => {console.log(data);
   }).catch(function(err) {
     console.log('Fetch Error :-S', err);
-  });
+  });*/
 //Add User
 document.getElementById("addUserButton").onclick = function (){
     let userNameInputAddUser = document.getElementById("userNameInputAddUser").value;
@@ -40,7 +40,7 @@ document.getElementById("addUserButton").onclick = function (){
             "surname": userSurnameInputAddUser,
             "id": bilkentIDInputAddUser,
             "email": userEmailInputAddUser,
-            "type": userTypeInputAddUser
+            "type": userTypeInputAddUser,
         }),
     }).then((response) => {
         return response.json();

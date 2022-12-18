@@ -7,7 +7,6 @@ document.getElementById("resetButton").onclick = function() {
     var numbers = /^(?=.*[0-9])/;
     var specialCharacters = /^(?=.*[!?@#$%^&*])/;
     var link = location.href;
-    link += "&token=adbfsvsrvs";
 
     if (inputPasswordReEntered.length === 0 && inputPassword.length === 0){
         alert("You didn't enter anything!!!")
@@ -64,7 +63,9 @@ document.getElementById("resetButton").onclick = function() {
     console.log(inputPassword);
     console.log(inputPasswordReEntered);
     console.log(link);
-    var token = link.substring("&token=", link.length);
+    var token = link.substring(link.length-32, link.length);
+    console.log(token);
+
     fetch("https://bilasmus.uc.r.appspot.com/auth/set", {
         method: "POST",
         headers: {
@@ -72,12 +73,17 @@ document.getElementById("resetButton").onclick = function() {
         },
         body: JSON.stringify({
             "password": inputPassword,
-            "token": link,
+            "token": token,
         }),
     }).then((response) => {
         return response.json();
     }).then((data) => {
         console.log(data);
+        if (data.completed === true){
+            alert("Your password was changed successfully!");
+        } else{
+            alert(data.message);
+        }
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
     });
