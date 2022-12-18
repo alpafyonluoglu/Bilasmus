@@ -3,9 +3,8 @@ const PreApprovedCourse = require("./PreApprovedCourse");
 class CourseWaitList extends PreApprovedCourse {
     static #instance = null;
 
-    #constructor() {
-        // Private constructor for singleton design pattern
-    }
+    // Assume private constructor
+    // Private constructor for singleton design pattern
 
     static getCourseWaitList() {
         if (this.#instance === null) {

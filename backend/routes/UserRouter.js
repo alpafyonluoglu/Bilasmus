@@ -5,7 +5,8 @@ const userController = require("../controllers/UserController")
 const dbController = require("../controllers/DatabaseController")
 const PreApprovedCourse = require("../models/PreApprovedCourse");
 const CourseWaitList = require("../models/CourseWaitList");
-let Docstra = new DocumentStrategy();
+const DocumentStrategy = require("../models/DocumentStrategy");
+
 class UserRouterHandler {
   /*
   - Add user: POST /user/add (params: name & surname & id & email & type)

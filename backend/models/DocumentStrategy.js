@@ -1,4 +1,5 @@
 const document = require("./Document")
+
 class DocumentStrategy extends document
 {
     constructor()
@@ -22,3 +23,5 @@ class DocumentStrategy extends document
         return callback;
     }
 }
+
+module.exports = DocumentStrategy;
