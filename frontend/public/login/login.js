@@ -33,7 +33,8 @@ document.getElementById("loginButton").onclick = function() {
       "password": inputPassword,
     }),
   }).then((response) => {
-    return response.json();
+    console.log(response.json())
+    // return response.json();
   }).then((data) => {
     console.log(data);
     if (data.loggedIn === true){
