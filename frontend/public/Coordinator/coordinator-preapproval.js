@@ -19,13 +19,15 @@ document.getElementById("column").innerHTML =
             '<div>'+
                 '<div class="row">'+
                     '<div class="col-xxl-4"><a class="btn btn-primary" id="viewPreApproval" type="button" download href="" style="background: var(--bs-gray-700);text-align: center;/*border-width: 4px;*/">View</a></div>'+
-                    '<div class="col-xxl-5"><button class="btn btn-primary" id="approvePreApproval" type="button" style="background: #2E7D38;text-align: center;">Upload Signed Form</button></div>'+
+                    '<div class="col-xxl-5"><a class="btn btn-primary" id="approvePreApproval" type="button" href="coordinator-preapproval-upload.html" style="background: #2E7D38;text-align: center;">Upload Signed Form</a></div>'+
                     '<div class="col"><button class="btn btn-primary" id="rejectPreApproval" type="button" style="color: var(--bs-btn-active-color);background: #dd2d2b;/*border-radius: 10px;*//*margin: 10px;*/display: inline-block;text-align: center;padding: 10px;">Reject</button></div>'+
                 '</div>'+
             '</div>'+
         '</div>'+
     '</div>'+
-    '</div>'+'<div class="row"><div class="row">'+
+    '</div>'+
+    
+    '<div class="row"><div class="row">'+
     '<div class="col-xxl-1">'+
         '<div></div><img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
     '</div>'+
@@ -39,7 +41,7 @@ document.getElementById("column").innerHTML =
         '<div>'+
             '<div class="row">'+
                 '<div class="col-xxl-4"><a class="btn btn-primary" id="viewPreApproval" type="button" download href="" style="background: var(--bs-gray-700);text-align: center;/*border-width: 4px;*/">View</a></div>'+
-                '<div class="col-xxl-5"><button class="btn btn-primary" id="approvePreApproval" type="button" style="background: #2E7D38;text-align: center;">Upload Signed Form</button></div>'+
+                '<div class="col-xxl-5"><a class="btn btn-primary" id="approvePreApproval" type="button" href="coordinator-preapproval-upload.html" style="background: #2E7D38;text-align: center;">Upload Signed Form</a></div>'+
                 '<div class="col"><button class="btn btn-primary" id="rejectPreApproval" type="button" style="color: var(--bs-btn-active-color);background: #dd2d2b;/*border-radius: 10px;*//*margin: 10px;*/display: inline-block;text-align: center;padding: 10px;">Reject</button></div>'+
             '</div>'+
         '</div>'+
