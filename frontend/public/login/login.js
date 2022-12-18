@@ -33,6 +33,7 @@ document.getElementById("loginButton").onclick = function() {
       "password": inputPassword,
     }),
   }).then((response) => {
+    console.log(response.json());
     return response.json();
   }).then((data) => {
     console.log(data);

@@ -81,6 +81,7 @@ document.getElementById("resetButton").onclick = function() {
         console.log(data);
         if (data.completed === true){
             alert("Your password was changed successfully!");
+            window.location = "../login/login.html";
         } else{
             alert(data.message);
         }
