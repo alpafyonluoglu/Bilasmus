@@ -27,13 +27,25 @@ class EmailController {
     }
 
     sendWelcomeEmail(email, token, callback) {
-        let subject = "Welcome to Bilasmus!";
-        let content = "..."; // TODO: Add content
+        databaseController.client.query('SELECT "ID" FROM "authData" WHERE "email" = $1',[email],function(error,results,fields) {
+            if(error)
+            {
+                return callback(createError(500,error.message));
+            }
+            else
+            {
+                if(results.rows.length > 0)
+                {
+                    let subject = "Welcome to Bilasmus, user " + results.rows[0] + "!";
+                    let content = "Hi!<br><br>" +
+                        "Welcome to the Bilasmus! You can reach your account via " + results.rows[0] + "@bilkent.edu.tr" + "and provided password " +
+                        "If you did not make this request, you can ignore this mail.<br><br>" +
+                        "Sincerely, Bilasmus Team";
 
-        // TODO: Get user name
-        // TODO: Create link with token
-
-        this.#sendEmail(email, subject, content, callback);
+                    this.#sendEmail(email, subject, content, callback);
+                }
+            }
+        });
     }
 
     sendMessageEmail(email, callback) {
