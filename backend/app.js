@@ -7,9 +7,10 @@ const session = require( 'express-session');
 const createError = require( 'http-errors');
 const cors = require('cors');
 require('dotenv').config({path: __dirname +'/secure/.env'})
-require("./controllers/DatabaseController");
+const db = require("./controllers/DatabaseController");
 require("./controllers/UserController");
 require("./controllers/GcpFileStorageController");
+const Session = require("./models/Session");
 
 // Routers
 const mainRouter = require('./routes/MainRouter').getRouter();
@@ -23,27 +24,6 @@ global.dbConnected = false;
 
 const app = express();
 
-// TODO: Remove
-// // Get sessionID (Modified due to CORS issues)
-// app.use((req, res, next) => {
-//     let modifiedCookies = req.cookies;
-//     if (!modifiedCookies) {
-//         modifiedCookies = [];
-//     }
-//
-//     // req.rawHeaders.pop();
-//     // req.rawHeaders.push("connect.sid=s%3A .g1ND1Ja%2FM2nTXeXv3kOuMxFQkIJtJH5bU3VzFu4wy8w; sessionID=s%3A XZwmFYsQOee-1H8hPgSmuC3_-LDkF5oh.ot1lSdoj2ifYzJEaoXRXvJtby293eMsL4neHIPBuYc4");
-//
-//     console.log(req.rawHeaders);
-//
-//     modifiedCookies["sessionID"] = req.query.s;
-//     req.cookies = modifiedCookies;
-//
-//     // req.cookies
-//
-//     return next();
-// })
-
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -51,61 +31,77 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
     credentials: true,
-    origin: "https://bilasmus-app.web.app",
+    origin: "*",
     allowedHeaders: ["Content-Type", "Cookie", "*"],
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
-// Setup sessions
-let options = {
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    name: 'sessionID',
-    signed: true,
-    cookie: { // TODO: prevent secure and sameSite for local
-        secure: true,
-        sameSite: 'none',
-        maxAge: 60 * 60 * 1000 // 1 hour
+// // Setup sessions
+// let options = {
+//     secret: process.env.COOKIE_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     name: 'sessionID',
+//     signed: true,
+//     cookie: { // TODO: prevent secure and sameSite for local
+//         // secure: true,
+//         // sameSite: 'none',
+//         maxAge: 60 * 60 * 1000 // 1 hour
+//     }
+// }
+// if (process.env.PRODUCTION === "false") { // Local
+//     // Redis database
+//     const RedisStore = require("connect-redis")(session)
+//     const { createClient } = require("redis");
+//     let redisClient = createClient({ legacyMode: true });
+//     redisClient.connect().catch(console.error);
+//
+//     options.store = new RedisStore({
+//         client: redisClient
+//     });
+// }
+// else { // GCP
+//     // Google Cloud Datastore database
+//     const {Datastore} = require('@google-cloud/datastore');
+//     const {DatastoreStore} = require('@google-cloud/connect-datastore');
+//
+//     options.store = new DatastoreStore({
+//         kind: 'express-sessions',
+//         expirationMs: 0,
+//         dataset: new Datastore({
+//             projectId: process.env.GCLOUD_PROJECT,
+//             keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
+//         })
+//     });
+// }
+// app.use(session(options));
+
+// Get session info
+app.use((req, res, next) => {
+    let sessionID = req.query.s;
+    if (!sessionID) {
+        return next();
     }
-}
-if (process.env.PRODUCTION === "false") { // Local
-    // Redis database
-    const RedisStore = require("connect-redis")(session)
-    const { createClient } = require("redis");
-    let redisClient = createClient({ legacyMode: true });
-    redisClient.connect().catch(console.error);
 
-    options.store = new RedisStore({
-        client: redisClient
-    });
-}
-else { // GCP
-    // Google Cloud Datastore database
-    const {Datastore} = require('@google-cloud/datastore');
-    const {DatastoreStore} = require('@google-cloud/connect-datastore');
+    let session = new Session();
+    session.setSessionID(sessionID);
 
-    options.store = new DatastoreStore({
-        kind: 'express-sessions',
-        expirationMs: 0,
-        dataset: new Datastore({
-            projectId: process.env.GCLOUD_PROJECT,
-            keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
-        })
-    });
-}
-app.use(session(options));
+    db.select(session, (result) => {
+        if (result instanceof Error) {
+            return next(result);
+        }
 
-// TODO: Remove
-// // Get sessionID
-// app.use((req, res, next) => {
-//     console.log("----------");
-//     console.log(req.sessionID);
-//     console.log(req.session);
-//     console.log("==========");
-//     console.log(res.rawHeaders);
-//     return next();
-// })
+        if (result.length > 0) {
+            req.session = {
+                sessionID: sessionID,
+                userID: result[0].getUserID(),
+                type: result[0].getType()
+            };
+        }
+
+        return next();
+    })
+})
 
 // Setup routers
 app.use('/', mainRouter);

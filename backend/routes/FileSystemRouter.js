@@ -27,7 +27,7 @@ class FileSystemRouter {
   getRouter() {
     router.post('/upload', async (req, res, next) => {
       try {
-        if (!req.session.user) {
+        if (!req.session || !req.session.userID) {
           return next(createError(401));
         }
 
@@ -50,7 +50,7 @@ class FileSystemRouter {
           let now = new Date();
 
           let doc = new Document();
-          doc.setName(name).setOwnerId(req.session.user.id).setPath(result.url).setType(type).setUploadDate(now).setSize(buffer.toString().length);
+          doc.setName(name).setOwnerId(req.session.userID).setPath(result.url).setType(type).setUploadDate(now).setSize(buffer.toString().length);
 
           databaseController.insert(doc, (result) => {
             if (result instanceof Error) {

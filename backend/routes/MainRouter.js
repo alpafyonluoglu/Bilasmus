@@ -15,11 +15,14 @@ class MainRouterHandler {
         status: {
           serverStatus: "Running",
           databaseStatus: dbConnected ? "Connected" : "Disconnected",
-          sessionStatus: req.session && req.session.user ? "Logged in" : "Uninitialized",
+          sessionStatus: (req.session && req.session.userID) ? "Logged in" : "Uninitialized",
         },
         session: {
-          loggedIn: (req.session && req.session.user) ? true : false,
-          user: req.session && req.session.user ? req.session.user : undefined
+          loggedIn: (req.session && req.session.userID) ? true : false,
+          user: (req.session && req.session.userID) ? {
+            userID: req.session.userID,
+            type: req.session.type
+          } : undefined
         }
       })
     })

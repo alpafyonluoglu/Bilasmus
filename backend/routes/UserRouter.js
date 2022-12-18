@@ -16,13 +16,13 @@ class UserRouterHandler {
 
   getRouter() {
     router.get('/this', (req, res, next) => {
-      if (!req.session.user) {
+      if (!req.session || !req.session.userID) {
         return next(createError(401));
       }
 
       // Call controller
-      let id = req.session.user.id;
-      let type = req.session.user.type;
+      let id = req.session.userID;
+      let type = req.session.type;
 
       userController.getCurrentUser(id, type, (result) => {
         if (result instanceof Error) {
@@ -35,7 +35,7 @@ class UserRouterHandler {
     })
 
     router.post('/add', (req, res, next) => {
-      if (!req.session.user || req.session.user.type !== USER.ADMIN) {
+      if (!req.session || req.session.type !== USER.ADMIN) {
         return next(createError(401));
       }
 
@@ -64,7 +64,7 @@ class UserRouterHandler {
     })
 
     router.post('/:id/update', (req, res, next) => {
-      if (!req.session.user || req.session.user.type !== USER.ADMIN) {
+      if (!req.session || req.session.type !== USER.ADMIN) {
         return next(createError(401));
       }
 
@@ -87,7 +87,7 @@ class UserRouterHandler {
     })
 
     router.delete('/:id', (req, res, next) => {
-      if (!req.session.user || req.session.user.type !== USER.ADMIN) {
+      if (!req.session || req.session.type !== USER.ADMIN) {
         return next(createError(401));
       }
 
@@ -104,7 +104,7 @@ class UserRouterHandler {
     })
 
     router.post('/:id/courseRequests', (req, res, next) => {
-      if (!req.session.user || req.session.user.type !== USER.OUTGOING_STUDENT) {
+      if (!req.session || req.session.type !== USER.OUTGOING_STUDENT) {
         return next(createError(401));
       }
 

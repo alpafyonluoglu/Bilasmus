@@ -4,6 +4,7 @@ const emailController = require("./EmailController");
 const databaseController = require("./DatabaseController");
 const registerService = require("../services/RegisterService");
 const Auth = require("../models/Auth");
+const Session = require("../models/Session");
 
 class AuthController {
     createSession(email, password, req, callback) {
@@ -33,22 +34,24 @@ class AuthController {
 
                     let userType = result.userType;
                     // Create session
-                    req.session.regenerate((err) => {
-                        if (err) {
-                            return callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
+                    let sessionID = registerService.generateToken(32);
+                    let session = new Session();
+                    session.setSessionID(sessionID).setUserID(userID).setType(userType);
+                    databaseController.insert(session, (result) => {
+                        if (result instanceof Error) {
+                            return callback(result);
                         }
 
                         let user = {
                             id: userID,
                             type: userType
                         };
-
-                        req.session.user = user;
                         return callback({
                             loggedIn: true,
+                            sessionID: sessionID,
                             user: user
                         });
-                    });
+                    })
                 });
             });
         });
@@ -56,15 +59,18 @@ class AuthController {
 
     destroySession(req, callback) {
         // Destroy session
-        req.session.destroy((err) => {
-            if (err) {
-                callback(createError(500, "Session could not be destroyed: " + (process.env.PRODUCTION ? err : "...")));
+        let session = new Session();
+        session.setSessionID(req.session.sessionID);
+
+        db.delete(session, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
             }
 
-            callback({
+            return callback({
                 loggedIn: false
             });
-        });
+        })
     }
 
     resetPassword(email, callback) {

@@ -4,7 +4,7 @@ const Auth = require("../models/Auth");
 
 class RegisterService {
     generateAccessToken(email, id, callback) {
-        const token = this.#generateToken(32);
+        const token = this.generateToken(32);
 
         let auth = new Auth();
         auth.setId(id).setEmailToken(token);
@@ -18,7 +18,7 @@ class RegisterService {
         });
     }
 
-    #generateToken(length)
+    generateToken(length)
         {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         const charactersLength = characters.length;
