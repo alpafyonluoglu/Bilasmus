@@ -1,5 +1,3 @@
-
-//Login Function
 document.getElementById("loginButton").onclick = function() {
   let inputEmail = document.getElementById("inputEmail").value;
   let inputPassword = document.getElementById("inputPassword").value;
@@ -19,13 +17,6 @@ document.getElementById("loginButton").onclick = function() {
   
   console.log(inputEmail);
   console.log(inputPassword);
-  /*fetch("https://bilasmus.uc.r.appspot.com/").then((response) => {
-    return response.json();
-  }).then((data) => {
-    console.log(data);
-  }).catch(function(err) {
-    console.log('Fetch Error :-S', err);
-  });*/
 
   fetch("https://bilasmus.uc.r.appspot.com/auth/login", {
     method: "POST",
