@@ -43,7 +43,7 @@ document.getElementById("loginButton").onclick = function() {
           window.location = "../DepartmentSecretary/departmentSecretaryMainPage.html";
           break;
         case "fcb":
-          window.location = "../FacultyComiteeBoard/faculty_comitee_board_main.html";
+          window.location = "../FacultyComiteeBoard/faculty_committee_board_main.html";
           break;
         case "ig":
           window.location = "../IncomingStudents/incoming_main.html";
