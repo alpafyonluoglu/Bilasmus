@@ -2,19 +2,6 @@
     Methods for Coordinator Course Request Page- Managing Button clicks
 */
 
-document.getElementById("viewCourseRequest").onclick = function(){
-    //if view is clicked
-    console.log("view is clicked");
-}
-document.getElementById("uploadCourseRequest").onclick = function(){
-    //if approve is clicked
-    console.log("approve is clicked");
-}
-document.getElementById("rejectCourseRequest").onclick = function(){
-    //if reject is clicked
-    console.log("reject is clicked");
-}
-
 //for loop
 document.getElementById("column").innerHTML ='<div  class="row">'+
 '<div class="col-xxl-1">'+
@@ -35,6 +22,22 @@ document.getElementById("column").innerHTML ='<div  class="row">'+
     '</div>'+
 '</div>'+
 '</div>';
-document.getElementById("fileID").innerHTML = "getFileName";
-document.getElementById("studentName").innerHTML = "studentName";
-document.getElementById("date").innerHTML = "dateFormat";
+
+document.getElementById("viewCourseRequest").onclick = function(){
+    //if view is clicked
+    console.log("view is clicked");
+}
+document.getElementById("uploadCourseRequest").onclick = function(){
+    //if approve is clicked
+    console.log("approve is clicked");
+}
+document.getElementById("rejectCourseRequest").onclick = function(){
+    //if reject is clicked
+    console.log("reject is clicked");
+}
+
+//document.getElementById("fileID").innerHTML = "getFileName";
+//document.getElementById("studentName").innerHTML = "studentName";
+//document.getElementById("date").innerHTML = "dateFormat";
+
+
