@@ -18,7 +18,7 @@
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link active" id="home_faculty" href="faculty_committee_board_main.html" style="color: rgba(255,255,255,0.9);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" id="preapproval_faculty" href="faculty_comnittee_board_preapproval.html" style="color: rgba(255,255,255,0.9);">Pre-Approval List</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="preapproval_faculty" href="faculty_committee_board_preapproval.html" style="color: rgba(255,255,255,0.9);">Pre-Approval List</a></li>
                     <li class="nav-item"><a class="nav-link active" id="course_transfer_faculty" href="faculty_committee_board_transfer.html" style="color: rgba(255,255,255,0.9);">Course Transfer Forms</a></li>
                     <li class="nav-item"><a class="nav-link active" id="help_faculty" href="#" style="color: rgba(255,255,255,0.9);">Help</a></li>
                 </ul>
@@ -29,34 +29,27 @@
         </div>
     </nav>
     <div class="container">
-        <h1>Welcome</h1>
-        <div class="d-flex">
-            <div style="background: #d2d2d2;width: 40rem;">
-                <h2>Pre-Approval List</h2>
-                <ul>
-                    <li>
-                        <div class="d-flex">
-                            <div style="margin-right: 3rem;">
-                                <p>University Name1</p>
-                                <p>Student Name 1</p>
-                            </div><button class="btn btn-primary" id="preapproval_list_item" type="button" style="height: 3rem;background: #3C3C3C;border-color: #3C3C3C;">View</button>
+        <h1 style="font-size: 30px;">Course Transfer Forms</h1>
+        <p>The Course Transfer Forms that needs your attention are given below. Review the forms to approve or reject.</p>
+        <div style="width: 60rem;margin-left: 5rem;background: #dcdcdc;">
+            <ul>
+                <li>
+                    <div class="d-flex"><button class="btn btn-primary" id="course_transfer_faculty" type="button" style="background: #dcdcdc;border-color: #dcdcdc;"><i class="far fa-file-alt" style="font-size: 60px;color: #3C3C3C;"></i></button>
+                        <div>
+                            <p id="course_transfer_form_faculty" style="font-weight: bold;">Name_Surname_Transfer_Form.pdf</p>
+                            <div class="d-flex">
+                                <p>Student:&nbsp; &nbsp;&nbsp;</p>
+                                <p id="student_name_faculty">Name Surname</p>
+                            </div>
+                            <div class="d-flex">
+                                <p>Uploaded:&nbsp;</p>
+                                <p id="upload_date_faculty">1 November 2022</p>
+                            </div>
                         </div>
-                    </li>
-                </ul>
-            </div>
-            <div style="background: #d2d2d2;margin-left: 5rem;width: 40rem;">
-                <h2>Course Transfer Forms</h2>
-                <ul>
-                    <li>
-                        <div class="d-flex">
-                            <div style="margin-right: 3rem;">
-                                <p>University Name1</p>
-                                <p>Student Name 1</p>
-                            </div><button class="btn btn-primary" id="course_transfer_list_item" type="button" style="height: 3rem;border-color: #3C3C3C;background: #3C3C3C;">View</button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                        <div style="margin-top: 3rem;margin-left: 2rem;"><button class="btn btn-primary" id="course_transfer_view_faculty" type="button" style="margin-left: 2rem;border-color: #3C3C3C;background: #3C3C3C;">View</button><button class="btn btn-primary" id="course_transfer_approve_faculty" type="button" style="margin-left: 2rem;border-color: #2E7D38;background: #2E7D38;">Approve</button><button class="btn btn-primary" id="course_transfer_reject_faculty" type="button" style="margin-left: 2rem;border-color: #dd2d2b;background: #dd2d2b;">Reject</button></div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
