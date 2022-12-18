@@ -16,7 +16,7 @@ class InternationalStudentOfficeStrategy extends ds
         db.update(d, result => {
             if(d.getSigned() > 4)
             {
-                d.setSigned(5);
+                d.setSigned(6);
             }
             else
             {
