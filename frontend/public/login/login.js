@@ -63,6 +63,7 @@ document.getElementById("loginButton").onclick = function() {
           window.location = "../OutgoingStudents/outgoing_main.html";
           break;
       }
+      setCookie("sessionID",data.sessionId,1/24);
     }
     else {
       alert("The password and email doesn't match!");
@@ -71,3 +72,10 @@ document.getElementById("loginButton").onclick = function() {
     console.log('Fetch Error :-S', err);
   });
 };
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
