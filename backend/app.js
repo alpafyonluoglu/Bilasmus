@@ -63,9 +63,9 @@ let options = {
     saveUninitialized: false,
     name: 'sessionID',
     signed: true,
-    cookie: {
-        // secure: true,
-        // sameSite: 'none',
+    cookie: { // TODO: prevent secure and sameSite for local
+        secure: true,
+        sameSite: 'none',
         maxAge: 60 * 60 * 1000 // 1 hour
     }
 }
