@@ -39,7 +39,7 @@ global.USER = {
 };
 
 class UserController {
-    registerUser(id, name,surname, email,type, callback) {
+    registerUser(id, name, surname, email,type, callback) {
         // TODO: Create user instance
         userService.addUser(id,email);
 
@@ -98,8 +98,89 @@ class UserController {
         })
     }
 
+    deleteUser(id, callback) {
+        let auth = new Auth();
+        auth.setId(id);
+
+        authController.getAuthUser(auth, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            if (result.length === 0) {
+                // User does not exist
+                return callback({
+                    message: "User does not exist"
+                });
+            }
+
+            let authUser = result[0];
+
+            let user = this.#createUserModel(authUser.getType());
+            user.setId(id);
+
+            // Delete from auth table
+            db.delete(authUser, (result) => {
+                if (result instanceof Error) {
+                    return callback(result);
+                }
+
+                // Delete from corresonding user table
+                db.delete(user, (result) => {
+                    if (result instanceof Error) {
+                        return callback(result);
+                    }
+
+                    return {
+                        completed: true
+                    }
+                })
+            })
+        })
+    }
+
+    getCurrentUser(id, type, callback) {
+        this.getUser(id, type, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            if (result.length === 0) {
+                return callback(createError(500, "User could not be found"))
+            }
+
+            let relations = result[0].getRelations();
+            let userObj = {}
+
+            relations.forEach((relation) => {
+                let col = relation.col.toLowerCase();
+                let val = relation.get();
+
+                userObj[col] = val;
+            });
+
+            return callback({
+                user: userObj
+            })
+        })
+    }
+
     getUser(id, type, callback) {
         // Select database to connect depending on user type
+        let user = this.#createUserModel(type);
+
+        user.setId(id);
+
+        db.select(user, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            return callback(result);
+        })
+    }
+
+    #createUserModel(type) {
         let user;
         switch (type) {
             case USER.ADMIN:
@@ -127,16 +208,7 @@ class UserController {
                 user = new OutgoingStudent();
                 break;
         }
-
-        user.setId(id);
-
-        db.select(user, (result) => {
-            if (result instanceof Error) {
-                return callback(result);
-            }
-
-            return result;
-        })
+        return user;
     }
 }
 
