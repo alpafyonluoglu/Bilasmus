@@ -97,7 +97,7 @@
                                     <th id="trs-hd-2" class="col-lg-2">Course Name</th>
                                     <th id="trs-hd-3" class="col-lg-3">ECTS</th>
                                     <th id="trs-hd-4" class="col-lg-4">Previously Accepted</th>
-                                    <th id="trs-hd-6" class="col-lg-5">Update</th>
+                                    <th id="trs-hd-5" class="col-lg-5">Update/Delete</th>
                                 </tr>
                             </thead>
                             <tbody id="table">
@@ -109,20 +109,7 @@
                     </div>
                 </div>
             </div>
-            
-            <ol>
-                <li class="text-start d-flex">HIST150 - History of Germany<div class="d-flex flex-row">
-                        <p style="margin-left: 2rem;">ECTS:&nbsp;</p>
-                        <p id="ects" style="margin-left: 1rem;">7.5</p>
-                    </div>
-                    <div class="d-flex flex-row" style="max-height: 4rem;max-width: 40rem;">
-                        <p style="margin-left: 2rem;">Previously Approved:&nbsp;</p>
-                        <p id="accepted" style="margin-left: 2rem;color: var(--bs-green);">Yes</p><button class="btn btn-primary" id="update" type="button" style="background: var(--bs-yellow);margin-left: 13.3rem;">Update</button><button class="btn btn-primary" id="delete" type="button" style="margin-left: 2rem;background: var(--bs-red);">Delete</button>
-                    </div>
-                </li>
-            </ol>
-            
-        </div><button class="btn btn-primary" id="send" type="button" style="margin-left: 28rem;">Send Course Request List</button>
+        </div><button class="btn btn-primary" id="send" onclick="sendCourseRequestList()" type="button" style="background-color: var(--bs-green); margin-left: 28rem;">Send Course Request List</button>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="outgoing_course_request.js"></script>
