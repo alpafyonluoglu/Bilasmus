@@ -113,6 +113,11 @@ class Document extends Model {
     clone() {
         return new Document();
     }
+
+    approve()
+    {
+
+    }
 }
 
 module.exports = Document;
