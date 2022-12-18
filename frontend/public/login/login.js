@@ -17,9 +17,14 @@ document.getElementById("loginButton").onclick = function() {
   
   console.log(inputEmail);
   console.log(inputPassword);
+  /*
+  fetch(url, {
 
+  }).then(...).catch(...);
+  */
   fetch("https://bilasmus.uc.r.appspot.com/auth/login", {
     method: "POST",
+    credentials: "same-origin",
     headers: {
       "Content-Type": "application/json"
     },

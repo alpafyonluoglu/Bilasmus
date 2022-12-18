@@ -2,6 +2,8 @@ let uploadFileButton = document.getElementById("upload_file");
 let uploadArea = document.getElementById("upload");
 uploadFileButton.addEventListener('click', uploadFile)
 
+
+
 function uploadFile() {
     //Upload: POST /file/upload (params: file)
     //https://bilasmus.uc.r.appspot.com/file/upload
