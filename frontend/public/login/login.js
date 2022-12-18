@@ -24,7 +24,7 @@ document.getElementById("loginButton").onclick = function() {
   */
   fetch("https://bilasmus.uc.r.appspot.com/auth/login", {
     method: "POST",
-    credentials: "same-origin",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json"
     },

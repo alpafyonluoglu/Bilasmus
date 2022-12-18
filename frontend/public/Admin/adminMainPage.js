@@ -30,6 +30,19 @@ document.getElementById("addUserButton").onclick = function (){
     console.log(userEmailInputAddUser);
     console.log(userTypeInputAddUser);
 
+    
+    fetch("https://bilasmus.uc.r.appspot.com/", {
+        credentials: "include",
+    })
+    .then((response) => {
+    return response.json();
+    }).then((data) => {
+        console.log(data);
+    }).catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+    
+    
     fetch("https://bilasmus.uc.r.appspot.com/user/add", {
         method: "POST",
         headers: {
