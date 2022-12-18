@@ -12,6 +12,10 @@ document.getElementById("table").innerHTML= '<tr>'+
 '<td><button class="btn btn-success" style="margin-left: 100px;" id="downloadTranscript" type="submit" onclick="downloadFileLink()">Select</button></td>'+
 '</tr>';
 
+document.getElementById("table").innerHTML ='<tr>'+
+'<td colspan="12"> No Result !!!</td>'+
+'</tr>';
+
 //document.getElementById("studentName").innerHTML = studentName;
 //document.getElementById("fileDate").innerHTML = date;
 
