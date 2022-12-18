@@ -33,42 +33,42 @@ document.getElementById("loginButton").onclick = function() {
       "password": inputPassword,
     }),
   }).then((response) => {
-    console.log(response.json())
-    // return response.json();
+    console.log(response.json());
+    return response.json();
   }).then((data) => {
     console.log(data);
-    if (data.loggedIn === true){
-      switch (data.user.type) {
-        case "a":
-          window.location = "../Admin/adminMainPage.html";
-          break;
-        case "c":
-          window.location = "../Coordinator/coordinator-home.html";
-          break;
-        case "ds":
-          window.location = "../DepartmentSecretary/departmentSecretaryMainPage.html";
-          break;
-        case "fcb":
-          window.location = "../FacultyCommitteeBoard/faculty_committee_board_main.html";
-          break;
-        case "ig":
-          window.location = "../IncomingStudents/incoming_main.html";
-          break;
-        case "iof":
-          window.location = "../InternationalStudentOffice/international_student_office_main.html";
-          break;
-        case "i":
-          window.location = "../Instructor/instructorMainPage.html";
-          break;
-        default: // "og"
-          window.location = "../OutgoingStudents/outgoing_main.html";
-          break;
-      }
-      setCookie("sessionID",data.sessionId,1/24);
-    }
-    else {
-      alert("The password and email doesn't match!");
-    }
+    // if (data.loggedIn === true){
+    //   switch (data.user.type) {
+    //     case "a":
+    //       window.location = "../Admin/adminMainPage.html";
+    //       break;
+    //     case "c":
+    //       window.location = "../Coordinator/coordinator-home.html";
+    //       break;
+    //     case "ds":
+    //       window.location = "../DepartmentSecretary/departmentSecretaryMainPage.html";
+    //       break;
+    //     case "fcb":
+    //       window.location = "../FacultyCommitteeBoard/faculty_committee_board_main.html";
+    //       break;
+    //     case "ig":
+    //       window.location = "../IncomingStudents/incoming_main.html";
+    //       break;
+    //     case "iof":
+    //       window.location = "../InternationalStudentOffice/international_student_office_main.html";
+    //       break;
+    //     case "i":
+    //       window.location = "../Instructor/instructorMainPage.html";
+    //       break;
+    //     default: // "og"
+    //       window.location = "../OutgoingStudents/outgoing_main.html";
+    //       break;
+    //   }
+    //   setCookie("sessionID",data.sessionId,1/24);
+    // }
+    // else {
+    //   alert("The password and email doesn't match!");
+    // }
   }).catch(function(err) {
     console.log('Fetch Error :-S', err);
   });
