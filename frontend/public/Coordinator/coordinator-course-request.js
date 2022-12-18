@@ -59,7 +59,6 @@ document.getElementById("column").innerHTML ='<div  class="row">'+
         '</div>'+
     '</div>'+
 '</div>' + '</div>'
-
 ;
 
 function viewButton(){
@@ -78,5 +77,3 @@ function rejectButton(){
 //document.getElementById("fileID").innerHTML = "getFileName";
 //document.getElementById("studentName").innerHTML = "studentName";
 //document.getElementById("date").innerHTML = "dateFormat";
-
-
