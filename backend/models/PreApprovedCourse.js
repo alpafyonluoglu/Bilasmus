@@ -95,7 +95,7 @@ class PreApprovedCourse extends Model {
         return this.#sllyabusLink;
     }
 
-    #tableName = "coursesWaitingList";
+    #tableName = "PreApprovedCourse";
     #primaryKey = "ID";
     _relations = [
         {	col: "Host University's Name",

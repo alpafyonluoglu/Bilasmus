@@ -104,6 +104,52 @@ class UserRouterHandler {
     })
 
     router.post('/:id/addCourseRequests', (req, res, next) => {
+      if (!req.session.user || req.session.user.type !== USER.OUTGOING_STUDENT) {
+        return next(createError(401));
+      }
+
+      // Check params
+      if (!req.body.course_id || !req.body.course_name || ! req.body.course_link )
+      {
+        if(req.body.course_type.selected() === "Mandatory" || req.body.course_type.selected() === "Elective")
+        {
+          if(req.body.course_to_satisfy.selected === NULL)
+          {
+            return next(createError(400,"select a mandatory or elective course"));
+          }
+
+        }
+        return next(createError(400, "'one of the parameters is missing "));
+      }
+
+      // Call controller
+      let courseId = req.body.course_id;
+      let courseName = req.body.course_name;
+      let link = req.body.course_link;
+      let type = req.body.course_type.selected;
+      let courseToSatisfy = req.body.course_to_satisfy.selected;
+      let ects = req.body.course_ects;
+      let file = req.body.syllabus_choose;
+      let pac = new PreApprovedCourse();
+      pac.setHostUniversityCourseCode(courseId);
+      pac.setHostUniversityCourseName(courseName);
+      pac.setBilkentCourseCode(type);
+      pac.setBilkentCourseName(courseToSatisfy);
+      pac.setEcts(ects);
+      pac.setSllyabusLink(file);
+      dbController.insert(pac, (result) => {
+        if (result instanceof Error) {
+          return next(result);
+        }
+
+        result.code = 200;
+        return res.json(result);
+      });
+    })
+
+
+
+    router.post('/:id/approveCourseRequests', (req, res, next) => {
       if (!req.session || req.session.type !== USER.OUTGOING_STUDENT)
       {
         return next(createError(401));
