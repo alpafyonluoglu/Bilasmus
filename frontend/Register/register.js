@@ -7,6 +7,7 @@ document.getElementById("signinButton").onclick = function() {
     var upperCaseLetters =  /^(?=.*[A-Z])/;
     var numbers = /^(?=.*[0-9])/;
     var specialCharacters = /^(?=.*[!?@#$%^&*])/;
+    var link = location.href;
 
     //if no password entered
     if (inputPasswordReEntered.length == 0 && inputPassword.length == 0){
@@ -63,21 +64,29 @@ document.getElementById("signinButton").onclick = function() {
 
     console.log(inputPassword);
     console.log(inputPasswordReEntered);
+    console.log(link);
+    var token = link.substring(link.length-32, link.length);
+    console.log(token);
 
-    /*fetch("https://bilasmus.uc.r.appspot.com/auth/login", {
+    fetch("https://bilasmus.uc.r.appspot.com/auth/set", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "email": inputEmail,
             "password": inputPassword,
+            "token": token,
         }),
     }).then((response) => {
         return response.json();
     }).then((data) => {
         console.log(data);
+        if (data.completed === true){
+            alert("You are registered successfully.");
+        } else{
+            alert(data.message);
+        }
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
-    });*/
+    });
 };
