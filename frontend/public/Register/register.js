@@ -83,6 +83,7 @@ document.getElementById("signinButton").onclick = function() {
         console.log(data);
         if (data.completed === true){
             alert("You are registered successfully.");
+            window.location = "../login/login.html";
         } else{
             alert(data.message);
         }
