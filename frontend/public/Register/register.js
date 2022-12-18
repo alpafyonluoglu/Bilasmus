@@ -9,7 +9,6 @@ document.getElementById("signinButton").onclick = function() {
     var specialCharacters = /^(?=.*[!?@#$%^&*])/;
     var link = location.href;
 
-    //if no password entered
     if (inputPasswordReEntered.length == 0 && inputPassword.length == 0){
         alert("You didn't enter anything!!!")
     }
@@ -52,7 +51,7 @@ document.getElementById("signinButton").onclick = function() {
     else if (!inputPasswordReEntered.match(specialCharacters)){
         alert("The re-entered password must contain special characters!");
     }
-    else if (inputPassword != inputPasswordReEntered){
+    else if (inputPassword !== inputPasswordReEntered){
         alert("Passwords must match!");
     }
     else {
