@@ -1,11 +1,11 @@
-fetch("https://bilasmus.uc.r.appspot.com/?s=" + getCookie("sessionID"))
+/*fetch("https://bilasmus.uc.r.appspot.com/?s=" + getCookie("sessionID"))
     .then((response) => {
         return response.json();
     }).then((data) => {
     console.log(data);
 }).catch(function(err) {
     console.log('Fetch Error :-S', err);
-});
+});*/
 
 //Add User
 document.getElementById("addUserButton").onclick = function (){
@@ -49,6 +49,11 @@ document.getElementById("addUserButton").onclick = function (){
         return response.json();
     }).then((data) => {
         console.log(data);
+        if (data.completed === true){
+            alert("User is added!");
+        }else{
+            alert(data.message);
+        }
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
     });
@@ -80,6 +85,11 @@ document.getElementById("updateUserButton").onclick = function (){
         return response.json();
     }).then((data) => {
         console.log(data);
+        if (data.completed === true){
+            alert("User is updated!");
+        }else{
+            alert(data.message);
+        }
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
     });
@@ -101,6 +111,11 @@ document.getElementById("deleteUserButton").onclick = function (){
         return response.json();
     }).then((data) => {
         console.log(data);
+        if (data.completed === true){
+            alert("User is deleted!");
+        }else{
+            alert(data.message);
+        }
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
     });
