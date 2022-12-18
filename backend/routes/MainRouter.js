@@ -35,8 +35,11 @@ class MainRouterHandler {
 
     // TODO: Remove later, for testing
     router.get('/test', (req, res) => {
-      emailController.sendResetPasswordEmail("alpafyonluoglu@gmail.com", "TEST123", (result) => {
-        res.json({ message: result});
+      // emailController.sendResetPasswordEmail("alpafyonluoglu@gmail.com", "TEST123", (result) => {
+      //   res.json({ message: result});
+      // })
+      res.json({
+        message: "OK"
       })
     })
 

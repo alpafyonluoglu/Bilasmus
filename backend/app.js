@@ -23,6 +23,27 @@ global.dbConnected = false;
 
 const app = express();
 
+// TODO: Remove
+// // Get sessionID (Modified due to CORS issues)
+// app.use((req, res, next) => {
+//     let modifiedCookies = req.cookies;
+//     if (!modifiedCookies) {
+//         modifiedCookies = [];
+//     }
+//
+//     // req.rawHeaders.pop();
+//     // req.rawHeaders.push("connect.sid=s%3A .g1ND1Ja%2FM2nTXeXv3kOuMxFQkIJtJH5bU3VzFu4wy8w; sessionID=s%3A XZwmFYsQOee-1H8hPgSmuC3_-LDkF5oh.ot1lSdoj2ifYzJEaoXRXvJtby293eMsL4neHIPBuYc4");
+//
+//     console.log(req.rawHeaders);
+//
+//     modifiedCookies["sessionID"] = req.query.s;
+//     req.cookies = modifiedCookies;
+//
+//     // req.cookies
+//
+//     return next();
+// })
+
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -30,7 +51,10 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
     credentials: true,
-    origin: true
+    headers: true,
+    origin: "*",
+    allowedHeaders: "*",
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
 // Setup sessions
@@ -41,6 +65,8 @@ let options = {
     name: 'sessionID',
     signed: true,
     cookie: {
+        // secure: true,
+        // sameSite: 'none',
         maxAge: 60 * 60 * 1000 // 1 hour
     }
 }
@@ -70,6 +96,17 @@ else { // GCP
     });
 }
 app.use(session(options));
+
+// TODO: Remove
+// // Get sessionID
+// app.use((req, res, next) => {
+//     console.log("----------");
+//     console.log(req.sessionID);
+//     console.log(req.session);
+//     console.log("==========");
+//     console.log(res.rawHeaders);
+//     return next();
+// })
 
 // Setup routers
 app.use('/', mainRouter);

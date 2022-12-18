@@ -24,6 +24,7 @@ class AuthRouterHandler {
           return next(result);
         }
 
+        // TODO: result.sessionID = req.sessionID;
         result.code = 200;
         return res.json(result);
       });
