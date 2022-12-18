@@ -10,6 +10,7 @@ fetch("https://bilasmus.uc.r.appspot.com/file/pa/all/?s=" +  getCookie("sessionI
     console.log("here");
     return response.json();
   }).then((data) => {
+    let index = 0;
     console.log("maybe here");
       $.each(data, (index, data) => {
         console.log(data);
@@ -19,9 +20,9 @@ fetch("https://bilasmus.uc.r.appspot.com/file/pa/all/?s=" +  getCookie("sessionI
             '<div></div><img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
         '</div>'+
         '<div class="col">'+
-            '<div><label class="form-label" id="fileNamePreApproval" style="font-weight: bold;">Name Surname PreapprovalForm.pdf</label></div>'+
-            '<div><label class="form-label text-start" style="padding: 30;height: 0px;width: 99px;">Student:</label><label class="form-label" id="studentNamePreApproval">Student Full Name</label></div>'+
-            '<div><label class="form-label">Uploaded:</label><label class="form-label" id="datePreApproval">1 November 2022, 13:35</label></div>'+
+            '<div><label class="form-label" id="fileNamePreApproval'+index+'" style="font-weight: bold;">Name Surname PreapprovalForm.pdf</label></div>'+
+            '<div><label class="form-label text-start" style="padding: 30;height: 0px;width: 99px;">Student:</label><label class="form-label" id="studentNamePreApproval'+index+'">Student Full Name</label></div>'+
+            '<div><label class="form-label">Uploaded:</label><label class="form-label" id="datePreApproval'+index+'">1 November 2022, 13:35</label></div>'+
             '<header></header>'+
         '</div>'+
         '<div class="col">'+
@@ -35,14 +36,14 @@ fetch("https://bilasmus.uc.r.appspot.com/file/pa/all/?s=" +  getCookie("sessionI
         '</div>'+
         '</div>'+
         '</div>';
-        document.getElementById("studentNamePreApproval").innerHTML = data.name;
-        document.getElementById("datePreApproval").innerHTML = data.uploadDate;
-        document.getElementById("fileNamePreApproval").innerHTML = data.name;
+        document.getElementById("studentNamePreApproval"+index).innerHTML = data.name;
+        document.getElementById("datePreApproval"+index).innerHTML = data.uploadDate;
+        document.getElementById("fileNamePreApproval"+index).innerHTML = data.name;
         //document.getElementById("fileNamePreApproval").value = data.name;
         viewPreApproval.href = data.url;
         viewPreApproval.download = data.url;
+        index++;
       })
-      
   }).catch(function(err) {
     console.log('Fetch Error :-S', err);
   });
