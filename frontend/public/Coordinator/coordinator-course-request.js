@@ -5,7 +5,7 @@
 //for loop
 document.getElementById("column").innerHTML ='<div  class="row">'+
 '<div class="col-xxl-1">'+
-    '<div></div><img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
+    '<img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
 '</div>'+
 '<div class="col">'+
     '<div><label class="form-label" id="fileID" style="font-weight: bold;">Name Surname PreapprovalForm.pdf</label></div>'+
@@ -15,18 +15,17 @@ document.getElementById("column").innerHTML ='<div  class="row">'+
 '<div class="col">'+
     '<div>'+
         '<div class="row">'+
-            '<div class="col-xxl-4"><button class="btn btn-primary" id="viewCourseRequest" type="button"  style="background: var(--bs-gray-700);text-align: center;/*border-width: 4px;*/"><a href="coordinator-detailed.html"><span style="color: rgb(255, 255, 255);">View</span><br></a></button></div>'+
+            '<div class="col-xxl-4"><button class="btn btn-primary" id="viewCourseRequest" type="button"  style="background: var(--bs-gray-700);text-align: center;"><a href="coordinator-detailed.html"><span style="color: rgb(255, 255, 255);">View</span><br></a></button></div>'+
             '<div class="col-xxl-5"><button class="btn btn-primary" id="uploadCourseRequest" type="button" onclick="approveButton()" style="background: #2E7D38;text-align: center;">Approve</button></div>'+
             '<div class="col"><button class="btn btn-primary" id="rejectCourseRequest" onclick="rejectButton()" type="button" style="color: var(--bs-btn-active-color);background: #dd2d2b;/*border-radius: 10px;*//*margin: 10px;*/display: inline-block;text-align: center;padding: 10px;">Reject</button></div>'+
         '</div>'+
     '</div>'+
-'</div>'
+'</div>' + '</div>'
 
 +
-
 '<div  class="row">'+
 '<div class="col-xxl-1">'+
-    '<div></div><img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
+    '<img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
 '</div>'+
 '<div class="col">'+
     '<div><label class="form-label" id="fileID" style="font-weight: bold;">Name Surname PreapprovalForm.pdf</label></div>'+
@@ -36,17 +35,15 @@ document.getElementById("column").innerHTML ='<div  class="row">'+
 '<div class="col">'+
     '<div>'+
         '<div class="row">'+
-            '<div class="col-xxl-4"><button class="btn btn-primary" id="viewCourseRequest" type="button"  style="background: var(--bs-gray-700);text-align: center;/*border-width: 4px;*/"><a href="coordinator-detailed.html"><span style="color: rgb(255, 255, 255);">View</span><br></a></button></div>'+
-            '<div class="col-xxl-5"><button class="btn  btn-primary" id="uploadCourseRequest" onclick="approveButton()" type="button" style="background: #2E7D38;text-align: center;">Approve</button></div>'+
-            '<div class="col"><button class="btn btn-primary" onclick="rejectButton()" id="rejectCourseRequest" type="button" style="color: var(--bs-btn-active-color);background: #dd2d2b;/*border-radius: 10px;*//*margin: 10px;*/display: inline-block;text-align: center;padding: 10px;">Reject</button></div>'+
+            '<div class="col-xxl-4"><button class="btn btn-primary" id="viewCourseRequest" type="button"  style="background: var(--bs-gray-700);text-align: center;"><a href="coordinator-detailed.html"><span style="color: rgb(255, 255, 255);">View</span><br></a></button></div>'+
+            '<div class="col-xxl-5"><button class="btn btn-primary" id="uploadCourseRequest" type="button" onclick="approveButton()" style="background: #2E7D38;text-align: center;">Approve</button></div>'+
+            '<div class="col"><button class="btn btn-primary" id="rejectCourseRequest" onclick="rejectButton()" type="button" style="color: var(--bs-btn-active-color);background: #dd2d2b;/*border-radius: 10px;*//*margin: 10px;*/display: inline-block;text-align: center;padding: 10px;">Reject</button></div>'+
         '</div>'+
     '</div>'+
-'</div>'
-
-+
-'<div  class="row">'+
+'</div>' + '</div>'
++'<div  class="row">'+
 '<div class="col-xxl-1">'+
-    '<div></div><img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
+    '<img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
 '</div>'+
 '<div class="col">'+
     '<div><label class="form-label" id="fileID" style="font-weight: bold;">Name Surname PreapprovalForm.pdf</label></div>'+
@@ -56,13 +53,12 @@ document.getElementById("column").innerHTML ='<div  class="row">'+
 '<div class="col">'+
     '<div>'+
         '<div class="row">'+
-            '<div class="col-xxl-4"><button class="btn btn-primary" id="viewCourseRequest" type="button"  style="background: var(--bs-gray-700);text-align: center;/*border-width: 4px;*/"><a href="coordinator-detailed.html"><span style="color: rgb(255, 255, 255);">View</span><br></a></button></div>'+
-            '<div class="col-xxl-5"><button class="btn  btn-primary" id="uploadCourseRequest" onclick="approveButton()" type="button" style="background: #2E7D38;text-align: center;">Approve</button></div>'+
-            '<div class="col"><button class="btn btn-primary" onclick="rejectButton()" id="rejectCourseRequest" type="button" style="color: var(--bs-btn-active-color);background: #dd2d2b;/*border-radius: 10px;*//*margin: 10px;*/display: inline-block;text-align: center;padding: 10px;">Reject</button></div>'+
+            '<div class="col-xxl-4"><button class="btn btn-primary" id="viewCourseRequest" type="button"  style="background: var(--bs-gray-700);text-align: center;"><a href="coordinator-detailed.html"><span style="color: rgb(255, 255, 255);">View</span><br></a></button></div>'+
+            '<div class="col-xxl-5"><button class="btn btn-primary" id="uploadCourseRequest" type="button" onclick="approveButton()" style="background: #2E7D38;text-align: center;">Approve</button></div>'+
+            '<div class="col"><button class="btn btn-primary" id="rejectCourseRequest" onclick="rejectButton()" type="button" style="color: var(--bs-btn-active-color);background: #dd2d2b;/*border-radius: 10px;*//*margin: 10px;*/display: inline-block;text-align: center;padding: 10px;">Reject</button></div>'+
         '</div>'+
     '</div>'+
-'</div>'
-
+'</div>' + '</div>'
 
 ;
 
