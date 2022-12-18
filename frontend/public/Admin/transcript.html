@@ -30,35 +30,41 @@
                 </svg></button><button class="btn btn-primary" type="button" style="background: #25539d;border-color: #25539d;"><i class="far fa-bell" id="bell" style="font-size: 28px;"></i></button><button class="btn btn-primary" type="button" style="background: #25539d;border-color: #25539d;"><i class="far fa-user" id="profile" style="font-size: 28px;"></i></button>
         </div>
     </nav>
-    <h1 class="fs-3" style="margin-left: 2rem;margin-top: 2rem;">Transcript</h1>
+    <h1>Transcript</h1>
+    <p>Upload Transcript of students who returned from Erasmus/Exchange.</p>
+    </div>
     <div class="container">
         <div>
             <div class="col-md-12 search-table-col">
-                <div class="d-flex d-xxl-flex justify-content-xxl-end form-group pull-right col-lg-4"><label class="form-label"></label><input type="text" class="search form-control" placeholder="Search by typing here.."><button class="btn btn-primary" id="searchButton" type="submit">Search</button></div><span class="counter pull-right"></span>
+                <label class="form-label">
+                </label><input type="text" class="search form-control" id="searchedName" placeholder="Search student name.."><button class="btn btn-success" id="searchTranscript" onclick= "getUserInput()">Search</button>
                 <div class="table-responsive table table-hover table-bordered results">
                     <table class="table table-hover table-bordered">
                         <thead class="bill-header cs">
-                            <tr style="background-color: #92b0b3;">
-                                <th id="trs-hd-1" class="col-lg-1" style="color: #f4f4f4;">ID</th>
-                                <th id="trs-hd-2" class="col-lg-2" style="color: #f4f4f4;">Name</th>
-                                <th id="trs-hd-3" class="col-lg-3" style="color: #f4f4f4;"><span style="color: rgb(255, 255, 255);">Email</span></th>
-                                <th id="trs-hd-4" class="col-lg-2" style="color: #f4f4f4;">Erasmus/Exchange University</th>
-                                <th id="trs-hd-6" class="col-lg-2" style="color: #f4f4f4;">Action</th>
-                            </tr>
+                        <tr>
+                            <th id="trs-hd-1" class="col-lg-1">ID</th>
+                            <th id="trs-hd-2" class="col-lg-2">Name</th>
+                            <th id="trs-hd-3" class="col-lg-3">Email</th>
+                            <th id="trs-hd-4" class="col-lg-2">Erasmus/Exchange University</th>
+                            <th id="trs-hd-6" class="col-lg-2">Action</th>
+                        </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td>India</td>
-                                <td>Souvik Kundu</td>
-                                <td>Bootstrap Stuido</td>
-                                <td><button class="btn btn-primary d-xxl-flex m-auto justify-content-xxl-center" id="selectButton" type="button" style="background-color: #2E7D38;">Select</button></td>
-                            </tr>
+                        <tbody  id="table">
+                        <tr class="warning no-result">
+                            <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
                 <div>
-                    <div class="files color form-group mb-3"><input type="file" multiple="" name="files"></div><button class="btn btn-primary text-center d-xxl-flex justify-content-center align-items-center align-content-center m-auto justify-content-xxl-center align-items-xxl-end" id="downloadFileButton" type="button" style="background-color: #2E7D38;">Dowload File</button><button class="btn btn-primary d-xxl-flex m-auto justify-content-xxl-center" id="uploadButton" type="button" style="background-color: #2E7D38;margin-top: 1rem;">Upload</button>
+
+                    <form method="post" action="https://bilasmus.uc.r.appspot.com/file/upload" accept="application/pdf" enctype='multipart/form-data'>
+                        <div class="files color form-group mb-3">
+                            <input class="form-control" type="file" accept="application/pdf" multiple="" name="file" id="formFile" required>
+                        </div>
+                        <input class="btn btn-success" type="submit" id="uploadTranscript" style="margin-left: 600px;" value="Upload">
+                    </form>
+                    <a href="" class="btn btn-success"  id="downloadTranscript" onclick="downloadFileLink()" download style="margin-left: 590px; margin-top:10px">Download File</a>
                 </div>
             </div>
         </div>
