@@ -85,7 +85,7 @@ class AuthController {
 
             let authUser = result[0];
             let id = authUser.getId();
-            registerService.generateResetPasswordToken(email, id, (result) => {
+            registerService.generateAccessToken(email, id, (result) => {
                 if (result instanceof Error) {
                     return callback(result);
                 }

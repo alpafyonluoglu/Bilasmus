@@ -28,6 +28,7 @@ User types:
 
 // Global variables
 global.USER = {
+    TYPES: ["ig", "og", "a", "fcb", "ds", "i", "iof", "c"],
     INCOMING_STUDENT: "ig",
     OUTGOING_STUDENT: "og",
     ADMIN: "a",
@@ -39,26 +40,45 @@ global.USER = {
 };
 
 class UserController {
-    registerUser(id, name, surname, email,type, callback) {
-        // TODO: Create user instance
-        userService.addUser(id,email);
+    registerUser(id, name, surname, email, type, callback) {
+        let user = this.#createUserModel(type);
+        user.setId(id).setName(name).setSurname(surname).setEmail(email).setType(type);
 
-        registerService.generateRegistrationToken(email, (result) => {
+        let auth = new Auth();
+        auth.setId(id).setEmail(email).setType(type);
+
+        // Add to user table
+        db.insert(user, (result) => {
             if (result instanceof Error) {
                 return callback(result);
             }
 
-            // Send welcome email
-            emailController.sendWelcomeEmail( email, result, (result) => {
+            // Add to Auth table
+            db.insert(auth, (result) => {
                 if (result instanceof Error) {
                     return callback(result);
                 }
 
-                return callback({
-                    message: "User registered"
+                // Generate token
+                registerService.generateAccessToken(email, id, (result) => {
+                    if (result instanceof Error) {
+                        return callback(result);
+                    }
+
+                    // Send welcome email
+                    let token = result;
+                    emailController.sendWelcomeEmail(email, token, (result) => {
+                        if (result instanceof Error) {
+                            return callback(result);
+                        }
+
+                        return callback({
+                            completed: true
+                        });
+                    });
                 })
             })
-        })
+        });
     }
 
     updateUserEmail(id, email, callback) {
