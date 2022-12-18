@@ -14,7 +14,9 @@ class WaitList extends Model {
     #preferredUniversity4;
 
     #constructor() {
-        // Private constructor for singleton design pattern
+        if (!WaitList.instance) {
+            WaitList.instance = new WaitList();
+        }
     }
 
     static getWaitList() {
@@ -89,7 +91,16 @@ class WaitList extends Model {
         return this.#preferredUniversity4;
     }
 
-    #tableName = "WaitList";
+    static getInstance()
+    {
+        if (this.#instance)
+        {
+            return this.#instance;
+        }
+    }
+
+
+        #tableName = "WaitList";
     #primaryKey = "Student ID Number";
     #relations = [
         {	col: "Student ID Number",
