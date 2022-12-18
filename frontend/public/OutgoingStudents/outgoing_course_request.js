@@ -11,17 +11,18 @@ let sendRequestListButton = document.getElementById("send");
 courseRequestAddButton.addEventListener('click', addCourseRequest);
 sendRequestListButton.addEventListener('click', sendRequestList);
 courseType.addEventListener('change', updateToSatisfy);
+
+//a function for adding a course request to course request list.
 function addCourseRequest() {
-    console.log("add request works");
 }
 
+//Disabling/Enabling course to satisfy input field
 function updateToSatisfy() {
     let type = courseType.value;
     courseToSatisfy.disabled = ( type === "14" );
 }
 
 function sendRequestList() {
-    console.log("hope");
 }
 
 document.getElementById("table").innerHTML = ' <tr>'+
@@ -35,4 +36,20 @@ let courseID = document.getElementById("updateCourseButton").closest('tr');
 console.log(courseID.cells[0].textContent);
 //ow.cells[0].textContent
 function sendCourseRequestList(){
+}
+
+// Taken from W3Schools
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
