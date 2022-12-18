@@ -5,7 +5,7 @@ const userController = require("../controllers/UserController")
 const dbController = require("../controllers/DatabaseController")
 const PreApprovedCourse = require("../models/PreApprovedCourse");
 const CourseWaitList = require("../models/CourseWaitList");
-
+let Docstra = new DocumentStrategy();
 class UserRouterHandler {
   /*
   - Add user: POST /user/add (params: name & surname & id & email & type)
@@ -156,10 +156,9 @@ class UserRouterHandler {
       }
 
       // Call controller
-      const Docstra = new DocumentStrategy();
-      const coordinatorStrategy =new DocumentStrategy(cs);
-      Docstra.addStrategy(coordinatorStrategy);
-      let cwl = coordinatorStrategy.approve();
+      const coordinatorStrategy1 =new DocumentStrategy();
+      Docstra.addStrategy(coordinatorStrategy1);
+      let cwl = coordinatorStrategy1.approve();
       dbController.update(cwl, (result) => {
         if (result instanceof Error) {
           return next(result);
@@ -170,12 +169,25 @@ class UserRouterHandler {
       });
     })
 
-    router.post("/:id/approvePreApprovalForm",(req,res,next) => {
+    router.post("/:id/approvePreApprovalForm",(req,res,next) =>
+    {
       if (!req.session || req.session.type !== USER.COORDINATOR)
       {
+
         return next(createError(401));
       }
-    })
+      const coordinatorStrategy2 =new DocumentStrategy();
+      Docstra.addStrategy(coordinatorStrategy2);
+      let cwl = coordinatorStrategy2.approve();
+      dbController.update(cwl, (result) => {
+        if (result instanceof Error) {
+          return next(result);
+        }
+
+        result.code = 200;
+        return res.json(result);
+      });
+    });
 
     return router;
   }
