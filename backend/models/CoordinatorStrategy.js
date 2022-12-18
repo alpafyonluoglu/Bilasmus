@@ -10,11 +10,15 @@ class coordinatorStrategy extends ds
         this._name = name;
         this._handler = handler;
     }
-    approve()
+    approve(callback)
     {
         let d = new document();
         db.update(d, result => {
-            if(d.getSigned() == 1)
+            if(result instanceof Error)
+            {
+                return callback(createError(404,"File cannot be proceeded."));
+            }
+            if(d.getSigned() === 1)
             {
                 d.setSigned(2);
             }

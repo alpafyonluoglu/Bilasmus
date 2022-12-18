@@ -15,7 +15,11 @@ class FacultyCommitteeBoardStrategy extends ds
 
         let d = new document();
         db.update(d, result => {
-            if(d.getSigned() == 4)
+            if(result instanceof  Error)
+            {
+                return callback(createError(404,"File cannot be proceeded."));
+            }
+            if(d.getSigned() !== 5)
             {
                 d.setSigned(5);
             }

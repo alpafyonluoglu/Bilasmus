@@ -13,8 +13,12 @@ class OutgoingStudentStrategy extends DocumentStrategy
     approve(callback)
     {
         let d = new document();
-        db.update(d, result => {
-            if(d.getSigned() == 0)
+        db.update(d,result => {
+            if(result instanceof Error)
+            {
+                return callback(createError(404,"document cannot be proceeded."))
+            }
+            if(d.getSigned() === 0)
             {
                 d.setSigned(1);
             }
