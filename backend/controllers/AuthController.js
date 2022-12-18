@@ -35,7 +35,7 @@ class AuthController {
                     // Create session
                     req.session.regenerate((err) => {
                         if (err) {
-                            callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
+                            return callback(createError(500, "Session could not be generated: " + (process.env.PRODUCTION ? err : "...")));
                         }
 
                         let user = {
@@ -44,7 +44,7 @@ class AuthController {
                         };
 
                         req.session.user = user;
-                        callback({
+                        return callback({
                             loggedIn: true,
                             user: user
                         });
@@ -69,8 +69,7 @@ class AuthController {
 
     resetPassword(email, callback) {
         let auth = new Auth();
-        // auth.setEmail(email);
-        auth.setId("22003229");
+        auth.setEmail(email);
 
         this.getAuthUser(auth, (result) => {
             if (result instanceof Error) {
@@ -86,7 +85,7 @@ class AuthController {
 
             let authUser = result[0];
             let id = authUser.getId();
-            registerService.generateResetPasswordToken(email, id, (result) => {
+            registerService.generateAccessToken(email, id, (result) => {
                 if (result instanceof Error) {
                     return callback(result);
                 }
@@ -103,6 +102,39 @@ class AuthController {
                     });
                 });
             })
+        })
+    }
+
+    setPassword(password, token, callback) {
+        let auth = new Auth();
+        auth.setEmailToken(token)
+
+        // Check token
+        databaseController.select(auth, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            if (result.length === 0) {
+                return callback({
+                    completed: false,
+                    message: "Invalid token"
+                })
+            }
+
+            let authUser = result[0];
+            authUser.setPassword(password).setEmailToken(null);
+
+            // Save new password to DB and expire token
+            databaseController.update(authUser, (result) => {
+                if (result instanceof Error) {
+                    return callback(result);
+                }
+
+                return callback({
+                    completed: true
+                })
+            });
         })
     }
 

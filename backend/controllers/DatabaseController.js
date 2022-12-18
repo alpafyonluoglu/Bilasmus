@@ -136,8 +136,6 @@ class DatabaseController {
         });
         let query = queryP1 + ') values ' + queryP2 + ')';
 
-        console.log(query);
-
         this.client.query(query, params, function (error, results) {
             // If there is an issue with the query, output the error
             if (error) {

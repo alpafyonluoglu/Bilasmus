@@ -8,12 +8,15 @@ const createError = require( 'http-errors');
 const cors = require('cors');
 require('dotenv').config({path: __dirname +'/secure/.env'})
 require("./controllers/DatabaseController");
+require("./controllers/UserController");
+require("./controllers/GcpFileStorageController");
 
 // Routers
 const mainRouter = require('./routes/MainRouter').getRouter();
 const authRouter = require('./routes/AuthRouter').getRouter();
 const fileSystemRouter = require('./routes/FileSystemRouter').getRouter();
 const databaseRouter = require('./routes/DatabaseRouter').getRouter();
+const userRouter = require('./routes/UserRouter').getRouter();
 
 // Global variables
 global.dbConnected = false;
@@ -72,6 +75,7 @@ app.use('/', mainRouter);
 app.use('/auth', authRouter);
 app.use('/file', fileSystemRouter);
 app.use('/db', databaseRouter);
+app.use('/user', userRouter);
 
 // Handle errors
 app.use((req, res, next) => {

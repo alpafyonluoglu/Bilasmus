@@ -8,6 +8,7 @@ class Document extends Model {
     #size;
     #path;
     #type;
+    #signed;
 
     setId(id) {
         this.#id = id;
@@ -37,6 +38,10 @@ class Document extends Model {
         this.#type = type;
         return this;
     }
+    setSigned(signed) {
+        this.#signed = signed;
+        return this;
+    }
 
     getName() {
         return this.#name;
@@ -58,6 +63,9 @@ class Document extends Model {
     }
     getId() {
         return this.#id;
+    }
+    getSigned() {
+        return this.#signed;
     }
 
     #tableName = "Document";
@@ -97,6 +105,11 @@ class Document extends Model {
             col: "DocumentID",
             set: (val) => this.setId(val),
             get: () => this.getId()
+        },
+        {
+            col: "signed",
+            set: (val) => this.setSigned(val),
+            get: () => this.getSigned()
         }
     ];
 
@@ -112,6 +125,11 @@ class Document extends Model {
 
     clone() {
         return new Document();
+    }
+
+    approve()
+    {
+
     }
 }
 

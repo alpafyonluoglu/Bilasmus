@@ -13,11 +13,12 @@ class WaitList extends Model {
     #preferredUniversity3;
     #preferredUniversity4;
 
-    #constructor() {
-        // Private constructor for singleton design pattern
+    #constructor()
+    {
+        // private constructor. Left empty for Singleton design pattern rules.
     }
 
-    static getWaitList() {
+    static getInstance() {
         if (this.#instance === null) {
             this.#instance = new WaitList();
         }

@@ -1,12 +1,16 @@
-const mailer = require( 'nodemailer');
+const mailer = require('nodemailer');
 const createError = require("http-errors");
+const databaseController = require("./DatabaseController");
+const userService = require("../services/UserService")
 
 class EmailController {
+    frontendUrl = "https://bilasmus.com";
+
     sendResetPasswordEmail(email, token, callback) {
         let subject = "Reset your password";
         let content = "Hi!<br><br>" +
-            "Click on the following link to reset your password: <a href='https://bilasmus.com/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
-            "If you did not make this request, you can ignore this mail.<br><br>" +
+            "Click on the following link to reset your password: <a href='" + this.frontendUrl + "/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
+            "If you did not make this request, you can ignore this e-mail.<br><br>" +
             "Bilasmus Team";
 
         this.#sendEmail(email, subject, content, callback);
@@ -14,13 +18,14 @@ class EmailController {
 
     sendWelcomeEmail(email, token, callback) {
         let subject = "Welcome to Bilasmus!";
-        let content = "..."; // TODO: Add content
-
-        // TODO: Get user name
-        // TODO: Create link with token
+        let content = "Hi!<br><br>" +
+            "Welcome to Bilasmus! Click on the following link to complete your account registration: <a href='" + this.frontendUrl + "/register?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
+            "If you did not make this request, you can ignore this e-mail.<br><br>" +
+            "Bilasmus Team";
 
         this.#sendEmail(email, subject, content, callback);
     }
+
 
     sendMessageEmail(email, callback) {
         let subject = "You have new messages";
@@ -45,7 +50,7 @@ class EmailController {
         //     }
         // });
 
-        let transporter = mailer.createTransport( {
+        let transporter = mailer.createTransport({
             host: 'smtp-relay.sendinblue.com',
             port: 587,
             auth: {
@@ -53,7 +58,7 @@ class EmailController {
                 pass: process.env.EMAIL_PASSWORD
             },
             tls: {
-                ciphers:'SSLv3'
+                ciphers: 'SSLv3'
             }
         });
 
@@ -65,8 +70,7 @@ class EmailController {
         }, (err, info) => {
             if (err) {
                 callback(createError(500, "Email could not be sent: " + (process.env.PRODUCTION ? err : "...")));
-            }
-            else {
+            } else {
                 return callback({
                     message: info.response
                 });

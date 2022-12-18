@@ -2,6 +2,25 @@ const createError = require("http-errors");
 const { format } = require("util");
 const { Storage } = require("@google-cloud/storage");
 
+/*
+Document types:
+- cr: Course request
+- la: Learning agreement
+- lp: Language proficiency
+- pa: Pre approval
+- t: Transcript
+ */
+
+// Global variables
+global.DOCUMENT = {
+    TYPES: ["cr", "la", "lp", "pa", "t"],
+    COURSE_REQUEST: "cr",
+    LEARNING_AGREEMENT: "la",
+    LANGUAGE_PROFICIENCY: "lp",
+    PRE_APPROVAL: "pa",
+    TRANSCRIPT: "t"
+};
+
 class GcpFileStorageController {
     bucket;
 

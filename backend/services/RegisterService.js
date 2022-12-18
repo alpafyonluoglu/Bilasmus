@@ -3,22 +3,7 @@ const createError = require("http-errors");
 const Auth = require("../models/Auth");
 
 class RegisterService {
-    generateRegistrationToken(email, id, name, type, callback) {
-        const token = this.#generateToken(32);
-
-        if (email && token) {
-            db.client.query('INSERT INTO "authData" ("email","emailToken") values ($1,$2)', [email, token], function (error,results) {
-                // If there is an issue with the query, output the error
-                if (error)
-                {
-                    return callback(createError(500, error.message));
-                }
-                return callback(results.rows.length > 0);
-            });
-        }
-    }
-
-    generateResetPasswordToken(email, id, callback) {
+    generateAccessToken(email, id, callback) {
         const token = this.#generateToken(32);
 
         let auth = new Auth();
