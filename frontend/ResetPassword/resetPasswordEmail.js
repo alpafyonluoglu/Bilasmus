@@ -17,4 +17,6 @@ document.getElementById("sendLinkButton").onclick = function () {
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
     });
+
+    alert("A link was sent to the email if it exists in the system.")
 }
