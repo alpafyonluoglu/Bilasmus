@@ -6,7 +6,7 @@ class EmailController {
     sendResetPasswordEmail(email, token, callback)
     {
         databaseController.client.query('SELECT * FROM "authData" WHERE "email" = $1', [email], function(error, results, fields) {
-            if (error)
+            if (error || !results)
             {
                 return callback(createError(500, error.message));
             }
