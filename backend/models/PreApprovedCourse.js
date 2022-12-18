@@ -11,6 +11,7 @@ class PreApprovedCourse extends Model {
     #bilkentCourseName;
     #bilkentCourseCredit;
     #id;
+    #sllyabusLink;
 
     setHostUniversityName(hostUniversityName) {
         this.#hostUniversityName = hostUniversityName;
@@ -53,6 +54,11 @@ class PreApprovedCourse extends Model {
         return this;
     }
 
+    setSllyabusLink(sllyabusLink) {
+        this.#sllyabusLink = sllyabusLink;
+        return this;
+    }
+
     getHostUniversityName() {
         return this.#hostUniversityName;
     }
@@ -84,7 +90,12 @@ class PreApprovedCourse extends Model {
         return this.#id;
     }
 
-    #tableName = "admin";
+    getSllyabus()
+    {
+        return this.#sllyabusLink;
+    }
+
+    #tableName = "PreApprovedCourses";
     #primaryKey = "ID";
     _relations = [
         {	col: "Host University's Name",
@@ -126,6 +137,11 @@ class PreApprovedCourse extends Model {
         {	col: "ID",
             set: (val) => this.setId(val),
             get: () => this.getId()
+        },
+        {
+            col: "sllyabusLink",
+            set: (val) => this.setSllyabus(val),
+            get: () => this.getSllyabus()
         }
     ];
 
