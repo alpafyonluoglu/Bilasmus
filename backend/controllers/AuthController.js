@@ -105,6 +105,39 @@ class AuthController {
         })
     }
 
+    setPassword(password, token, callback) {
+        let auth = new Auth();
+        auth.setEmailToken(token)
+
+        // Check token
+        databaseController.select(auth, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            if (result.length === 0) {
+                return callback({
+                    completed: false,
+                    message: "Invalid token"
+                })
+            }
+
+            let authUser = result[0];
+            authUser.setPassword(password).setEmailToken(null);
+
+            // Save new password to DB and expire token
+            databaseController.update(authUser, (result) => {
+                if (result instanceof Error) {
+                    return callback(result);
+                }
+
+                return callback({
+                    completed: true
+                })
+            });
+        })
+    }
+
     getAuthUser(auth, callback) {
         databaseController.select(auth, (result) => {
             if (result instanceof Error) {

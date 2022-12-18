@@ -3,12 +3,13 @@ const createError = require("http-errors");
 const databaseController = require("./DatabaseController");
 const userService = require("../services/UserService")
 
-
 class EmailController {
+    frontendUrl = "https://bilasmus.com";
+
     sendResetPasswordEmail(email, token, callback) {
         let subject = "Reset your password";
         let content = "Hi!<br><br>" +
-            "Click on the following link to reset your password: <a href='https://bilasmus.com/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
+            "Click on the following link to reset your password: <a href='" + this.frontendUrl + "/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
             "If you did not make this request, you can ignore this e-mail.<br><br>" +
             "Bilasmus Team";
 
@@ -18,7 +19,7 @@ class EmailController {
     sendWelcomeEmail(email, token, callback) {
         let subject = "Welcome to Bilasmus!";
         let content = "Hi!<br><br>" +
-            "Welcome to Bilasmus! Click on the following link to complete your account registration: <a href='https://bilasmus.com/reset?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
+            "Welcome to Bilasmus! Click on the following link to complete your account registration: <a href='" + this.frontendUrl + "/register?token=" + token + "'>https://bilasmus.com/reset?token=" + token + "</a><br>" +
             "If you did not make this request, you can ignore this e-mail.<br><br>" +
             "Bilasmus Team";
 
