@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>incoming</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md py-3" style="background: #9d6f25;">
+        <div class="container-fluid"><img src="assets/img/bilkent-logo.png" width="56" height="56"><a class="navbar-brand d-flex align-items-center" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" id="home_main_incoming" href="incoming_main.html" style="color: rgba(255,255,255,0.9);">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="course_request_main_incoming" href="incoming_course_request.html" style="color: rgba(255,255,255,0.9);">Course Request</a></li>
+                    <li class="nav-item"><a class="nav-link active" id="help_main_incoming" href="#" style="color: rgba(255,255,255,0.9);">Help</a></li>
+                </ul>
+            </div><button class="btn btn-primary" id="logout" type="button" style="margin-right: 1rem;background: #9d6f25;border-color: #9d6f25;">Logout</button><button class="btn btn-primary" id="message_incoming" type="button" style="background: #9d6f25;border-color: #9d6f25;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" id="message" style="font-size: 28px;">
+                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z"></path>
+                </svg></button><button class="btn btn-primary" id="bell_incoming" type="button" style="background: #9d6f25;border-color: #9d6f25;"><i class="far fa-bell" id="bell" style="font-size: 28px;"></i></button><button class="btn btn-primary" id="profile_incoming" type="button" style="background: #9d6f25;border-color: #9d6f25;"><i class="far fa-user" id="profile" style="font-size: 28px;"></i></button>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="d-flex flex-row" style="margin-top: 3rem;">
+            <h1 style="margin-top: 2rem;margin-bottom: 4rem;margin-left: 24rem;margin-right: 4rem;font-size: 35px;">Profile Page</h1><img id="prof_image">
+        </div>
+        <div style="margin-left: 20rem;margin-right: 20rem;margin-top: 0.1rem;background: #efefef;padding: 2rem;">
+            <div class="d-flex" style="margin-top: 0.5rem;">
+                <p style="margin-left: 2rem;">Name:</p>
+                <p id="name" style="margin-left: 1rem;">Student1</p>
+            </div>
+            <div class="d-flex" style="margin-top: 0.5rem;">
+                <p style="margin-left: 2rem;">Phone Number:</p>
+                <p id="tel_no" style="margin-left: 1rem;">+90 xxx xxx xx xx</p>
+            </div>
+            <div class="d-flex" style="margin-top: 0.5rem;">
+                <p style="margin-left: 2rem;">Email:</p>
+                <p id="email_id" style="margin-left: 1rem;">student1@xx.xxx.edu.tr</p>
+            </div>
+        </div>
+        <!--
+        <div class="d-flex d-xl-flex flex-row" style="margin-top: 1rem;"></div>
+        <div class="d-flex flex-row" style="background: #efefef;margin-left: 20rem;padding: 0.5rem;margin-right: 20rem;min-width: 24rem;">
+            <p style="margin-right: 4rem;margin-top: 1rem;">Contact Admin to update info</p><button class="btn btn-primary" id="contact_admin" type="button" style="height: 2.5rem;margin-top: 0.5rem;margin-right: 0.9rem;background: rgb(126,126,126);">Contact Admin</button>
+        </div>
+        -->
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="incoming_profile_page.js"></script>
+
+</body>
+
+</html>
