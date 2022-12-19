@@ -7,7 +7,7 @@
 
 
 let tableHTML = document.getElementById("column");
-fetch("https://bilasmus.uc.r.appspot.com/file/la/all/?s=" +  getCookie("sessionID"))
+fetch("https://bilasmus.uc.r.appspot.com/file/la/all/all?s=" +  getCookie("sessionID"))
 .then((response) => {
     console.log("here");
     return response.json();
