@@ -1,69 +1,61 @@
 /*
-    Methods for Coordinator Course TRansfer Forms
+Upload: POST /file/upload (params: file & type)
+<form method="post" action="https://bilasmus.uc.r.appspot.com/file/upload" accept="application/pdf" enctype='multipart/form-data'>
+                        <div class="files color form-group mb-3">
+                            <input class="form-control" type="file" accept="application/pdf" multiple="" name="file" id="formFile" required>
+                        </div>
+                        <input class="btn btn-success" type="submit" id="downloadCourseTransfer" style="margin-left: 600px;" value="Upload">
+                    </form>
+                    <a href="" class="btn btn-success"  id="downloadPreApproval" onclick="downloadFileLink()" download style="margin-left: 590px; margin-top:10px">Download File</a>
 */
 
-document.getElementById("table").innerHTML= '<tr>'+
-    '<td>01</td>'+
-    '<td>India</td>'+
-    '<td>Souvik Kundu</td>'+
-    '<td>Bootstrap Stuido</td>'+
-    '<td><button class="btn btn-success" style="margin-left: 100px;" id="selectedUser" type="submit" onclick="selectedStudent()">Select</button></td>'+
-    '</tr>';
+let tableHTML = document.getElementById("table");
+fetch("https://bilasmus.uc.r.appspot.com/user/allOutgoingUsers/?s=" +  getCookie("sessionID"))
+    .then((response) => {
+        console.log("here");
+        return response.json();
+    }).then((data) => {
+    let index = 0;
+    let empty = 0;
+    console.log("maybe here");
+    $.each(data, (index, data) => {
+        console.log(data);
 
-//getting the user input
-function getUserInput(){
-    let searchedUser = document.getElementById("searchedName").value;
-    console.log(searchedUser);
-}
+        tableHTML.innerHTML = tableHTML.innerHTML + '<tr>'+
+            '<td id="ID'+index+'">01</td>'+
+            '<td id="name'+index+'">India</td>'+
+            '<td id="email'+index+'">Souvik Kundu</td>'+
+            '<td id="university'+index+'">Bootstrap Stuido</td>'+
+            '<td><a class="btn btn-success" style="margin-left: 100px;" id="downloadTranscript'+index+'" type="select" onclick="downloadFileLink()">Select</a></td>'+
+            '</tr>';
 
-//When a user is selected from the dynamic data table
-function selectedStudent(){
+        document.getElementById("ID"+index).innerHTML = data.id;
+        document.getElementById("name"+index).innerHTML = data.name;
+        document.getElementById("email"+index).innerHTML = data.email;
+        document.getElementById("university"+index).innerHTML = data.uni;
 
-    //get inputs by row
-    let name = document.getElementById("selectedUser");
-    console.log(name.value);
-}
-//Sending the student name
-
-//retrieving user names and making it into a dynamic table
-
-//setting the file to download
-/*
-let link = document.getElementById("downloadCourseTransfer");
-
-let file = document.getElementById("formFile");
-
-console.log(link);
-link.name = "is it working";
-link.href = "file link coming from database";
-*/
-
-//Method to activate the sending of a form to the backend
-function sendFile(){
-    console.log("file is sent");
-}
-
-//Method to download a file
-function downloadFile(){
-    const input = document.getElementById("formFile");
-
-    const link = document.getElementById('uploadTranscript');
-
-
-    //const submitButton = document.getElementById('submitButton');
-    let objectURL;
-
-    /*
-        When submit button is clicked
-    */
-
-    if ( input.files.length === 0 ){
-        alert("No file has been uploaded!");
-    }else{
-        const file = input.files[0];
-        console.log(file);
-        let objectURL = URL.createObjectURL(file);
-        link.download = file.name;
-        link.href = objectURL;
+        index++;
+        empty++;
+    })
+    if (empty==0){
+        tableHTML.innerHTML = tableHTML.innerHTML + '<tr>'+ '<td colspan="12"> No Result !!!</td>'+'</tr>';
     }
+}).catch(function(err) {
+    console.log('Fetch Error :-S', err);
+});
+
+// Taken from W3Schools
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
