@@ -2,10 +2,8 @@
     Method for processing Pre-Approval Page-Button clicks
 */
 
-
-
 let tableHTML = document.getElementById("column");
-fetch("https://bilasmus.uc.r.appspot.com/file/pa/all/?s=" +  getCookie("sessionID"))
+fetch("https://bilasmus.uc.r.appspot.com/file/pa/all/all?s=" +  getCookie("sessionID"))
 .then((response) => {
     console.log("here");
     return response.json();
@@ -53,45 +51,16 @@ fetch("https://bilasmus.uc.r.appspot.com/file/pa/all/?s=" +  getCookie("sessionI
 
 //Backend Connection
 
-
 //Button for when coordinator rejects a form
 function rejectButton(){
     //backend code
-    console.log("reject button works");
 }
 
 function approveButton(){
     //backend code
-    console.log("working");
 }
 
 
-/*
-
-document.getElementById("fileNamePreApproval").innerHTML = "What is this";
-forms.forEach( form => {
-    document.getElementById("column").innerHTML = 
-    'f';
-});
-document.getElementById("viewPreApproval").href = hrefOfUser;
-
-document.getElementById("viewPreApproval").onclick = function(){
-    //if view button is clicked
-    console.log("view clicked preapproval");
-
-}
-document.getElementById("approvePreApproval").onclick = function(){
-    //if view button is clicked
-console.log("approve clicked preapproval");
-window.location.replace("coordinator-preapproval-upload.html");
-
-}
-document.getElementById("rejectPreApproval").onclick = function(){
-    //if view button is clicked
-console.log("reject clicked preapproval");
-
-}
-*/
 // Taken from W3Schools
 function getCookie(cname) {
     let name = cname + "=";

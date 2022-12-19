@@ -1,12 +1,3 @@
-/*fetch("https://bilasmus.uc.r.appspot.com/?s=" + getCookie("sessionID"))
-    .then((response) => {
-        return response.json();
-    }).then((data) => {
-    console.log(data);
-}).catch(function(err) {
-    console.log('Fetch Error :-S', err);
-});*/
-
 //Add User
 document.getElementById("addUserButton").onclick = function (){
     let userNameInputAddUser = document.getElementById("userNameInputAddUser").value;
@@ -15,6 +6,7 @@ document.getElementById("addUserButton").onclick = function (){
     let userEmailInputAddUser = document.getElementById("userEmailInputAddUser").value;
     let userTypeInputAddUser = document.getElementById("userTypeSelect").value;
 
+    //Check for each box to be fulfilled
     if ( userNameInputAddUser === ""){
         alert("You did not enter the name");
     }
@@ -27,12 +19,14 @@ document.getElementById("addUserButton").onclick = function (){
     if ( userEmailInputAddUser === "") {
         alert("You did not enter the e-mail address");
     }
+    //debugging
     console.log(userNameInputAddUser);
     console.log(userSurnameInputAddUser);
     console.log(bilkentIDInputAddUser);
     console.log(userEmailInputAddUser);
     console.log(userTypeInputAddUser);
 
+    //integrating with backend code
     fetch("https://bilasmus.uc.r.appspot.com/user/add/?s=" + getCookie("sessionID"), {
         method: "POST",
         headers: {
@@ -64,15 +58,18 @@ document.getElementById("updateUserButton").onclick = function (){
     let bilkentIDInputUpdateUser = document.getElementById("bilkentIDInputUpdateUser").value;
     let newEmailInputUpdateUser = document.getElementById("newEmailInputUpdateUser").value;
 
+    //Check for each box to be fulfilled
     if ( bilkentIDInputUpdateUser === ""){
         alert("You did not enter the Bilkent ID");
     }
     if ( newEmailInputUpdateUser === "") {
         alert("You did not enter the new e-mail address");
     }
+    //debugging
     console.log(bilkentIDInputUpdateUser);
     console.log(newEmailInputUpdateUser);
 
+    //integration with backend code
     fetch("https://bilasmus.uc.r.appspot.com/user/" + bilkentIDInputUpdateUser + "/update/?s=" + getCookie("sessionID"), {
         method: "POST",
         headers: {
@@ -99,12 +96,15 @@ document.getElementById("updateUserButton").onclick = function (){
 document.getElementById("deleteUserButton").onclick = function (){
     let bilkentIDInputDeleteUser = document.getElementById("bilkentIDInputDeleteUser").value;
 
+    //Check for each box to be fulfilled
     if ( bilkentIDInputDeleteUser === ""){
         alert("You did not enter the Bilkent ID");
     }
 
+    //debugging
     console.log(bilkentIDInputDeleteUser);
 
+    //integration with backend code
     fetch("https://bilasmus.uc.r.appspot.com/user/" + bilkentIDInputDeleteUser + "/?s=" + getCookie("sessionID"), {
         method: "DELETE",
     }).then((response) => {

@@ -14,10 +14,11 @@ document.getElementById("loginButton").onclick = function() {
   else if ( inputPassword == "" ){
     alert("You did not enter your password!");
   }
-  
+  //debugging
   console.log(inputEmail);
   console.log(inputPassword);
 
+  //integration with backend code
   fetch("https://bilasmus.uc.r.appspot.com/auth/login", {
     method: "POST",
     headers: {
@@ -31,6 +32,7 @@ document.getElementById("loginButton").onclick = function() {
     return response.json();
   }).then((data) => {
     console.log(data);
+    //to direct users to a specified main page based on the user type
     if (data.loggedIn === true){
       setCookie("sessionID",data.sessionID,1/24);
       switch (data.user.type) {
@@ -60,7 +62,7 @@ document.getElementById("loginButton").onclick = function() {
           break;
       }
     }
-    else {
+    else { //error if texts does not match
       alert("The password and email doesn't match!");
     }
   }).catch(function(err) {

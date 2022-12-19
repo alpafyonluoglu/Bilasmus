@@ -7,7 +7,7 @@
 
 
 let tableHTML = document.getElementById("column");
-fetch("https://bilasmus.uc.r.appspot.com/file/la/all/?s=" +  getCookie("sessionID"))
+fetch("https://bilasmus.uc.r.appspot.com/file/la/all/all?s=" +  getCookie("sessionID"))
 .then((response) => {
     console.log("here");
     return response.json();
@@ -53,19 +53,6 @@ fetch("https://bilasmus.uc.r.appspot.com/file/la/all/?s=" +  getCookie("sessionI
 let studentName; //changed with database student names
 let uploadDate = "1 November, 2022";
 
-//if view is clicked
-//document.getElementById("viewLearningAgreement").onclick = function(){
-//    console.log("inside view");
-//};
-//if approve button is clicked
-//document.getElementById("approveLearningAgreement").onclick = function(){
-//    console.log("inside approve");
- //   window.location.replace("coordinator-learning-agreement-upload.html");
-//};
-//if reject button is clicked
-//document.getElementById("rejectLearningAgreement").onclick = function(){
- //   console.log("inside reject");
-//};
 
 // Taken from W3Schools
 function getCookie(cname) {
