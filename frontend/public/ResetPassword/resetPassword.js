@@ -2,19 +2,21 @@ document.getElementById("resetButton").onclick = function() {
     let inputPassword = document.getElementById("inputPassword").value;
     let inputPasswordReEntered = document.getElementById("reEnterPassword").value;
 
+    //variables to check if a password consists of
     var lowerCaseLetters =  /^(?=.*[a-z])/;
     var upperCaseLetters =  /^(?=.*[A-Z])/;
     var numbers = /^(?=.*[0-9])/;
     var specialCharacters = /^(?=.*[!?@#.$%^&*])/;
-    var link = location.href;
+    var link = location.href; //to reach the current page's link
 
-    if (inputPasswordReEntered.length == 0 && inputPassword.length == 0){
+    //Checking for each corner case of a false password entered
+    if (inputPasswordReEntered.length === 0 && inputPassword.length === 0){
         alert("You didn't enter anything!!!")
     }
-    else if ( inputPassword.length == 0 && inputPasswordReEntered.length != 0){
+    else if ( inputPassword.length === 0 && inputPasswordReEntered.length !== 0){
         alert("Please enter password!");
     }
-    else if ( inputPassword.length != 0 && inputPasswordReEntered.length == 0){
+    else if ( inputPassword.length !== 0 && inputPasswordReEntered.length === 0){
         alert("Please re-enter password!");
     }
     else if (inputPassword.length < 8 && inputPasswordReEntered.length < 8){
@@ -53,12 +55,14 @@ document.getElementById("resetButton").onclick = function() {
     else if (inputPassword !== inputPasswordReEntered){
         alert("Passwords must match!");
     } else {
+        //debugging
         console.log(inputPassword);
         console.log(inputPasswordReEntered);
         console.log(link);
-        var token = link.substring(link.length-32, link.length);
+        var token = link.substring(link.length-32, link.length); //reaching token's Id
         console.log(token);
 
+        //integration with backend code
         fetch("https://bilasmus.uc.r.appspot.com/auth/set", {
             method: "POST",
             headers: {
