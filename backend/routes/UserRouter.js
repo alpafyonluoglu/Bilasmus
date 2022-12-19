@@ -35,6 +35,31 @@ class UserRouterHandler {
       });
     })
 
+    router.get('/allOutgoingUsers', (req, res, next) => {
+      if (!req.session || !req.session.userID || req.session.type !== USER.OUTGOING_STUDENT) {
+        return next(createError(401));
+      }
+
+      // Call controller
+      let id = req.session.userID;
+      let name = req.session.userID.getName();
+      let email = req.session.userID.getEmail();
+      let uni = req.session.userID.getHostUniversityCourseName();
+
+      req.session.userID.setName(name);
+      req.session.userID.setEmail(email);
+      req.session.userID.setHostUniversityName(uni);
+
+      userController.getUser(id, "og", (result) => {
+        if (result instanceof Error) {
+          return next(result);
+        }
+
+        result.code = 200;
+        return res.json(result);
+      });
+    });
+
     router.post('/add', (req, res, next) => {
       if (!req.session || req.session.type !== USER.ADMIN) {
         return next(createError(401));
@@ -43,8 +68,7 @@ class UserRouterHandler {
       // Check params
       if (!req.body.name || !req.body.surname || !req.body.id || !req.body.email || !req.body.type) {
         return next(createError(400, "'name', 'surname', 'id', 'email', or 'type' param is missing"));
-      }
-      else if (!USER.TYPES.includes(req.body.type)) {
+      } else if (!USER.TYPES.includes(req.body.type)) {
         return next(createError(400, "Unknown 'type'"));
       }
 
@@ -161,16 +185,13 @@ class UserRouterHandler {
     });
 
 
-
-
     router.post('/:id/approveCourseRequests', (req, res, next) => {
-      if (!req.session || req.session.type !== USER.OUTGOING_STUDENT)
-      {
+      if (!req.session || req.session.type !== USER.OUTGOING_STUDENT) {
         return next(createError(401));
       }
 
       // Call controller
-      const coordinatorStrategy1 =new DocumentStrategy();
+      const coordinatorStrategy1 = new DocumentStrategy();
       Docstra.addStrategy(coordinatorStrategy1);
       let cwl = coordinatorStrategy1.approve();
       dbController.update(cwl, (result) => {
@@ -183,14 +204,12 @@ class UserRouterHandler {
       });
     })
 
-    router.post("/:id/approvePreApprovalForm",(req,res,next) =>
-    {
-      if (!req.session || req.session.type !== USER.COORDINATOR)
-      {
+    router.post("/:id/approvePreApprovalForm", (req, res, next) => {
+      if (!req.session || req.session.type !== USER.COORDINATOR) {
 
         return next(createError(401));
       }
-      const coordinatorStrategy2 =new DocumentStrategy();
+      const coordinatorStrategy2 = new DocumentStrategy();
       Docstra.addStrategy(coordinatorStrategy2);
       let cwl = coordinatorStrategy2.approve();
       dbController.update(cwl, (result) => {
@@ -206,5 +225,6 @@ class UserRouterHandler {
     return router;
   }
 }
+
 
 module.exports = new UserRouterHandler();
