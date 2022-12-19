@@ -5,7 +5,7 @@ document.getElementById("resetButton").onclick = function() {
     var lowerCaseLetters =  /^(?=.*[a-z])/;
     var upperCaseLetters =  /^(?=.*[A-Z])/;
     var numbers = /^(?=.*[0-9])/;
-    var specialCharacters = /^(?=.*[!?@#$%^&*])/;
+    var specialCharacters = /^(?=.*[!?@#.$%^&*])/;
     var link = location.href;
 
     if (inputPasswordReEntered.length == 0 && inputPassword.length == 0){

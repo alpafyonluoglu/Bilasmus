@@ -1,12 +1,3 @@
-/*fetch("https://bilasmus.uc.r.appspot.com/?s=" + getCookie("sessionID"))
-    .then((response) => {
-        return response.json();
-    }).then((data) => {
-    console.log(data);
-}).catch(function(err) {
-    console.log('Fetch Error :-S', err);
-});*/
-
 //Add User
 document.getElementById("addUserButton").onclick = function (){
     let userNameInputAddUser = document.getElementById("userNameInputAddUser").value;
