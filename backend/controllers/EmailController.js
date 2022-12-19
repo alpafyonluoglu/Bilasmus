@@ -4,7 +4,7 @@ const databaseController = require("./DatabaseController");
 const userService = require("../services/UserService")
 
 class EmailController {
-    frontendUrl = "https://bilasmus.com";
+    frontendUrl = "https://bilasmus-app.web.app";
 
     sendResetPasswordEmail(email, token, callback) {
         let subject = "Reset your password";

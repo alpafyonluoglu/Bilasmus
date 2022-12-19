@@ -12,6 +12,8 @@ const userController = require("../controllers/UserController");
 class FileSystemRouter {
   /*
   - Upload: POST /file/upload (params: file & type)
+  - Approve file: POST /file/approve (params: file & path)
+  - Reject file: POST /file/reject (params: path)
   - Get current user's file of given type: GET /file/:type/:sign/this
   - Get specific user's file of given type: GET /file/:type/:sign/:userID
   - Get all files of given type: GET /file/:type/:sign/all
@@ -56,7 +58,7 @@ class FileSystemRouter {
           let now = new Date();
 
           let doc = new Document();
-          doc.setName(name).setOwnerId(req.session.userID).setPath(result.url).setType(type).setUploadDate(now).setSize(buffer.toString().length).setSigned("0");
+          doc.setName(name).setOwnerId(req.session.userID).setPath(result.url).setType(type).setUploadDate(now).setSize(buffer.toString().length).setSigned(0);
 
           databaseController.insert(doc, (result) => {
             if (result instanceof Error) {
@@ -71,6 +73,70 @@ class FileSystemRouter {
       catch (error) {
         return next(createError(500, "File could not be uploaded"))
       }
+    });
+
+    router.post('/approve', async (req, res, next) => {
+      try {
+        if (!req.session || !req.session.userID) {
+          return next(createError(401));
+        }
+
+        await this.processFile(req, res);
+
+        // Check params
+        if(!req.file || !req.body.path) {
+          return next(createError(400, "'file' or 'path' param is missing"));
+        }
+
+        let name = req.file.originalname;
+        let buffer = req.file.buffer;
+        gcpFileStorageController.upload(name, buffer, (result) => {
+          if (result instanceof Error) {
+            return next(result);
+          }
+
+          // Add to DB
+          let originalPath = req.body.path;
+          let newPath = result.url;
+          let newName = name;
+          let size = buffer.toString().length;
+          let now = new Date();
+          let userType = req.session.type;
+          fileStorageController.approve(originalPath, newPath, newName, size, now, userType, (result) => {
+            if (result instanceof Error) {
+              return next(result);
+            }
+
+            result.code = 200;
+            return res.json(result);
+          })
+        })
+      }
+      catch (error) {
+        return next(createError(500, "File could not be uploaded"))
+      }
+    });
+
+    router.post('/reject', async (req, res, next) => {
+      // Check session
+      if (!req.session || !req.session.userID) {
+        return next(createError(401));
+      }
+
+      // Check params
+      if(!req.body.path) {
+        return next(createError(400, "'path' param is missing"));
+      }
+
+      let path = req.body.path;
+      fileStorageController.reject(path, (result => {
+        if (result instanceof Error) {
+          return next(result);
+        }
+
+        result.code = 200;
+        return res.json(result);
+      }));
     });
 
     router.get('/:type/:sign/all', (req, res, next) => {
