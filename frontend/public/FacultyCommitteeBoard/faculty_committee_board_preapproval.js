@@ -1,5 +1,6 @@
 let tableHTML = document.getElementById("preapproval_list");
 
+//fetch action for preapprovals
 fetch("https://bilasmus.uc.r.appspot.com/file/pa/all/?s=" +  getCookie("sessionID"))
     .then((response) => {
         console.log("here");

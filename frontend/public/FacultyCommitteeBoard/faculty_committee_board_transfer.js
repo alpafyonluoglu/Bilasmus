@@ -1,4 +1,6 @@
 let tableHTML = document.getElementById("transfer_list");
+
+//fetch function for transfer forms
 fetch("https://bilasmus.uc.r.appspot.com/file/fcb/all/?s=" +  getCookie("sessionID"))
     .then((response) => {
         console.log("here");
