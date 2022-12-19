@@ -31,6 +31,7 @@ Sign levels:
 - 4: Signed by department secretary
 - 5: Signed by international student office
 - 6: Signed by committee board
+- 7: Signed
  */
 
 // Global variables
@@ -42,14 +43,15 @@ global.SIGN = {
 };
 
 global.SIGN_LEVEL = {
-    REJECTED: "-1",
-    UNSIGNED: "0",
-    SIGNED_BY_STUDENT: "1",
-    SIGNED_BY_COORDINATOR: "2",
-    SIGNED_BY_INSTRUCTOR: "3",
-    SIGNED_BY_DEPARTMENT_SECRETARY: "4",
-    SIGNED_BY_INTERNATIONAL_STUDENT_OFFICE: "5",
-    SIGNED_BY_COMMITTEE_BOARD: "6",
+    REJECTED: -1,
+    UNSIGNED: 0,
+    SIGNED_BY_STUDENT: 1,
+    SIGNED_BY_COORDINATOR: 2,
+    SIGNED_BY_INSTRUCTOR: 3,
+    SIGNED_BY_DEPARTMENT_SECRETARY: 4,
+    SIGNED_BY_INTERNATIONAL_STUDENT_OFFICE: 5,
+    SIGNED_BY_COMMITTEE_BOARD: 6,
+    SIGNED: 7,
 };
 
 class FileStorageController {
@@ -157,6 +159,110 @@ class FileStorageController {
                 })
             })
         }
+    }
+
+    reject(path, callback) {
+        let doc = new Document();
+        doc.setPath(path);
+
+        db.select(doc, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            if (result.length === 0) {
+                return callback({
+                    completed: false,
+                    message: "File does not exist"
+                })
+            }
+
+            let selectedDoc = result[0];
+            selectedDoc.setSigned(-1);
+
+            db.update(selectedDoc, (result) => {
+                if (result instanceof Error) {
+                    return callback(result);
+                }
+
+                return callback({
+                    completed: true
+                })
+            });
+
+        });
+    }
+
+    approve(originalPath, newPath, newName, size, now, userType, callback) {
+        let doc = new Document();
+        doc.setPath(originalPath);
+
+        db.select(doc, (result) => {
+            if (result instanceof Error) {
+                return callback(result);
+            }
+
+            if (result.length === 0) {
+                return callback({
+                    completed: false,
+                    message: "File does not exist"
+                })
+            }
+
+            let selectedDoc = result[0];
+            selectedDoc.setPath(newPath).setName(newName).setSize(size).setUploadDate(now)
+                .setSigned(this.#getSignedLevelForCurrentUser(userType));
+
+            db.insert(selectedDoc, (result) => {
+                if (result instanceof Error) {
+                    return callback(result);
+                }
+
+                db.delete(doc, (result) => {
+                    if (result instanceof Error) {
+                        return callback(result);
+                    }
+
+                    return callback({
+                        completed: true
+                    })
+                });
+            });
+
+        });
+    }
+
+    #getSignedLevelForCurrentUser(userType) {
+        // Document is unsigned if its signed level is equal to the returned value
+        // Document is signed if its signed level is higher than the returned value
+        let signedLevel;
+        switch (userType) {
+            case USER.ADMIN:
+                signedLevel = SIGN_LEVEL.SIGNED;
+                break;
+            case USER.COORDINATOR:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_COORDINATOR;
+                break;
+            case USER.DEPARTMENT_SECRETARY:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_DEPARTMENT_SECRETARY;
+                break;
+            case USER.FACULTY_COMMITTEE_BOARD:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_COMMITTEE_BOARD;
+                break;
+            case USER.INCOMING_STUDENT:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_STUDENT;
+                break;
+            case USER.INSTRUCTOR:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_INSTRUCTOR;
+                break;
+            case USER.INTERNATIONAL_STUDENT_OFFICE:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_INTERNATIONAL_STUDENT_OFFICE;
+                break;
+            default: // USER.OUTGOING_STUDENT
+                signedLevel = SIGN_LEVEL.SIGNED_BY_STUDENT;
+                break;
+        }
+        return signedLevel;
     }
 }
 
