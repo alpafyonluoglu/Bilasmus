@@ -36,7 +36,7 @@ class UserRouterHandler {
     })
 
     router.get('/allOutgoingUsers', (req, res, next) => {
-      if (!req.session || !req.session.userID || req.session.type !== USER.OUTGOING_STUDENT) {
+      if (!req.session || !req.session.userID || req.session.type !== USER.ADMIN) {
         return next(createError(401));
       }
 
