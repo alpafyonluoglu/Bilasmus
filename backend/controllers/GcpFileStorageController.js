@@ -13,12 +13,13 @@ Document types:
 
 // Global variables
 global.DOCUMENT = {
-    TYPES: ["cr", "la", "lp", "pa", "t"],
+    TYPES: ["cr", "la", "lp", "pa", "t", "ct"],
     COURSE_REQUEST: "cr",
     LEARNING_AGREEMENT: "la",
     LANGUAGE_PROFICIENCY: "lp",
     PRE_APPROVAL: "pa",
-    TRANSCRIPT: "t"
+    TRANSCRIPT: "t",
+    COURSE_TRANSFER: "ct"
 };
 
 class GcpFileStorageController {

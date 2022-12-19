@@ -5,9 +5,55 @@ const Document = require("../models/Document");
 const Auth = require("../models/Auth");
 const db = require("./DatabaseController");
 const userController = require("./UserController");
+const Admin = require("../models/Admin");
+const Coordinator = require("../models/Coordinator");
+const DepartmentSecretary = require("../models/DepartmentSecretary");
+const FacultyCommitteeBoard = require("../models/FacultyCommitteeBoard");
+const IncomingStudent = require("../models/IncomingStudent");
+const Instructor = require("../models/Instructor");
+const InternationalStudentOffice = require("../models/InternationalStudentOffice");
+const OutgoingStudent = require("../models/OutgoingStudent");
+
+/*
+Sign types:
+- unsigned
+- signed
+- all
+ */
+
+/*
+Sign levels:
+- -1: Rejected
+- 0: Unsigned
+- 1: Signed by student
+- 2: Signed by coordinator
+- 3: Signed by instructor
+- 4: Signed by department secretary
+- 5: Signed by international student office
+- 6: Signed by committee board
+ */
+
+// Global variables
+global.SIGN = {
+    TYPES: ["unsigned", "signed", "all"],
+    UNSIGNED: "unsigned",
+    SIGNED: "signed",
+    ALL: "all"
+};
+
+global.SIGN_LEVEL = {
+    REJECTED: "-1",
+    UNSIGNED: "0",
+    SIGNED_BY_STUDENT: "1",
+    SIGNED_BY_COORDINATOR: "2",
+    SIGNED_BY_INSTRUCTOR: "3",
+    SIGNED_BY_DEPARTMENT_SECRETARY: "4",
+    SIGNED_BY_INTERNATIONAL_STUDENT_OFFICE: "5",
+    SIGNED_BY_COMMITTEE_BOARD: "6",
+};
 
 class FileStorageController {
-    getFiles(type, ownerId, callback) {
+    getFiles(type, ownerId, sign, userType, callback) {
         let docSelector = new Document();
         docSelector.setType(type);
         if (ownerId) {
@@ -22,6 +68,7 @@ class FileStorageController {
 
             let filesInfo = [];
 
+            let signedLevel = this.#getSignedLevel(userType, type);
             result.forEach((document) => {
                 let fileInfo = {
                     name: document.getName(),
@@ -31,11 +78,48 @@ class FileStorageController {
                     url: document.getPath()
                 }
 
-                filesInfo.push(fileInfo);
+                if ((sign === SIGN.SIGNED && document.getSigned() > signedLevel)
+                    || (sign === SIGN.UNSIGNED && document.getSigned() === signedLevel)
+                    || (sign === SIGN.ALL)) {
+                    filesInfo.push(fileInfo);
+                }
             })
 
             return this.addUserInfoToFiles(filesInfo, [], callback);
         });
+    }
+
+    #getSignedLevel(userType, docType) {
+        // Document is unsigned if its signed level is equal to the returned value
+        // Document is signed if its signed level is higher than the returned value
+        let signedLevel;
+        switch (userType) {
+            case USER.ADMIN:
+                signedLevel = SIGN_LEVEL.UNSIGNED;
+                break;
+            case USER.COORDINATOR:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_STUDENT;
+                break;
+            case USER.DEPARTMENT_SECRETARY:
+                signedLevel = SIGN_LEVEL.UNSIGNED;
+                break;
+            case USER.FACULTY_COMMITTEE_BOARD:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_COORDINATOR;
+                break;
+            case USER.INCOMING_STUDENT:
+                signedLevel = SIGN_LEVEL.UNSIGNED;
+                break;
+            case USER.INSTRUCTOR:
+                signedLevel = SIGN_LEVEL.UNSIGNED;
+                break;
+            case USER.INTERNATIONAL_STUDENT_OFFICE:
+                signedLevel = SIGN_LEVEL.SIGNED_BY_STUDENT;
+                break;
+            default: // USER.OUTGOING_STUDENT
+                signedLevel = SIGN_LEVEL.UNSIGNED;
+                break;
+        }
+        return signedLevel;
     }
 
     addUserInfoToFiles(filesInfo, modifiedFilesInfo, callback) {
