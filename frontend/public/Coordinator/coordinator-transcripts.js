@@ -26,7 +26,7 @@ fetch("https://bilasmus.uc.r.appspot.com/user/allOutgoingStudents/?s=" +  getCoo
         document.getElementById("ID"+index).innerHTML = data.id;
         document.getElementById("name"+index).innerHTML = data.name;
         document.getElementById("email"+index).innerHTML = data.email;
-        document.getElementById("university"+index).innerHTML = data.name;
+        document.getElementById("university"+index).innerHTML = data.uni;
 
         //set database value to the UI
         downloadTranscript.href = data.url;
