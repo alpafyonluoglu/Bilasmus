@@ -1,8 +1,10 @@
 /*
     Methods for Coordinator Transcripts Page
 */
+
+//Backend connection for the data table
 let tableHTML = document.getElementById("table");
-fetch("https://bilasmus.uc.r.appspot.com/file/t/all/all/?s=" +  getCookie("sessionID"))
+fetch("https://bilasmus.uc.r.appspot.com/user/allOutgoingStudents/?s=" +  getCookie("sessionID"))
 .then((response) => {
     console.log("here");
     return response.json();
@@ -21,17 +23,18 @@ fetch("https://bilasmus.uc.r.appspot.com/file/t/all/all/?s=" +  getCookie("sessi
         '<td><a class="btn btn-success" style="margin-left: 100px;" id="downloadTranscript'+index+'" type="select" onclick="downloadFileLink()">Select</a></td>'+
         '</tr>';
         
-        document.getElementById("ID"+index).innerHTML = data.name;
-        document.getElementById("name"+index).innerHTML = data.uploadDate;
-        document.getElementById("email"+index).innerHTML = data.name;
+        document.getElementById("ID"+index).innerHTML = data.id;
+        document.getElementById("name"+index).innerHTML = data.name;
+        document.getElementById("email"+index).innerHTML = data.email;
         document.getElementById("university"+index).innerHTML = data.name;
 
-        //document.getElementById("fileNamePreApproval").value = data.name;
+        //set database value to the UI
         downloadTranscript.href = data.url;
         downloadTranscript.download = data.url;
         index++;
         empty++;
       })
+      //if there is no data in database
       if (empty==0){
         tableHTML.innerHTML = tableHTML.innerHTML + '<tr>'+ '<td colspan="12"> No Result !!!</td>'+'</tr>';
       }
@@ -64,22 +67,7 @@ document.getElementById("table").innerHTML ='<tr>'+
 '<td colspan="12"> No Result !!!</td>'+
 '</tr>';
 
-} else{
-    document.getElementById("table").innerHTML= '<tr>'+
-'<td>01</td>'+
-'<td>India</td>'+
-'<td>Souvik Kundu</td>'+
-'<td>Bootstrap Stuido</td>'+
-'<td><button class="btn btn-success" style="margin-left: 100px;" id="downloadTranscript" type="submit" onclick="downloadFileLink()">Select</button></td>'+
-'</tr>' +  '<tr>'+
-'<td>01</td>'+
-'<td>India</td>'+
-'<td>Souvik Kundu</td>'+
-'<td>Bootstrap Stuido</td>'+
-'<td><button class="btn btn-success" style="margin-left: 100px;" id="downloadTranscript" type="submit" onclick="downloadFileLink()">Select</button></td>'+
-'</tr>';
 }
-
 
 // Taken from W3Schools
 function getCookie(cname) {
