@@ -2,10 +2,6 @@
     Methods for Coordinator Learning Agreement
 */
 
-
-
-
-
 let tableHTML = document.getElementById("column");
 fetch("https://bilasmus.uc.r.appspot.com/file/la/all/all?s=" +  getCookie("sessionID"))
 .then((response) => {
@@ -16,6 +12,7 @@ fetch("https://bilasmus.uc.r.appspot.com/file/la/all/all?s=" +  getCookie("sessi
     console.log("maybe here");
       $.each(data, (index, data) => {
         console.log(data);
+        //create html
         tableHTML.innerHTML = tableHTML.innerHTML + '<div class="row"> <div  class="col-xxl-1">'+
         '<div></div><img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
         '</div>'+
@@ -34,6 +31,8 @@ fetch("https://bilasmus.uc.r.appspot.com/file/la/all/all?s=" +  getCookie("sessi
         '</div>'+
         '</div>'+
         '</div>'+'</div>';
+        
+        //assign database value to UI
         console.log(index);
         console.log("fileNameLearningAgreement");
         document.getElementById("fileNameLearningAgreement"+index).innerHTML = data.name;
@@ -41,18 +40,16 @@ fetch("https://bilasmus.uc.r.appspot.com/file/la/all/all?s=" +  getCookie("sessi
         document.getElementById("studentNameLearningAgreement"+index).innerHTML = data.name;
 
 
-        index++;
         viewLearningAgreement.href = data.url;
         viewLearningAgreement.download = data.url;
+        
+        //increase row
+        index++;
       })
   }).catch(function(err) {
     console.log('Fetch Error :-S', err);
   });
   
-
-let studentName; //changed with database student names
-let uploadDate = "1 November, 2022";
-
 
 // Taken from W3Schools
 function getCookie(cname) {
@@ -68,4 +65,4 @@ function getCookie(cname) {
       }
     }
     return "";
-  }
+}

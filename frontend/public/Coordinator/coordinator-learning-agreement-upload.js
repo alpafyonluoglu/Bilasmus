@@ -2,13 +2,7 @@
     Methods for Coordinator Learning Agreement Form Upload Page
 */
 
-const input = document.getElementById('preapprovalUpload');
-const link = document.getElementById('downloadPreApproval');
-const submitButton = document.getElementById('submitButton');
-
-let objectURL;
-
-
+//Method to create html  
 document.getElementById('table').innerHTML = '<div  class="col-xxl-1">'+
 '<div></div><img class="d-xxl-flex justify-content-xxl-center" src="assets/img/file.png" width="78" height="59" style="padding: 0px;align-content: center;height: 55px;">'+
 '</div>'+
@@ -29,31 +23,7 @@ document.getElementById('table').innerHTML = '<div  class="col-xxl-1">'+
 '</div>';
 
 
-
-
-
-
-function submitButtonPressed(){
-    if ( input.files.length === 0 ){
-        alert("You have not uploaded the file yet!");    
-    } else{
-        
-    }
-}
-    /*
-        When submit button is clicked
-    */
-    function downloadFileLink(){
-        if ( input.files.length === 0 ){
-            alert("You have not uploaded a file yet!");
-        } else{
-            const file = this.files[0];
-            objectURL = URL.createObjectURL(file);
-            link.download = file.name;
-            link.href = objectURL;
-        }
-    }
-        
+    
  // Taken from W3Schools
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
