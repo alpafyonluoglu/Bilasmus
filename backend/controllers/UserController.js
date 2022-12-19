@@ -41,7 +41,7 @@ global.USER = {
 
 class UserController {
     registerUser(id, name, surname, email, type, callback) {
-        let user = this.#createUserModel(type);
+        let user = this.createUserModel(type);
         user.setId(id).setName(name).setSurname(surname);
 
         let auth = new Auth();
@@ -114,7 +114,7 @@ class UserController {
 
             let authUser = result[0];
 
-            let user = this.#createUserModel(authUser.getType());
+            let user = this.createUserModel(authUser.getType());
             user.setId(id);
 
             // Delete from auth table
@@ -165,7 +165,7 @@ class UserController {
 
     getUser(id, type, callback) {
         // Select database to connect depending on user type
-        let user = this.#createUserModel(type);
+        let user = this.createUserModel(type);
 
         user.setId(id);
 
@@ -178,7 +178,7 @@ class UserController {
         })
     }
 
-    #createUserModel(type) {
+    createUserModel(type) {
         let user;
         switch (type) {
             case USER.ADMIN:

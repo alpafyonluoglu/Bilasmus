@@ -10,6 +10,7 @@ require('dotenv').config({path: __dirname +'/secure/.env'})
 const db = require("./controllers/DatabaseController");
 require("./controllers/UserController");
 require("./controllers/GcpFileStorageController");
+require("./controllers/FileStorageController");
 const Session = require("./models/Session");
 
 // Routers

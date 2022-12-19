@@ -12,9 +12,9 @@ const userController = require("../controllers/UserController");
 class FileSystemRouter {
   /*
   - Upload: POST /file/upload (params: file & type)
-  - Get current user's file of given type: GET /file/:type/this
-  - Get specific user's file of given type: GET /file/:type/:userID
-  - Get all files of given type: GET /file/:type/all
+  - Get current user's file of given type: GET /file/:type/:sign/this
+  - Get specific user's file of given type: GET /file/:type/:sign/:userID
+  - Get all files of given type: GET /file/:type/:sign/all
    */
   processFile;
 
@@ -56,7 +56,7 @@ class FileSystemRouter {
           let now = new Date();
 
           let doc = new Document();
-          doc.setName(name).setOwnerId(req.session.userID).setPath(result.url).setType(type).setUploadDate(now).setSize(buffer.toString().length);
+          doc.setName(name).setOwnerId(req.session.userID).setPath(result.url).setType(type).setUploadDate(now).setSize(buffer.toString().length).setSigned("0");
 
           databaseController.insert(doc, (result) => {
             if (result instanceof Error) {
@@ -73,7 +73,7 @@ class FileSystemRouter {
       }
     });
 
-    router.get('/:type/all', (req, res, next) => {
+    router.get('/:type/:sign/all', (req, res, next) => {
       // Check session
       let allowedUserTypes = ["a", "fcb", "ds", "i", "iof", "c"];
       if (!req.session || !allowedUserTypes.includes(req.session.type)) {
@@ -84,10 +84,15 @@ class FileSystemRouter {
       if (!DOCUMENT.TYPES.includes(req.params.type)) {
         return next(createError(400, "Unknown document type"))
       }
+      else if (!SIGN.TYPES.includes(req.params.sign)) {
+        return next(createError(400, "Unknown sign type"))
+      }
 
       // Call controller
       let documentType = req.params.type;
-      fileStorageController.getFiles(documentType, undefined, (result) => {
+      let sign = req.params.sign;
+      let userType = req.session.type;
+      fileStorageController.getFiles(documentType, undefined, sign, userType, (result) => {
         if (result instanceof Error) {
           return next(result);
         }
@@ -97,7 +102,7 @@ class FileSystemRouter {
       });
     });
 
-    router.get('/:type/this', (req, res, next) => {
+    router.get('/:type/:sign/this', (req, res, next) => {
       // Check session
       if (!req.session || !req.session.userID) {
         return next(createError(401));
@@ -107,11 +112,16 @@ class FileSystemRouter {
       if (!DOCUMENT.TYPES.includes(req.params.type)) {
         return next(createError(400, "Unknown document type"))
       }
+      else if (!SIGN.TYPES.includes(req.params.sign)) {
+        return next(createError(400, "Unknown sign type"))
+      }
 
       // Call controller
       let documentType = req.params.type;
+      let sign = req.params.sign;
+      let userType = req.session.type;
       let userId = req.session.userID;
-      fileStorageController.getFiles(documentType, userId, (result) => {
+      fileStorageController.getFiles(documentType, userId, sign, userType, (result) => {
         if (result instanceof Error) {
           return next(result);
         }
@@ -121,7 +131,7 @@ class FileSystemRouter {
       });
     });
 
-    router.get('/:type/:userID', (req, res, next) => {
+    router.get('/:type/:sign/:userID', (req, res, next) => {
       // Check session
       let allowedUserTypes = ["a", "fcb", "ds", "i", "iof", "c"];
       if (!req.session || !allowedUserTypes.includes(req.session.type)) {
@@ -132,11 +142,16 @@ class FileSystemRouter {
       if (!DOCUMENT.TYPES.includes(req.params.type)) {
         return next(createError(400, "Unknown document type"))
       }
+      else if (!SIGN.TYPES.includes(req.params.sign)) {
+        return next(createError(400, "Unknown sign type"))
+      }
 
       // Call controller
       let documentType = req.params.type;
+      let sign = req.params.sign;
+      let userType = req.session.type;
       let userId = req.params.userID;
-      fileStorageController.getFiles(documentType, userId, (result) => {
+      fileStorageController.getFiles(documentType, userId, sign, userType, (result) => {
         if (result instanceof Error) {
           return next(result);
         }
